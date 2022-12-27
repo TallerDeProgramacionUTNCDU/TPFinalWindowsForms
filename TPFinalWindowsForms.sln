@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TPFinalWindowsForms", "TPFinalWindowsForms\TPFinalWindowsForms.csproj", "{999D701D-7E01-4C89-9A3E-1250E0B848A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Cripto", "Cripto\Cripto.vdproj", "{4161763D-541C-4814-B68D-A993C9673B7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{999D701D-7E01-4C89-9A3E-1250E0B848A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{999D701D-7E01-4C89-9A3E-1250E0B848A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{999D701D-7E01-4C89-9A3E-1250E0B848A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{999D701D-7E01-4C89-9A3E-1250E0B848A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{4161763D-541C-4814-B68D-A993C9673B7C}.Debug|Any CPU.ActiveCfg = Debug
+		{4161763D-541C-4814-B68D-A993C9673B7C}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59F2B766-7DA8-4022-ACD0-8E97E87EACD5}
+	EndGlobalSection
+EndGlobal
