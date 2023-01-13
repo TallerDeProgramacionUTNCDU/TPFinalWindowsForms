@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using TPFinalWindowsForms.Domain;
-
 namespace TPFinalWindowsForms.DAL.EntityFramework;
 
-public partial class MnseyzleContext : DbContext
+public partial class DBContext : DbContext
 {
-    public MnseyzleContext()
+    public DBContext()
     {
     }
 
-    public MnseyzleContext(DbContextOptions<MnseyzleContext> options)
+    public DBContext(DbContextOptions<DBContext> options)
         : base(options)
     {
     }
 
+    public virtual DbSet<Alerta> Alerta { get; set; }
+
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=kesavan.db.elephantsql.com;Port=5432;Database=mnseyzle;Username=mnseyzle;Password=EkX5Pe9VK0I8PH7PidcPaprUxT4Dii6x");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,6 +47,24 @@ public partial class MnseyzleContext : DbContext
             .HasPostgresExtension("unaccent")
             .HasPostgresExtension("uuid-ossp")
             .HasPostgresExtension("xml2");
+
+        modelBuilder.Entity<Alerta>(entity =>
+        {
+            entity.HasKey(e => e.Fecha).HasName("alerta_pkey");
+
+            entity.ToTable("alerta");
+
+            entity.Property(e => e.Fecha)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha");
+            entity.Property(e => e.Idcripto)
+                .HasMaxLength(255)
+                .HasColumnName("idcripto");
+            entity.Property(e => e.Idusuario)
+                .HasMaxLength(255)
+                .HasColumnName("idusuario");
+            entity.Property(e => e.Umbralalerta).HasColumnName("umbralalerta");
+        });
 
         modelBuilder.Entity<Usuario>(entity =>
         {

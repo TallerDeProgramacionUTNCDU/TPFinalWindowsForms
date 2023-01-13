@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using TPFinalWindowsForms.Domain;
-using TPFinalWindowsForms.DAL;
 
 namespace TPFinalWindowsForms.DAL.EntityFramework
 {
-    public class RepositorioUsuario : Repositorio<DBContext, Usuario>, IRepositorioUsuario
 
+    public interface IRepositorioAlertas : IRepositorio<Alerta>
     {
-        public RepositorioUsuario(DBContext pDbContext) : base(pDbContext)
-        {
-
-        }
-
     }
+
 }

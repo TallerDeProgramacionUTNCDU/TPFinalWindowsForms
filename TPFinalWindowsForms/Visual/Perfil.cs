@@ -30,7 +30,7 @@ namespace TPFinalWindowsForms.Visual
         private void Perfil_Load(object sender, EventArgs e)
         {
             lblMensaje.Text = "";
-            UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+            DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             var usuario = repoUsuario.Get(Program.usuarioLogueado);
             txtShowNick.Text = usuario.Nickname;
@@ -45,7 +45,8 @@ namespace TPFinalWindowsForms.Visual
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+            Utilidades utilidades = new Utilidades();
+            DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
@@ -91,7 +92,7 @@ namespace TPFinalWindowsForms.Visual
                         lblMensaje.ForeColor = Color.Red;
 
                     }
-                    else if (!fachada.IsValidEmail(txtEmail.Text))
+                    else if (!utilidades.IsValidEmail(txtEmail.Text))
                     {
                         lblMensaje.Text = "Debe ingresar un email VALIDO";
                         lblMensaje.ForeColor = Color.Red;

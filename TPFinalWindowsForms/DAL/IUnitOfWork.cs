@@ -10,6 +10,7 @@ namespace TPFinalWindowsForms.DAL
     public interface IUnitOfWork : IDisposable
     {
         IRepositorioUsuario RepositorioUsuario { get; }
+        IRepositorioAlertas RepositorioAlertas { get; }
         void Complete();
     }
 }

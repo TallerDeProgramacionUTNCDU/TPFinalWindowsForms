@@ -10,11 +10,11 @@ namespace TPFinalWindowsForms.DAL.EntityFramework
     public class UnitOfWork : IUnitOfWork
     {
 
-        private readonly UsuarioManagerDBContext iDbContext;
+        private readonly DBContext iDbContext;
 
         private bool iDisposedValue = false;
 
-        public UnitOfWork(UsuarioManagerDBContext pDbContext)
+        public UnitOfWork(DBContext pDbContext)
         {
             if (pDbContext == null)
             {
@@ -26,6 +26,7 @@ namespace TPFinalWindowsForms.DAL.EntityFramework
         }
 
         public IRepositorioUsuario RepositorioUsuario { get; private set; } 
+        public IRepositorioAlertas RepositorioAlertas { get; private set; }
         public void Complete()
         {
             this.iDbContext.SaveChanges();

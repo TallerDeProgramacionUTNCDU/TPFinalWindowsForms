@@ -24,7 +24,7 @@ namespace TPFinalWindowsForms.Visual
     {
         public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        static UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+        static DBContext context = new DBContext();
         RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
         public Login()
         { 

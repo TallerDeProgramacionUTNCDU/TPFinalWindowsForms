@@ -30,9 +30,11 @@ namespace TPFinalWindowsForms.Visual
 {
     public partial class PantallaPrincipal : Form
     {
-        ObjetoApiInteraccion interaccionCrypto = new ObjetoApiInteraccion();
-        static UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+        InteraccionApi interaccionCrypto = new InteraccionApi();
+        static DBContext context = new DBContext();
         RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+        RepositorioAlertas repoAlertas = new RepositorioAlertas(context);
+
         Fachada fachada = new Fachada();
         NumberFormatInfo provider = new NumberFormatInfo();
 
@@ -95,18 +97,22 @@ namespace TPFinalWindowsForms.Visual
             {
                 provider.NumberGroupSeparator = ",";
                 provider.NumberDecimalSeparator = ".";
-  
-                while (j<Program.listaAlertas.Count())
+
+                var listaAlertas = repoAlertas.GetAll();
+                while (j< listaAlertas.Count())
                 {
                     this.Invoke(new MethodInvoker(delegate ()
-                    {
-                        listBoxNotificaciones.Items.Add((j+1)+"- "+Program.listaAlertas[j]);
-                        j++;
+                    {         
+                        foreach (var alerta in listaAlertas)
+                        {
+                            listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Umbralalerta + "cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                            j++;
+                        }
                         Login.log.Info("Alertas Mostradas");
                     }));
                 }
             }
-            System.Timers.Timer timer = new(interval: 86401);
+            System.Timers.Timer timer = new(interval: 10);
             timer.Elapsed += (sender, e) => HandleTimer();
             timer.Start();
             Login.log.Info("Timer alertas área alertas iniciado");
@@ -315,7 +321,7 @@ namespace TPFinalWindowsForms.Visual
                 }                
                 if (nueva)
                 {
-                    using (IUnitOfWork bUoW = new UnitOfWork(new UsuarioManagerDBContext()))
+                    using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
                     {
                         var usuario = repoUsuario.Get(Program.usuarioLogueado);
                         usuario.Favcriptos = usuario.Favcriptos + " " + txtCrypto.Text;
@@ -375,7 +381,7 @@ namespace TPFinalWindowsForms.Visual
                             cryptosFavoritas = cryptosFavoritas + " " + nombreCrypto;
                         }
                     }
-                    using (IUnitOfWork bUoW = new UnitOfWork(new UsuarioManagerDBContext()))
+                    using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
                     {
                         objetoUsuario.Favcriptos = cryptosFavoritas;
                         context.SaveChanges();
@@ -425,7 +431,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnSendMail_Click(object sender, EventArgs e)
         {
-            fachada.SendMail();
+            //fachada.SendMail();
         }
 
         private void formsPlot1_Load(object sender, EventArgs e)
@@ -456,8 +462,13 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            //repoUsuario.Get();
+
             listBoxNotificaciones.Items.Remove(listBoxNotificaciones.SelectedItem);
             Login.log.Info(listBoxNotificaciones.SelectedItem+" Notificación Borrada");
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

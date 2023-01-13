@@ -32,6 +32,7 @@ namespace TPFinalWindowsForms.DAL.EntityFramework.Mapping
             builder.Property(pUsuario => pUsuario.Favcriptos);
 
             builder.Property(pUsuario => pUsuario.Umbral);
+
         }
     }
 }

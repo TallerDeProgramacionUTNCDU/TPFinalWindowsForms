@@ -7,7 +7,7 @@ namespace Tests
         [TestCase]
         public void CheckCryptoNameApi()
         {
-            var interaccionApi = new TPFinalWindowsForms.ObjetoApiInteraccion();
+            var interaccionApi = new TPFinalWindowsForms.InteraccionApi();
             List<String> pLista = new List<String>();
             pLista.Add("bitcoin");
             var resultado = interaccionApi.GetFavCryptosDTO(pLista);
@@ -16,7 +16,7 @@ namespace Tests
         [TestCase]
         public void ConnectDB()
         {
-            var context = new TPFinalWindowsForms.DAL.EntityFramework.UsuarioManagerDBContext();
+            var context = new TPFinalWindowsForms.DAL.EntityFramework.DBContext();
             var repoUsuario = new TPFinalWindowsForms.DAL.EntityFramework.RepositorioUsuario(context);
             var usuario = repoUsuario.Get("0000");
             Assert.AreEqual("0000", usuario.Nickname);

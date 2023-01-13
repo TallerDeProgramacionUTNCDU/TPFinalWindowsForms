@@ -8,10 +8,10 @@ using TPFinalWindowsForms.DAL;
 
 namespace TPFinalWindowsForms.DAL.EntityFramework
 {
-    public class RepositorioUsuario : Repositorio<DBContext, Usuario>, IRepositorioUsuario
+    public class RepositorioAlertas : Repositorio<DBContext, Alerta>, IRepositorioAlertas
 
     {
-        public RepositorioUsuario(DBContext pDbContext) : base(pDbContext)
+        public RepositorioAlertas(DBContext pDbContext) : base(pDbContext)
         {
 
         }

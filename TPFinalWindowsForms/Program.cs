@@ -29,7 +29,7 @@ namespace TPFinalWindowsForms
                 .WithIdentity(name: "RepeatingTrigger", group: "TriggerGroup")
                 .WithSimpleSchedule(o => o
                     .RepeatForever()
-                    .WithIntervalInSeconds(86400))
+                    .WithIntervalInSeconds(10))
                 .Build();
         var builder = Host.CreateDefaultBuilder()
         .ConfigureServices((cxt, services) =>
@@ -66,13 +66,6 @@ namespace TPFinalWindowsForms
             set { mensaje = value; }
         }
 
-
-        private static bool estado = false;
-        public static bool estadoOperacion
-        {
-            get { return estado; }
-            set { estado = value; }
-        }
         [STAThread]
         static void Main()
         {

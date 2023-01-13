@@ -20,7 +20,8 @@ namespace TPFinalWindowsForms.Visual
 {
     public partial class Signup : Form
     {
-        static UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+        Utilidades utilidades = new Utilidades();   
+        static DBContext context = new DBContext();
         RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
         Fachada fachada = new Fachada();
         public Signup()
@@ -59,7 +60,7 @@ namespace TPFinalWindowsForms.Visual
                 lblMensaje.ForeColor = Color.Red;
                 lblMensaje.Text = "Debe ingresar un email";
             }
-            else if (!fachada.IsValidEmail(txtEmail.Text))
+            else if (!utilidades.IsValidEmail(txtEmail.Text))
             {
                 lblMensaje.ForeColor = Color.Red;
                 lblMensaje.Text = "Debe ingresar un email VALIDO";
@@ -79,7 +80,7 @@ namespace TPFinalWindowsForms.Visual
                 }
                 else
                 {
-                    using (IUnitOfWork bUoW = new UnitOfWork(new UsuarioManagerDBContext()))
+                    using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
                     {
                         Usuario usuario = new Usuario
                         {
@@ -89,7 +90,7 @@ namespace TPFinalWindowsForms.Visual
                             Apellido = txtApellido.Text,
                             Email = txtEmail.Text,
                             Favcriptos = "",
-                            Umbral = 0,
+                            Umbral = 0
                         };
                         bUoW.RepositorioUsuario.Add(usuario);
                         bUoW.Complete();

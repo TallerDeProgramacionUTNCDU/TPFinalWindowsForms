@@ -9,16 +9,21 @@ using TPFinalWindowsForms.DAL.EntityFramework;
 using TPFinalWindowsForms.IO;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using TPFinalWindowsForms.Domain;
+using System.Windows.Forms;
+using TPFinalWindowsForms.DAL;
+using TPFinalWindowsForms.Visual;
+using ScottPlot.Renderable;
 
 namespace TPFinalWindowsForms
 {
     public class Fachada
     {
-        ObjetoApiInteraccion interaccionCrypto = new ObjetoApiInteraccion();
+        InteraccionApi interaccionCrypto = new InteraccionApi();
 
         public List<CryptoDTO> ObtenerListaFavoritas()
         {
-            UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+            DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             var objetoUsuario = repoUsuario.Get(Program.usuarioLogueado);
             string[] resultado = objetoUsuario.Favcriptos.Split(' ');
@@ -27,44 +32,67 @@ namespace TPFinalWindowsForms
             return listaCryptosDTO;
         }
 
-        public void SendMail()
+        public void SendMail(string mensaje, string email)
         {
-            UsuarioManagerDBContext context = new UsuarioManagerDBContext();
+            InteraccionApi interaccionApi = new InteraccionApi();
+            DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             var listaUsuarios = repoUsuario.GetAll();
+            string fromMail = "TpFinalTallerGrupo4@gmail.com";
+            string fromPassword = "dupgpbrtohmpklmo";
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromMail);
+            message.Subject = "Alerta Tendencias";
+            message.To.Add(new MailAddress(email));
+            message.Body = mensaje;
+            //message.IsBodyHtml = false;
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
+                };
+            smtpClient.Send(message);
+        }
+
+        public void CrearMensajeMail()
+        {
+            DBContext context = new DBContext();
+            RepositorioAlertas repoAlertas = new RepositorioAlertas(context);
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            var listaUsuarios = repoUsuario.GetAll();
+            var listaAlertas = repoAlertas.GetAll();
+            string stringAlertasFromDB = "";
+            //Creamos listas propias del objeto ya que no funcionaban los foreach anidados con las listas resultantes del getall();
+            List<Alerta> listaAlertasObjeto = new List<Alerta>();
+            List<Usuario> listaUsuarioObjeto = new List<Usuario>();
+            foreach (var alerta in listaAlertas)
+            {
+                listaAlertasObjeto.Add(alerta);
+            }
             foreach (var usuario in listaUsuarios)
             {
-                if (usuario.Favcriptos.Length > 0)
+                listaUsuarioObjeto.Add(usuario);
+            }
+
+
+            foreach (var user in listaUsuarioObjeto)
+            {
+                if (user.Favcriptos.Length > 0)
                 {
-                    string fromMail = "TpFinalTallerGrupo4@gmail.com";
-                    string fromPassword = "dupgpbrtohmpklmo";
-                    List<AlertaCryptoDTO> listaCryptosAlerta = interaccionCrypto.GetAlertas(usuario.Nickname);
-                    if (listaCryptosAlerta.Count >0)
+                    foreach (var alerta in listaAlertasObjeto)
                     {
-                        string mensaje = "";
-                        foreach (var crypto in listaCryptosAlerta)
+                        if (alerta.Idusuario == user.Nickname)
                         {
-                            mensaje = mensaje + "\n Crypto: " + crypto.Name + "   Cambio Porcentual 24h: " + crypto.ChangePercent24hs + "%";
+                            stringAlertasFromDB += "La cripto " + alerta.Umbralalerta + "cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%\n";
                         }
-                        mensaje = mensaje + "\n Su umbral es del: " + usuario.Umbral + "%"; 
-
-                        MailMessage message = new MailMessage();
-                        message.From = new MailAddress(fromMail);
-                        message.Subject = "Alerta Tendencias";
-                        message.To.Add(new MailAddress(usuario.Email));
-                        message.Body = mensaje;
-                        //message.IsBodyHtml = false;
-
-                        var smtpClient = new SmtpClient("smtp.gmail.com")
-                        {
-                            Port = 587,
-                            Credentials = new NetworkCredential(fromMail, fromPassword),
-                            EnableSsl = true,
-                        };
-                        smtpClient.Send(message);
-                    }                    
+                    }
                 }
-            }           
+                stringAlertasFromDB += "\n Su umbral es del: " + user.Umbral + "%";
+                SendMail(stringAlertasFromDB, user.Email);
+
+            }
+
         }
 
 
@@ -76,44 +104,7 @@ namespace TPFinalWindowsForms
 
 
 
-        public bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            try
-            {
-                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
-                // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
-                {
-                    // Use IdnMapping class to convert Unicode domain names.
-                    var idn = new IdnMapping();
-                    // Pull out and process domain name (throws ArgumentException on invalid)
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-                    return match.Groups[1].Value + domainName;
-                }
-            }
-            catch (RegexMatchTimeoutException e)
-            {
-                return false;
-            }
-            catch (ArgumentException e)
-            {
-                return false;
-            }
-            try
-            {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
-        }
+       
 
 
     }

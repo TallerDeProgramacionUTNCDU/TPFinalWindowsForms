@@ -15,7 +15,7 @@ using System.Globalization;
 
 namespace TPFinalWindowsForms
 {
-    public class ObjetoApiInteraccion
+    public class InteraccionApi
     {
         public static string assetsUrl = "https://api.coincap.io/v2/assets";
         public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
@@ -130,22 +130,16 @@ namespace TPFinalWindowsForms
             }
             return historial;
         }
-        public List<AlertaCryptoDTO> GetAlertas(string nickname)
+        public List<AlertaCryptoDTO> GetAlertas(List<CryptoDTO> listaCryptosAlertaDTO, double umbral)
         {            
             NumberFormatInfo provider = new NumberFormatInfo();
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
-            UsuarioManagerDBContext context = new UsuarioManagerDBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
 
-            var objetoUsuario = repoUsuario.Get(nickname);
-            string[] cryptoAlertaArray = objetoUsuario.Favcriptos.Split(" "); 
-            List<string> listaCryptoAlerta = cryptoAlertaArray.ToList();
-            List<CryptoDTO> listaCryptosAlertaDTO = GetFavCryptosDTO(listaCryptoAlerta);
             var listaDtoAlerta = new List<AlertaCryptoDTO>();
             foreach (var crypto in listaCryptosAlertaDTO)
             {
-                if (objetoUsuario.Umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
+                if (umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
                 {
                     var alerta = new AlertaCryptoDTO(crypto.Name.ToString(), crypto.ChangePercent24hs.ToString());
                     listaDtoAlerta.Add(alerta);
