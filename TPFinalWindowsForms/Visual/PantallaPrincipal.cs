@@ -46,6 +46,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void PantallaPrincipal_Load(object sender, EventArgs e)
         {
+            lblMensajeUmbral2.Text = "";
             lblMensaje.Text = "";
             Program.Alertas();
             //Carga de la tabla cryptos generales
@@ -93,10 +94,11 @@ namespace TPFinalWindowsForms.Visual
             int j = 0;
             // Carga área de notificaciones
             var usuario = repoUsuario.Get(Program.usuarioLogueado);
+            lblMensajeUmbral2.Text = "Umbral actual: "+String.Format("{0:0.0000}", usuario.Umbral+"%");
             void HandleTimer()
             {
                 j = 0;
-                listBoxNotificaciones.Items.Clear();
+                //listBoxNotificaciones.Items.Clear();
                 provider.NumberGroupSeparator = ",";
                 provider.NumberDecimalSeparator = ".";
                 var listaAlertas = repoAlertas.GetAll();
@@ -112,8 +114,7 @@ namespace TPFinalWindowsForms.Visual
                         Login.log.Info("Alertas Mostradas");
                     }));
                 }
-            }
-
+            }            
             System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
             timer.Elapsed += (sender, e) => HandleTimer();
             timer.Start();
@@ -417,15 +418,24 @@ namespace TPFinalWindowsForms.Visual
             provider.NumberDecimalSeparator = ".";
             if (txtUmbral.Text.Length == 0)
             {
-                lblMensajeUmbral.Text = "Debe ingresar un valor para cambiar el umbral";
-                lblMensajeUmbral.ForeColor = Color.Red;
+                lblMensajeUmbral2.Text = "Debe ingresar un valor para cambiar el umbral";
+                lblMensajeUmbral2.ForeColor = Color.Red;
+            }
+            else if(!double.TryParse(txtUmbral.Text, out _))
+            {
+                lblMensajeUmbral2.Text = "El umbral debe ser un numero";
+                lblMensajeUmbral2.ForeColor = Color.Red;
+
             }
             else
             {
+
                 objetoUsuario.Umbral = double.Parse(txtUmbral.Text, provider);
-                lblMensajeUmbral.Text = "Umbral cambiado exitosamente";
-                lblMensajeUmbral.ForeColor = Color.Green;
+                lblMensajeUmbral2.Text = "Umbral cambiado exitosamente";
+                lblMensajeUmbral2.ForeColor = Color.Green;
+                
                 context.SaveChanges();
+
                 Login.log.Error("Umbral cambiado");
             }
 
@@ -590,6 +600,11 @@ namespace TPFinalWindowsForms.Visual
             Show();
             this.WindowState = FormWindowState.Maximized;
             this.MaximizeBox = false;
+        }
+
+        private void txtUmbral_TextChanged(object sender, EventArgs e)
+        {
+            lblMensajeUmbral2.Text = "";
         }
     }
 }

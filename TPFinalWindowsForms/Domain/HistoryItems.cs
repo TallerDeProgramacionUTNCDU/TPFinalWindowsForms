@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPFinalWindowsForms
+namespace TPFinalWindowsForms.Domain
 {
     public class HistoryItem
     {
@@ -19,13 +19,13 @@ namespace TPFinalWindowsForms
         }
         public string PriceUSD
         {
-            get { return this.iPriceUSD; }
-            set { this.iPriceUSD = value; }
+            get { return iPriceUSD; }
+            set { iPriceUSD = value; }
         }
         public DateTime Time
         {
-            get { return this.iTime; }
-            set { this.iTime = value; }
+            get { return iTime; }
+            set { iTime = value; }
         }
 
 

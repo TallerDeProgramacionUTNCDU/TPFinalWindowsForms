@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPFinalWindowsForms.Api
 {
-    public interface IJSONApiResponse<TEntity> where TEntity : class
+    public interface IJSONApiResponse
     {
         dynamic GetAPIResponseItem(string mUrl);
 
