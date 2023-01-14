@@ -34,10 +34,8 @@ namespace TPFinalWindowsForms
 
         public void SendMail(string mensaje, string email)
         {
-            InteraccionApi interaccionApi = new InteraccionApi();
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var listaUsuarios = repoUsuario.GetAll();
             string fromMail = "TpFinalTallerGrupo4@gmail.com";
             string fromPassword = "dupgpbrtohmpklmo";
             MailMessage message = new MailMessage();
@@ -63,7 +61,9 @@ namespace TPFinalWindowsForms
             var listaUsuarios = repoUsuario.GetAll();
             var listaAlertas = repoAlertas.GetAll();
             string stringAlertasFromDB = "";
+
             //Creamos listas propias del objeto ya que no funcionaban los foreach anidados con las listas resultantes del getall();
+            
             List<Alerta> listaAlertasObjeto = new List<Alerta>();
             List<Usuario> listaUsuarioObjeto = new List<Usuario>();
             foreach (var alerta in listaAlertas)

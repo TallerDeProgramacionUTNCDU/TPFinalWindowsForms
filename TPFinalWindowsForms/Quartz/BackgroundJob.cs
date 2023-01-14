@@ -22,7 +22,6 @@ namespace TPFinalWindowsForms.Quartz
         static DBContext contexto = new DBContext();
         RepositorioUsuario repoUsuario = new RepositorioUsuario(contexto);
         NumberFormatInfo provider = new NumberFormatInfo();
-        //InteraccionApi interaccionCrypto = new InteraccionApi();
         RepositorioAlertas repoAlertas = new RepositorioAlertas(contexto);
 
         public async Task Execute(IJobExecutionContext context)

@@ -12,6 +12,7 @@ using TPFinalWindowsForms.Domain;
 using TPFinalWindowsForms.DAL.EntityFramework;
 using TPFinalWindowsForms.DAL;
 using System.Globalization;
+using TPFinalWindowsForms.Visual;
 
 namespace TPFinalWindowsForms
 {
@@ -25,7 +26,7 @@ namespace TPFinalWindowsForms
             var lista = new List<CryptoDTO>();
             foreach (var elemento in pLista)
             {
-                var conexionFavCryptos = new ObjectApi();
+                var conexionFavCryptos = new JSONApiResponse();
                 try
                 {
                     var responseFav = conexionFavCryptos.GetAPIResponseItem(assetsUrl);
@@ -46,13 +47,16 @@ namespace TPFinalWindowsForms
                     {
                         StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                         String mErrorText = mReader.ReadToEnd();
-
-                        System.Console.WriteLine("Error: {0}", mErrorText);
+                        Login.log.Error("Errpr: {0} "+mErrorResponse);
+                        //System.Console.WriteLine("Error: {0}", mErrorText);
+                        Application.Exit();
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.Console.WriteLine("Error: {0}", ex.Message);
+                    Login.log.Error("Errpr: {0} " + ex.Message);
+                    //System.Console.WriteLine("Error: {0}", ex.Message);
+                    Application.Exit();
                 }
             }
             return lista;
@@ -60,7 +64,7 @@ namespace TPFinalWindowsForms
         public List<CryptoDTO> GetAllCrytosDTO()
         {
             var lista = new List<CryptoDTO>();
-            var conexionAllCryptos = new ObjectApi();
+            var conexionAllCryptos = new JSONApiResponse();
             try
             {
                 var responseAssets = conexionAllCryptos.GetAPIResponseItem(assetsUrl);
@@ -78,13 +82,16 @@ namespace TPFinalWindowsForms
                 {
                     StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                     String mErrorText = mReader.ReadToEnd();
-
-                    System.Console.WriteLine("Error: {0}", mErrorText);
+                    Login.log.Error("Errpr: {0} " + mErrorText);
+                    //System.Console.WriteLine("Error: {0}", mErrorText);
+                    Application.Exit();
                 }
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("Error: {0}", ex.Message);
+                Login.log.Error("Errpr: {0} " + ex.Message);
+                //System.Console.WriteLine("Error: {0}", ex.Message);
+                Application.Exit();
             }
             return lista;
 
@@ -95,7 +102,7 @@ namespace TPFinalWindowsForms
             var localnow = DateTime.Now;
             var sixMonthsBack = ((DateTimeOffset)(localnow.AddMonths(-6).ToUniversalTime())).ToUnixTimeMilliseconds();
             string historyUrl = String.Format(history, cryptoID);
-            var conexionHistory = new ObjectApi();
+            var conexionHistory = new JSONApiResponse();
             try
             {
                 var responseJSON = conexionHistory.GetAPIResponseItem(historyUrl);
@@ -120,32 +127,19 @@ namespace TPFinalWindowsForms
                 {
                     StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                     String mErrorText = mReader.ReadToEnd();
-
-                    System.Console.WriteLine("Error: {0}", mErrorText);
+                    Login.log.Error("Errpr: {0} " + mErrorText);
+                    //System.Console.WriteLine("Error: {0}", mErrorText);
+                    Application.Exit();
                 }
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("Error: {0}", ex.Message);
+                Login.log.Error("Errpr: {0} " + ex.Message);
+                //System.Console.WriteLine("Error: {0}", ex.Message);
+                Application.Exit();
             }
             return historial;
         }
-        public List<AlertaCryptoDTO> GetAlertas(List<CryptoDTO> listaCryptosAlertaDTO, double umbral)
-        {            
-            NumberFormatInfo provider = new NumberFormatInfo();
-            provider.NumberGroupSeparator = ",";
-            provider.NumberDecimalSeparator = ".";
 
-            var listaDtoAlerta = new List<AlertaCryptoDTO>();
-            foreach (var crypto in listaCryptosAlertaDTO)
-            {
-                if (umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
-                {
-                    var alerta = new AlertaCryptoDTO(crypto.Name.ToString(), crypto.ChangePercent24hs.ToString());
-                    listaDtoAlerta.Add(alerta);
-                }
-            }
-            return listaDtoAlerta;
-        }
     }
 }

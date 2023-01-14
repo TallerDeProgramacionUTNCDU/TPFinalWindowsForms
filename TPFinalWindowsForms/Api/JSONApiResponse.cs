@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace TPFinalWindowsForms
 {
-    public class ObjectApi
+    public class JSONApiResponse
     {
-        public ObjectApi() { }
+        public JSONApiResponse() { }
         public dynamic GetAPIResponseItem(string mUrl)
         {
 

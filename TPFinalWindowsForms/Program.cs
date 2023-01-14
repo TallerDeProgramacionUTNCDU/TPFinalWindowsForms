@@ -59,13 +59,7 @@ namespace TPFinalWindowsForms
             get { return logued; }
             set { logued = value; }
         }
-        private static List<string> mensaje = new List<string>();
-        public static List<string> listaAlertas
-        {
-            //Consultar si se puede sacar esto para que no quede como variable dentro del program
-            get { return mensaje; }
-            set { mensaje = value; }
-        }
+
 
         [STAThread]
         static void Main()

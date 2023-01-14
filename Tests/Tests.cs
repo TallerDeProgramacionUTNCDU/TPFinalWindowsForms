@@ -27,7 +27,7 @@ namespace Tests
             Assert.AreEqual("0000", usuario.Apellido);
             Assert.AreEqual(" bitcoin tether chainlink trust-wallet-token", usuario.Favcriptos);
             Assert.AreEqual(3.897, usuario.Umbral);
-
         }
+
     }
 }

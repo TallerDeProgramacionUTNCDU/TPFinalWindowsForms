@@ -7,7 +7,7 @@ using TPFinalWindowsForms.Domain;
 
 namespace TPFinalWindowsForms.DAL
 {
-    public interface IRepositorioObjectApi : IRepositorio<ObjectApi>
+    public interface IRepositorioObjectApi : IRepositorio<JSONApiResponse>
     {
     }
 }
