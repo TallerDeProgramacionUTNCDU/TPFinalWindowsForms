@@ -6,12 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using TPFinalWindowsForms.Api;
 
 namespace TPFinalWindowsForms
 {
-    public class JSONApiResponse
+    public class JSONApiResponse:IJSONApiResponse
     {
-        public JSONApiResponse() { }
+        public JSONApiResponse() 
+        { 
+        }
         public dynamic GetAPIResponseItem(string mUrl)
         {
 

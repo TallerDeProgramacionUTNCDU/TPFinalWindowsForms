@@ -13,10 +13,12 @@ using TPFinalWindowsForms.DAL.EntityFramework;
 using TPFinalWindowsForms.DAL;
 using System.Globalization;
 using TPFinalWindowsForms.Visual;
+using Moq;
+using TPFinalWindowsForms.Api;
 
 namespace TPFinalWindowsForms
 {
-    public class InteraccionApi
+    public class InteraccionApi:IInteraccionApi
     {
         public static string assetsUrl = "https://api.coincap.io/v2/assets";
         public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";

@@ -18,6 +18,7 @@ namespace TPFinalWindowsForms.Quartz
     
     public class BackgroundJob : IJob
     {
+        Mail mail = new Mail();
         Fachada fachada = new Fachada();
         static DBContext contexto = new DBContext();
         RepositorioUsuario repoUsuario = new RepositorioUsuario(contexto);
@@ -49,7 +50,7 @@ namespace TPFinalWindowsForms.Quartz
                 }
             }
 
-            fachada.CrearMensajeMail();
+            mail.CrearMensajeMail();
             foreach (var user in listaUsuarios)
             {
                 Login.log.Info("Mail enviado a " + user.Email);

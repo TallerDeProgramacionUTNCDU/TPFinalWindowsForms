@@ -36,7 +36,7 @@
             this.btnDelFav = new System.Windows.Forms.Button();
             this.btnChangeUmbral = new System.Windows.Forms.Button();
             this.dgvCryptos = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMensajeUmbral2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblMensaje = new System.Windows.Forms.Label();
@@ -130,15 +130,15 @@
             this.dgvCryptos.Size = new System.Drawing.Size(857, 258);
             this.dgvCryptos.TabIndex = 7;
             // 
-            // label1
+            // lblMensajeUmbral2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(1519, 852);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 30);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Ingrese el Umbral en %";
+            this.lblMensajeUmbral2.AutoSize = true;
+            this.lblMensajeUmbral2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblMensajeUmbral2.Location = new System.Drawing.Point(1510, 852);
+            this.lblMensajeUmbral2.Name = "lblMensajeUmbral2";
+            this.lblMensajeUmbral2.Size = new System.Drawing.Size(164, 30);
+            this.lblMensajeUmbral2.TabIndex = 8;
+            this.lblMensajeUmbral2.Text = "Mensaje Umbral";
             // 
             // label2
             // 
@@ -183,6 +183,7 @@
             this.txtUmbral.Name = "txtUmbral";
             this.txtUmbral.Size = new System.Drawing.Size(133, 23);
             this.txtUmbral.TabIndex = 13;
+            this.txtUmbral.TextChanged += new System.EventHandler(this.txtUmbral_TextChanged);
             // 
             // btnShowGeneralCryptos
             // 
@@ -321,7 +322,7 @@
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblMensajeUmbral2);
             this.Controls.Add(this.dgvCryptos);
             this.Controls.Add(this.btnChangeUmbral);
             this.Controls.Add(this.btnDelFav);
@@ -352,7 +353,7 @@
         private Button btnDelFav;
         private Button btnChangeUmbral;
         private DataGridView dgvCryptos;
-        private Label label1;
+        private Label lblMensajeUmbral2;
         private Label label2;
         private Label lbl1;
         private Label lblMensaje;

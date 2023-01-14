@@ -10,8 +10,14 @@ namespace Tests
             var interaccionApi = new TPFinalWindowsForms.InteraccionApi();
             List<String> pLista = new List<String>();
             pLista.Add("bitcoin");
+            pLista.Add("ethereum");
+            pLista.Add("tether");
+            pLista.Add("xrp");
             var resultado = interaccionApi.GetFavCryptosDTO(pLista);
-            Assert.AreEqual("Bitcoin", resultado[0].Name);
+            Assert.AreEqual("BITCOIN", resultado[0].Name.ToUpper());
+            Assert.AreEqual("ETHEREUM", resultado[1].Name.ToUpper());
+            Assert.AreEqual("TETHER", resultado[2].Name.ToUpper());
+            Assert.AreEqual("XRP", resultado[3].Name.ToUpper());
         }
         [TestCase]
         public void ConnectDB()
