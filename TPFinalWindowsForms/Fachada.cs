@@ -94,18 +94,5 @@ namespace TPFinalWindowsForms
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-       
-
-
     }
 }
