@@ -34,21 +34,21 @@ namespace TPFinalWindowsForms.Quartz
             var listaFavoritas = fachada.ObtenerListaFavoritas();
 
             var j = 0;
-            //foreach (var crypto in listaFavoritas)
-            //{
-            //    if (usuario.Umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
-            //    {
-            //        Alerta alerta = new Alerta
-            //        {
-            //            Idcripto = crypto.Name,
-            //            Idusuario = usuario.Nickname,
-            //            Fecha = DateTime.Now,
-            //            Umbralalerta = double.Parse(crypto.ChangePercent24hs, provider)
-            //        };
-            //        repoAlertas.Add(alerta);
-            //        contexto.SaveChanges();                                     
-            //        }
-            //}
+            foreach (var crypto in listaFavoritas)
+            {
+                if (usuario.Umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
+                {
+                    Alerta alerta = new Alerta
+                    {
+                        Idcripto = crypto.Name,
+                        Idusuario = usuario.Nickname,
+                        Fecha = DateTime.Now,
+                        Umbralalerta = double.Parse(crypto.ChangePercent24hs, provider)
+                    };
+                    repoAlertas.Add(alerta);
+                    contexto.SaveChanges();
+                }
+            }
 
             fachada.CrearMensajeMail();
             foreach (var user in listaUsuarios)

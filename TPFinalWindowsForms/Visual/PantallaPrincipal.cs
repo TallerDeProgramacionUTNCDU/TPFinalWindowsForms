@@ -95,24 +95,26 @@ namespace TPFinalWindowsForms.Visual
             var usuario = repoUsuario.Get(Program.usuarioLogueado);
             void HandleTimer()
             {
+                j = 0;
+                listBoxNotificaciones.Items.Clear();
                 provider.NumberGroupSeparator = ",";
                 provider.NumberDecimalSeparator = ".";
-
                 var listaAlertas = repoAlertas.GetAll();
                 while (j< listaAlertas.Count())
                 {
                     this.Invoke(new MethodInvoker(delegate ()
-                    {         
+                    {
                         foreach (var alerta in listaAlertas)
-                        {
-                            listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Umbralalerta + "cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                        {                            
+                            listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
                             j++;
                         }
                         Login.log.Info("Alertas Mostradas");
                     }));
                 }
             }
-            System.Timers.Timer timer = new(interval: 10);
+
+            System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
             timer.Elapsed += (sender, e) => HandleTimer();
             timer.Start();
             Login.log.Info("Timer alertas área alertas iniciado");
@@ -451,7 +453,19 @@ namespace TPFinalWindowsForms.Visual
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            listBoxNotificaciones.Items.Clear();
+            DBContext contexto = new DBContext();
+            RepositorioAlertas repoAlertas = new RepositorioAlertas(contexto);
+            var listaAlertas = repoAlertas.GetAll();
+            if (listaAlertas.Count() > 0)
+            {
+                foreach (var alerta in listaAlertas)
+                {
+                    repoAlertas.Remove(alerta);
+                    listBoxNotificaciones.Items.Clear();
+                }
+
+            }
+            contexto.SaveChanges();
             Login.log.Info("Notificaciones Eliminadas");
         }
 
@@ -462,10 +476,26 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            //repoUsuario.Get();
-
+            DBContext contexto = new DBContext();
+            RepositorioAlertas repoAlertas = new RepositorioAlertas(contexto);
+            var listaAlertas = repoAlertas.GetAll();
+            int i = -1;
+            foreach (var alerta in listaAlertas)
+            {                
+                i++;
+                if (listBoxNotificaciones.SelectedIndex >= 0)
+                {
+                    if (listBoxNotificaciones.SelectedIndex == i)
+                    {
+                        repoAlertas.Remove(alerta);
+                    }
+                }
+                else
+                {
+                    lblMensaje.Text="Debe seleccionar una cripto";
+                }
+            }
+            contexto.SaveChanges();
             listBoxNotificaciones.Items.Remove(listBoxNotificaciones.SelectedItem);
             Login.log.Info(listBoxNotificaciones.SelectedItem+" Notificación Borrada");
             
