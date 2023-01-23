@@ -34,6 +34,7 @@ namespace TPFinalWindowsForms.Visual
         private void Login_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = repoUsuario.GetAll().ToList() ;
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

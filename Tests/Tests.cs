@@ -1,6 +1,11 @@
 using Moq;
+using System.Security.Cryptography;
+using System.Xml.Linq;
 using TPFinalWindowsForms;
 using TPFinalWindowsForms.Api;
+using TPFinalWindowsForms.DAL.EntityFramework;
+using TPFinalWindowsForms.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Tests
 {
@@ -8,16 +13,69 @@ namespace Tests
     [Parallelizable(ParallelScope.All)]
     public class Tests
     {
-        //[TestCase]
-        //public void Prueba()
-        //{
-        //    Mock<IJSONApiResponse> responseMock = new Mock<IJSONApiResponse>(); 
-        //    string jsonBitcoin = "{\"data\": {\r\n    \"id\": \"bitcoin\",\r\n    \"rank\": \"1\",\r\n    \"symbol\": \"BTC\",\r\n    \"name\": \"Bitcoin\",\r\n    \"supply\": \"17193925.0000000000000000\",\r\n    \"maxSupply\": \"21000000.0000000000000000\",\r\n    \"marketCapUsd\": \"119179791817.6740161068269075\",\r\n    \"volumeUsd24Hr\": \"2928356777.6066665425687196\",\r\n    \"priceUsd\": \"6931.5058555666618359\",\r\n    \"changePercent24Hr\": \"-0.8101417214350335\",\r\n    \"vwap24Hr\": \"7175.0663247679233209\"\r\n  },\r\n  \"timestamp\": 1533581098863}";
-        //    JSONApiResponse jsonApiResponse = new JSONApiResponse();
-        //    var respuesta = jsonApiResponse.GetAPIResponseItem("https://api.coincap.io/v2/assets");
-        //    Assert.AreEqual(respuesta, jsonBitcoin);
 
-        //}
+        public class CryptoCompare
+        {
+            private string iName;
+            private string iSymbol;
+            private string iId;
+
+            public CryptoCompare(string pid, string pName, string pSymbol)
+            {
+                iId = pid;
+                iName = pName;
+                iSymbol = pSymbol;
+            }
+            public string Id
+            {
+                get { return iId; }
+                set { iId = value; }
+            }
+            public string Name
+            {
+                get { return iName; }
+                set { iName = value; }
+            }
+            public string Symbol
+            {
+                get { return iSymbol; }
+                set { iSymbol = value; }
+            }
+        }
+
+        [TestCase]
+        public void TestResponseItems()
+        {
+            var lista = new List<CryptoCompare>();
+            var bitcoinCompare = new CryptoCompare("bitcoin", "bitcoin", "btc");
+            var conexionCryptos = new JSONApiResponse();
+            var response = conexionCryptos.GetAPIResponseItem("https://api.coincap.io/v2/assets");
+            bool resultado = false;
+            foreach (var bResponseItem in response.data)
+            {
+                var objeto =  new CryptoCompare(bResponseItem.id.ToString().ToLower(), bResponseItem.name.ToString().ToLower(), bResponseItem.symbol.ToString().ToLower());
+                lista.Add(objeto);
+            }
+            foreach (var crypto in lista)
+            {
+                if (crypto.Name == bitcoinCompare.Name && crypto.Id == bitcoinCompare.Id && crypto.Symbol == bitcoinCompare.Symbol )
+                    resultado = true;
+            }
+            Assert.IsTrue(resultado);
+        }
+
+        private Newtonsoft.Json.Linq.JObject JSONResponse()
+        {
+            JSONApiResponse jsonApiResponse = new JSONApiResponse();
+            return jsonApiResponse.GetAPIResponseItem("https://api.coincap.io/v2/assets");
+        }
+
+        [TestCase]
+        public void JSONResponseApiResponse()
+        {
+            var respuesta = JSONResponse().ToString();
+            Assert.IsTrue(respuesta.Length>0);
+        }
 
         [TestCase]
         public void CheckCryptoNameApi()
