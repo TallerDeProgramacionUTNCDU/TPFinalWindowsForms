@@ -32,7 +32,7 @@ namespace TPFinalWindowsForms.Visual
             lblMensaje.Text = "";
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var usuario = repoUsuario.Get(Program.usuarioLogueado);
+            var usuario = fachada.GetUsuarioActual();
             txtShowNick.Text = usuario.Nickname;
             txtShowPass.Text = usuario.Contraseña;
             txtShowNombre.Text = usuario.Nombre;
@@ -46,11 +46,8 @@ namespace TPFinalWindowsForms.Visual
         private void button1_Click(object sender, EventArgs e)
         {
             Utilidades utilidades = new Utilidades();
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
-            var usuario = repoUsuario.Get(Program.usuarioLogueado);
             if (txtPass.Text.Length==0 && txtPassControl.Text.Length==0 && txtNombre.Text.Length==0 && txtApellido.Text.Length == 0 && txtEmail.Text.Length == 0 && txtConfirmEmail.Text.Length == 0 && txtUmbral.Text.Length == 0)
             {
                 lblMensaje.ForeColor = Color.Red;
@@ -68,20 +65,20 @@ namespace TPFinalWindowsForms.Visual
                     }
                     else
                     {
+                        fachada.ChangePassword(txtPass.Text);
                         cambio = true;
-                        usuario.Contraseña = txtPass.Text;
                     }
 
                 }              
 
                 if (txtNombre.Text.Length > 0)
                 {
-                    usuario.Nombre = txtNombre.Text;
+                    fachada.ChangeNombre(txtNombre.Text);
                     cambio = true;
                 }
                 if (txtApellido.Text.Length > 0)
                 {
-                    usuario.Apellido = txtApellido.Text;
+                    fachada.ChangeApellido(txtApellido.Text);
                     cambio = true;
                 }
                 if (txtEmail.Text.Length > 0)
@@ -99,7 +96,7 @@ namespace TPFinalWindowsForms.Visual
                     }
                     else
                     {
-                        usuario.Email = txtEmail.Text;
+                        fachada.ChangeEmail(txtEmail.Text);
                         cambio = true;
                     }
                 }
@@ -115,13 +112,14 @@ namespace TPFinalWindowsForms.Visual
                     }
                     else
                     {
-                        usuario.Umbral=double.Parse(txtUmbral.Text, provider);
+                        fachada.ChangeUmbral(double.Parse(txtUmbral.Text, provider));
                         cambio = true;
                     }
                     
                 }
                 if (cambio)
                 {
+                    var usuario = fachada.GetUsuarioActual();
                     lblMensaje.Text = "Datos actualizados correctamente";
                     lblMensaje.ForeColor = Color.Green;
                     txtShowNick.Text = usuario.Nickname;
@@ -140,7 +138,6 @@ namespace TPFinalWindowsForms.Visual
                 txtUmbral.Text = "";
                 Login.log.Info("Datos del usuario Actualizados Exitosamente");
             }
-            context.SaveChanges();
         }
 
         private void txtShowNick_Click(object sender, EventArgs e)

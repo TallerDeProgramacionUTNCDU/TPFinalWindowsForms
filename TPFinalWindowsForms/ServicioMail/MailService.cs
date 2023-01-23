@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using TPFinalWindowsForms.DAL.EntityFramework;
 using TPFinalWindowsForms.Domain;
 
-namespace TPFinalWindowsForms
+namespace TPFinalWindowsForms.ServicioMail
 {
-    public class Mail
+    public class MailService : IMailService
     {
         public void SendMail(string mensaje, string email)
-        {           
+        {
             string fromMail = "tpfinaltallergrupo4v2@gmail.com";
             string fromPassword = "nqeuqapfkueewwpr";
             MailMessage message = new MailMessage();
@@ -27,9 +27,9 @@ namespace TPFinalWindowsForms
                 Port = 587,
                 Credentials = new NetworkCredential(fromMail, fromPassword),
                 EnableSsl = true,
-            };            
+            };
             smtpClient.Send(message);
-            
+
         }
 
         public void CrearMensajeMail()
@@ -39,8 +39,8 @@ namespace TPFinalWindowsForms
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             var listaUsuarios = repoUsuario.GetAll();
             var listaAlertas = repoAlertas.GetAll();
-            string stringAlertasFromDB = "";
-            
+            string stringAlertasFromDB;
+
             //Creamos listas propias del objeto ya que no funcionaban los foreach anidados con las listas resultantes del getall();
 
             List<Alerta> listaAlertasObjeto = new List<Alerta>();
@@ -64,7 +64,7 @@ namespace TPFinalWindowsForms
                     {
                         if (alerta.Idusuario == user.Nickname)
                         {
-                            stringAlertasFromDB += "La cripto " + alerta.Umbralalerta + "cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%\n";                            
+                            stringAlertasFromDB += "La cripto " + alerta.Umbralalerta + "cambio un " + string.Format("{0:0.0000}", alerta.Umbralalerta) + "%\n";
                         }
                     }
                 }

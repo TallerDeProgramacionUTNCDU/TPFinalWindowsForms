@@ -25,19 +25,16 @@ using ScottPlot;
 using static ScottPlot.Plottable.PopulationPlot;
 using System.Reflection.Emit;
 using System.Windows.Forms.VisualStyles;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Query.ExpressionTranslators.Internal;
+using TPFinalWindowsForms.Api.Exceptions;
 
 namespace TPFinalWindowsForms.Visual
 {
     public partial class PantallaPrincipal : Form
     {
-        InteraccionApi interaccionCrypto = new InteraccionApi();
-        static DBContext context = new DBContext();
-        RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-        RepositorioAlertas repoAlertas = new RepositorioAlertas(context);
 
         Fachada fachada = new Fachada();
         NumberFormatInfo provider = new NumberFormatInfo();
-
 
         public PantallaPrincipal()
         {
@@ -50,82 +47,90 @@ namespace TPFinalWindowsForms.Visual
             lblMensaje.Text = "";
             Program.Alertas();
             //Carga de la tabla cryptos generales
-            var respuesta = interaccionCrypto.GetAllCrytosDTO();
-            dgvCryptos.DataSource = respuesta;
-            //CHART
-            provider.NumberGroupSeparator = ",";
-            provider.NumberDecimalSeparator = ".";
-            var cryptosDTO = interaccionCrypto.GetAllCrytosDTO();
-            int i = 0;           
-            List<ScottPlot.Plottable.Bar> bars = new();            
-            foreach (var crypto in cryptosDTO)
+            try
             {
-                i++;                
-                double value = double.Parse(crypto.PriceUSD, provider);
-
-                ScottPlot.Plottable.Bar bar = new()
-                {
-                    Value = value,
-                    Position = i,
-                    FillColor = ScottPlot.Palette.Category10.GetColor(i),
-                    Label = crypto.Name,
-                    LineWidth = 4,        
-                    LineColor = ScottPlot.Palette.Category10.GetColor(i),
-                };
-                bars.Add(bar);
-            }
-            double[] positions = new double[i+1];
-            string[] vacio = new string[i+1];
-            int k = 0;
-            foreach (var crypto in cryptosDTO)
-            {
-                k++;
-                positions[k] = k;
-                vacio[k]="";
-            }
-            formsPlot1.Plot.XTicks(positions, vacio);
-            formsPlot1.Refresh();
-
-            // Add the BarSeries to the plot
-            formsPlot1.Plot.AddBarSeries(bars);
-            formsPlot1.Plot.SetAxisLimitsY(0, 17500);
-            formsPlot1.Plot.YLabel("Precio en USD");
-            formsPlot1.Refresh();
-            int j = 0;
-            // Carga área de notificaciones
-            var usuario = repoUsuario.Get(Program.usuarioLogueado);
-            lblMensajeUmbral2.Text = "Umbral actual: "+String.Format("{0:0.0000}", usuario.Umbral+"%");
-            void HandleTimer()
-            {
-                j = 0;
-                //listBoxNotificaciones.Items.Clear();
+                var respuesta = fachada.GetAllCryptoDTO();
+                dgvCryptos.DataSource = respuesta;
+                //CHART
                 provider.NumberGroupSeparator = ",";
                 provider.NumberDecimalSeparator = ".";
-                var listaAlertas = repoAlertas.GetAll();
-                while (j< listaAlertas.Count())
+                var cryptosDTO = fachada.GetAllCryptoDTO(); //awijdiawjdiadwjdawidjiawjdiawd
+                int i = 0;
+                List<ScottPlot.Plottable.Bar> bars = new();
+                foreach (var crypto in cryptosDTO)
                 {
-                    this.Invoke(new MethodInvoker(delegate ()
+                    i++;
+                    double value = double.Parse(crypto.PriceUSD, provider);
+
+                    ScottPlot.Plottable.Bar bar = new()
                     {
-                        foreach (var alerta in listaAlertas)
-                        {                            
-                            listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
-                            j++;
-                        }
-                        Login.log.Info("Alertas Mostradas");
-                    }));
+                        Value = value,
+                        Position = i,
+                        FillColor = ScottPlot.Palette.Category10.GetColor(i),
+                        Label = crypto.Name,
+                        LineWidth = 4,
+                        LineColor = ScottPlot.Palette.Category10.GetColor(i),
+                    };
+                    bars.Add(bar);
                 }
-            }            
-            System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
-            timer.Elapsed += (sender, e) => HandleTimer();
-            timer.Start();
-            Login.log.Info("Timer alertas área alertas iniciado");
-            //Carga el umbral actual para mostrarselo al usuario
-            lblMensajeUmbral.Text ="Umbral Actual: " +usuario.Umbral.ToString()+"%";
+                double[] positions = new double[i + 1];
+                string[] vacio = new string[i + 1];
+                int k = 0;
+                foreach (var crypto in cryptosDTO)
+                {
+                    k++;
+                    positions[k] = k;
+                    vacio[k] = "";
+                }
+                formsPlot1.Plot.XTicks(positions, vacio);
+                formsPlot1.Refresh();
+
+                // Add the BarSeries to the plot
+                formsPlot1.Plot.AddBarSeries(bars);
+                formsPlot1.Plot.SetAxisLimitsY(0, 17500);
+                formsPlot1.Plot.YLabel("Precio en USD");
+                formsPlot1.Refresh();
+                int j = 0;
+                // Carga área de notificaciones
+                var usuario = fachada.GetUsuarioActual();
+                lblMensajeUmbral2.Text = "Umbral actual: " + String.Format("{0:0.0000}", usuario.Umbral + "%");
+                void HandleTimer()
+                {
+                    j = 0;
+                    listBoxNotificaciones.Items.Clear();
+                    provider.NumberGroupSeparator = ",";
+                    provider.NumberDecimalSeparator = ".";
+                    var listaAlertas = fachada.GetAllAlerts();
+                    while (j < listaAlertas.Count())
+                    {
+                        this.Invoke(new MethodInvoker(delegate ()
+                        {
+                            foreach (var alerta in listaAlertas)
+                            {
+                                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                                j++;
+                            }
+                            Login.log.Info("Alertas Mostradas");
+                        }));
+                    }
+                }
+                System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
+                timer.Elapsed += (sender, e) => HandleTimer();
+                timer.Start();
+                Login.log.Info("Timer alertas área alertas iniciado");
+                //Carga el umbral actual para mostrarselo al usuario
+                lblMensajeUmbral.Text = "Umbral Actual: " + usuario.Umbral.ToString() + "%";
+            }
+            catch (ExcepcionesApi unaExcepcion)
+            {
+                MessageBox.Show(unaExcepcion.Message);
+                Application.Exit();
+            }
         }
 
         private void btnShowGeneralCryptos_Click(object sender, EventArgs e)
         {
-            var respuesta = interaccionCrypto.GetAllCrytosDTO();
+            var respuesta = fachada.GetAllCryptoDTO();
             dgvCryptos.DataSource = respuesta;
             int i = 0;
             provider.NumberGroupSeparator = ",";
@@ -235,7 +240,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnShowCyrpto_Click(object sender, EventArgs e)
         {
-            var respuesta = interaccionCrypto.Get6MonthHistoryFrom(txtCrypto.Text.ToLower());
+            var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
             if (txtCrypto.Text.ToLower() == "")
             {
                 lblMensaje.ForeColor = Color.Red;
@@ -296,7 +301,7 @@ namespace TPFinalWindowsForms.Visual
         private void btnAddFav_Click(object sender, EventArgs e)
         {
 
-            var respuesta = interaccionCrypto.Get6MonthHistoryFrom(txtCrypto.Text.ToLower());
+            var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
             if (txtCrypto.Text.Length == 0)
             {
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
@@ -309,7 +314,7 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                var objetoUsuario = repoUsuario.Get(Program.usuarioLogueado);
+                var objetoUsuario = fachada.GetUsuarioActual();//awdawdawawd
                 string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
                 int i = 0;
                 bool nueva = true;
@@ -324,16 +329,10 @@ namespace TPFinalWindowsForms.Visual
                 }                
                 if (nueva)
                 {
-                    using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
-                    {
-                        var usuario = repoUsuario.Get(Program.usuarioLogueado);
-                        usuario.Favcriptos = usuario.Favcriptos + " " + txtCrypto.Text;
-                        context.SaveChanges();
-                        lblMensaje.Text = "La crypto fue agregada a favoritos";
-                        lblMensaje.ForeColor = Color.Aqua;
-                        Login.log.Info(txtCrypto.Text+" Añadida a favoritas");
-                    }
-
+                    fachada.AddFavCrypto(favorita); //IJAWIOFDJAOWDJOAWDJAWD
+                    lblMensaje.Text = "La crypto fue agregada a favoritos";
+                    lblMensaje.ForeColor = Color.Aqua;
+                    Login.log.Info(txtCrypto.Text + " Añadida a favoritas");
                 }
                 else
                 {
@@ -347,8 +346,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnDelFav_Click(object sender, EventArgs e)
         {
-            string cryptosFavoritas = "";
-            var respuesta = interaccionCrypto.Get6MonthHistoryFrom(txtCrypto.Text.ToLower());
+            var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());//a9wdjawodjawdawd
             if (txtCrypto.Text.Length == 0)
             {
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
@@ -361,37 +359,13 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                var objetoUsuario = repoUsuario.Get(Program.usuarioLogueado);
-                string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
-                bool existe = false;
-                int i = 0;
-                foreach (var crypto in arrayCryptos)
+
+                if (fachada.ExisteCripto(txtCrypto.Text.ToLower()))
                 {
-                    if (crypto == txtCrypto.Text)
-                    {
-                        existe = true;
-                        break;
-                    }
-                    i++;
-                }
-                if (existe)
-                {
-                    arrayCryptos[i] = null;
-                    foreach (var nombreCrypto in arrayCryptos)
-                    {
-                        if (nombreCrypto != "")
-                        {
-                            cryptosFavoritas = cryptosFavoritas + " " + nombreCrypto;
-                        }
-                    }
-                    using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
-                    {
-                        objetoUsuario.Favcriptos = cryptosFavoritas;
-                        context.SaveChanges();
-                        lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
-                        lblMensaje.ForeColor = Color.Aqua;
-                        Login.log.Info("Se eliminó a "+txtCrypto.Text + " de favoritas");
-                    }
+                    fachada.DelFavCrypto(txtCrypto.Text.ToLower()); //IAWIDJAWIJADW
+                    lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
+                    lblMensaje.ForeColor = Color.Aqua;
+                    Login.log.Info("Se eliminó a " + txtCrypto.Text + " de favoritas");
                 }
                 else
                 {
@@ -413,7 +387,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnChangeUmbral_Click(object sender, EventArgs e)
         {
-            var objetoUsuario = repoUsuario.Get(Program.usuarioLogueado);
+            var objetoUsuario = fachada.GetUsuarioActual();
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
             if (txtUmbral.Text.Length == 0)
@@ -429,12 +403,10 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-
-                objetoUsuario.Umbral = double.Parse(txtUmbral.Text, provider);
+                fachada.ChangeUmbral(txtUmbral.Text, provider);
                 lblMensajeUmbral2.Text = "Umbral cambiado exitosamente";
                 lblMensajeUmbral2.ForeColor = Color.Green;
-                
-                context.SaveChanges();
+
 
                 Login.log.Error("Umbral cambiado");
             }
@@ -463,19 +435,16 @@ namespace TPFinalWindowsForms.Visual
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            DBContext contexto = new DBContext();
-            RepositorioAlertas repoAlertas = new RepositorioAlertas(contexto);
-            var listaAlertas = repoAlertas.GetAll();
+            var listaAlertas = fachada.GetAllAlerts();
             if (listaAlertas.Count() > 0)
             {
                 foreach (var alerta in listaAlertas)
                 {
-                    repoAlertas.Remove(alerta);
-                    listBoxNotificaciones.Items.Clear();
+                    fachada.RemoveAlert(alerta);
+                    
                 }
-
+                listBoxNotificaciones.Items.Clear();
             }
-            contexto.SaveChanges();
             Login.log.Info("Notificaciones Eliminadas");
         }
 
@@ -486,9 +455,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            DBContext contexto = new DBContext();
-            RepositorioAlertas repoAlertas = new RepositorioAlertas(contexto);
-            var listaAlertas = repoAlertas.GetAll();
+            var listaAlertas = fachada.GetAllAlerts();
             int i = -1;
             foreach (var alerta in listaAlertas)
             {                
@@ -497,7 +464,7 @@ namespace TPFinalWindowsForms.Visual
                 {
                     if (listBoxNotificaciones.SelectedIndex == i)
                     {
-                        repoAlertas.Remove(alerta);
+                        fachada.RemoveAlert(alerta);
                     }
                 }
                 else
@@ -505,7 +472,6 @@ namespace TPFinalWindowsForms.Visual
                     lblMensaje.Text="Debe seleccionar una cripto";
                 }
             }
-            contexto.SaveChanges();
             listBoxNotificaciones.Items.Remove(listBoxNotificaciones.SelectedItem);
             Login.log.Info(listBoxNotificaciones.SelectedItem+" Notificación Borrada");
             

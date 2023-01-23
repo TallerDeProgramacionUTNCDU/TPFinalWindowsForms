@@ -8,7 +8,7 @@ using TPFinalWindowsForms.IO;
 
 namespace TPFinalWindowsForms.Api
 {
-    public interface IInteraccionApi
+    public interface IDataCriptoAPI
     {
         List<CryptoDTO> GetFavCryptosDTO(List<String> pLista);
 

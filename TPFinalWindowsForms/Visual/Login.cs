@@ -34,7 +34,6 @@ namespace TPFinalWindowsForms.Visual
         private void Login_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = repoUsuario.GetAll().ToList() ;
-            
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -59,7 +58,7 @@ namespace TPFinalWindowsForms.Visual
                         log.Info("Login Exitoso");
                         Hide();                        
                         PantallaPrincipal pantallPrincipal = new PantallaPrincipal();
-                        Program.usuarioLogueado = objetoUsuario.Nickname;
+                        Fachada.usuarioLogueado = objetoUsuario.Nickname;
                         pantallPrincipal.ShowDialog();                                             
                     }
                     else

@@ -53,12 +53,7 @@ namespace TPFinalWindowsForms
             await scheduler.ScheduleJob(job, trigger);
         }
 
-        private static string logued = "";
-        public static string usuarioLogueado
-        {
-            get { return logued; }
-            set { logued = value; }
-        }
+ 
 
 
         [STAThread]

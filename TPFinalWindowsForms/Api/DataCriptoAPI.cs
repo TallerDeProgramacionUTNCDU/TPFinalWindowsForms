@@ -15,10 +15,11 @@ using System.Globalization;
 using TPFinalWindowsForms.Visual;
 using Moq;
 using TPFinalWindowsForms.Api;
+using TPFinalWindowsForms.Api.Exceptions;
 
 namespace TPFinalWindowsForms
 {
-    public class InteraccionApi:IInteraccionApi
+    public class DataCriptoAPI:IDataCriptoAPI
     {
         public static string assetsUrl = "https://api.coincap.io/v2/assets";
         public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
@@ -50,18 +51,23 @@ namespace TPFinalWindowsForms
                         StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                         String mErrorText = mReader.ReadToEnd();
                         Login.log.Error("Errpr: {0} "+mErrorResponse);
-                        //System.Console.WriteLine("Error: {0}", mErrorText);
-                        Application.Exit();
+                        throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
                     }
                 }
                 catch (Exception ex)
                 {
                     Login.log.Error("Errpr: {0} " + ex.Message);
-                    //System.Console.WriteLine("Error: {0}", ex.Message);
-                    Application.Exit();
+                    throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
                 }
             }
-            return lista;
+            if (lista.Count > 0)
+            {
+                return lista;
+            }
+            else
+            {
+                return null;
+            }
         }
         public List<CryptoDTO> GetAllCrytosDTO()
         {
@@ -85,17 +91,22 @@ namespace TPFinalWindowsForms
                     StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                     String mErrorText = mReader.ReadToEnd();
                     Login.log.Error("Errpr: {0} " + mErrorText);
-                    //System.Console.WriteLine("Error: {0}", mErrorText);
-                    Application.Exit();
+                    throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
                 }
             }
             catch (Exception ex)
             {
                 Login.log.Error("Errpr: {0} " + ex.Message);
-                //System.Console.WriteLine("Error: {0}", ex.Message);
-                Application.Exit();
+                throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
             }
-            return lista;
+            if (lista.Count > 0)
+            {
+                return lista;
+            }
+            else
+            {
+                return null;
+            }
 
         }
         public List<HistoryItem> Get6MonthHistoryFrom(string cryptoID)
@@ -130,17 +141,22 @@ namespace TPFinalWindowsForms
                     StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                     String mErrorText = mReader.ReadToEnd();
                     Login.log.Error("Errpr: {0} " + mErrorText);
-                    //System.Console.WriteLine("Error: {0}", mErrorText);
-                    Application.Exit();
+                    throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
                 }
             }
             catch (Exception ex)
             {
                 Login.log.Error("Errpr: {0} " + ex.Message);
-                //System.Console.WriteLine("Error: {0}", ex.Message);
-                Application.Exit();
+                throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
             }
-            return historial;
+            if (historial.Count > 0)
+            {
+                return historial;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
