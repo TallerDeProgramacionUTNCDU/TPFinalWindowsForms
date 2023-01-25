@@ -21,6 +21,8 @@ namespace TPFinalWindowsForms
 {
     public class Fachada
     {
+        public static string assetsUrl = "https://api.coincap.io/v2/assets";
+
         private static string logued = "";
         public static string usuarioLogueado
         {
@@ -43,7 +45,9 @@ namespace TPFinalWindowsForms
         public List<CryptoDTO> GetAllCryptoDTO()
         {
             DataCriptoAPI interaccionApi = new DataCriptoAPI();
-            return interaccionApi.GetAllCrytosDTO();
+                var conexionAllCryptos = new JSONApiResponse();
+                return interaccionApi.GetAllCrytosDTO();
+
         }
         public IEnumerable<Alerta> GetAllAlerts()
         {

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,8 +37,7 @@ namespace TPFinalWindowsForms
 
             // Se parsea la respuesta y se serializa a JSON a un objeto dynamic
             dynamic mResponseJSON = JsonConvert.DeserializeObject(reader.ReadToEnd());
-            //return mResponseJSON;
-            data=mResponseJSON;
+            return mResponseJSON;
         }
     }
 }

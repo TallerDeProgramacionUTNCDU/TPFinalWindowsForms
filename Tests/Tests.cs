@@ -112,8 +112,7 @@ namespace Tests
         private Newtonsoft.Json.Linq.JObject JSONResponse()
         {
             JSONApiResponse jsonApiResponse = new JSONApiResponse();
-            jsonApiResponse.GetAPIResponseItem("https://api.coincap.io/v2/assets");
-            return jsonApiResponse.data;
+            return jsonApiResponse.GetAPIResponseItem("https://api.coincap.io/v2/assets");
         }
 
         [TestCase]
@@ -137,6 +136,6 @@ namespace Tests
             Assert.AreEqual(" bitcoin tether chainlink trust-wallet-token", usuario.Favcriptos);
             Assert.AreEqual(3.897, usuario.Umbral);
         }
-        */
+
     }
 }

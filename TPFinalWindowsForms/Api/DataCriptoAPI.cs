@@ -32,9 +32,7 @@ namespace TPFinalWindowsForms
                 var conexionFavCryptos = new JSONApiResponse();
                 try
                 {
-                    // var responseFav = conexionFavCryptos.GetAPIResponseItem(assetsUrl);
-                    conexionFavCryptos.GetAPIResponseItem(assetsUrl);
-                    var responseFav = conexionFavCryptos.data;
+                    var responseFav = conexionFavCryptos.GetAPIResponseItem(assetsUrl);
                     foreach (var bResponseItem in responseFav.data)
                     {
                         if (elemento == bResponseItem.id.ToString())
@@ -71,23 +69,21 @@ namespace TPFinalWindowsForms
                 return null;
             }
         }
-        /// --------//
-        public List<CryptoDTO> GetAllCrytosDTO(dynamic responseAssets)
+        public List<CryptoDTO> GetAllCrytosDTO()
         {
             var lista = new List<CryptoDTO>();
-            //var conexionAllCryptos = new JSONApiResponse();
-            //try
+            var conexionAllCryptos = new JSONApiResponse();
+            try
             {
-                //conexionAllCryptos.GetAPIResponseItem(assetsUrl);
-                //var responseAssets = conexionAllCryptos.data;
-                foreach (var bResponseItem in responseAssets)
+                var responseAssets = conexionAllCryptos.GetAPIResponseItem(assetsUrl);
+                foreach (var bResponseItem in responseAssets.data)
                 {
                     var objetoDTO = new CryptoDTO(bResponseItem.id.ToString(), bResponseItem.name.ToString(), bResponseItem.rank.ToString(), bResponseItem.priceUsd.ToString(), bResponseItem.symbol.ToString(), bResponseItem.changePercent24Hr.ToString());
                     lista.Add(objetoDTO);
                 }
 
             }
-            /*catch (WebException ex)
+            catch (WebException ex)
             {
                 WebResponse mErrorResponse = ex.Response;
                 using (Stream mResponseStream = mErrorResponse.GetResponseStream())
@@ -103,7 +99,6 @@ namespace TPFinalWindowsForms
                 Login.log.Error("Errpr: {0} " + ex.Message);
                 throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
             }
-            */
             if (lista.Count > 0)
             {
                 return lista;
@@ -123,8 +118,7 @@ namespace TPFinalWindowsForms
             var conexionHistory = new JSONApiResponse();
             try
             {
-                conexionHistory.GetAPIResponseItem(historyUrl);
-                var responseJSON = conexionHistory.data;
+                var responseJSON = conexionHistory.GetAPIResponseItem(historyUrl);
                 foreach (var bResponseItem in responseJSON.data)
                 {
                     if ((bResponseItem.time) >= sixMonthsBack)

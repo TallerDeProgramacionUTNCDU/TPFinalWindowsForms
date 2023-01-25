@@ -12,7 +12,7 @@ namespace TPFinalWindowsForms.Api
     {
         List<CryptoDTO> GetFavCryptosDTO(List<String> pLista);
 
-        List<CryptoDTO> GetAllCrytosDTO(dynamic responseAssets);
+        List<CryptoDTO> GetAllCrytosDTO();
 
         List<HistoryItem> Get6MonthHistoryFrom(string cryptoID);
         //TESTS
