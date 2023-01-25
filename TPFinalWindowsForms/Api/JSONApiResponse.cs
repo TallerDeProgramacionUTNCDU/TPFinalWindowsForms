@@ -12,8 +12,15 @@ namespace TPFinalWindowsForms
 {
     public class JSONApiResponse:IJSONApiResponse
     {
+        public dynamic data;
+        public dynamic Data
+        {
+            get { return this.data; }
+            set { this.data = value; }
+        }
         public JSONApiResponse() 
         { 
+
         }
         public dynamic GetAPIResponseItem(string mUrl)
         {

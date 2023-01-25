@@ -15,5 +15,11 @@ namespace TPFinalWindowsForms.Api
         List<CryptoDTO> GetAllCrytosDTO();
 
         List<HistoryItem> Get6MonthHistoryFrom(string cryptoID);
+        //TESTS
+        List<CryptoDTO> GetFavCryptosDTOTest(List<String> pLista, dynamic responseAssets);
+
+        List<CryptoDTO> GetAllCrytosDTOTest(dynamic responseAssets);
+
+        List<HistoryItem> Get6MonthHistoryFromTest(dynamic responseAssets);
     }
 }
