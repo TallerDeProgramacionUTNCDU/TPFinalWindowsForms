@@ -16,11 +16,15 @@ using TPFinalWindowsForms.Visual;
 using ScottPlot.Renderable;
 using Quartz.Impl.AdoJobStore.Common;
 using TPFinalWindowsForms.ServicioMail;
+using Npgsql.Internal.TypeHandlers;
 
 namespace TPFinalWindowsForms
 {
     public class Fachada
     {
+        public static string assetsUrl = "https://api.coincap.io/v2/assets";
+        public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
+
         private static string logued = "";
         public static string usuarioLogueado
         {
@@ -43,7 +47,9 @@ namespace TPFinalWindowsForms
         public List<CryptoDTO> GetAllCryptoDTO()
         {
             DataCriptoAPI interaccionApi = new DataCriptoAPI();
-            return interaccionApi.GetAllCrytosDTO();
+            var respuestaAPI=new JSONApiResponse();
+            respuestaAPI.GetAPIResponseItem(assetsUrl);
+            return interaccionApi.GetAllCrytosDTO(respuestaAPI.data);
         }
         public IEnumerable<Alerta> GetAllAlerts()
         {

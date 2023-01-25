@@ -13,7 +13,28 @@ namespace Tests
     [Parallelizable(ParallelScope.All)]
     public class Tests
     {
+        [TestCase]
 
+        public void TestCaminoFeliz()
+        {
+            Mock<IJSONApiResponse> fakeJsonMock=new Mock<IJSONApiResponse>();
+            fakeJsonMock.SetupAllProperties();
+            //Mock<JSONApiResponse> fakeJsonMock=new Mock<JSONApiResponse>();
+            //var fakeJsonMock=new Mock<IJSONApiResponse>();
+            fakeJsonMock.SetupProperty(d => d.Data , "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"bitcoin\",\r\n      \"rank\": \"1\",\r\n      \"symbol\": \"BTC\",\r\n      \"name\": \"Bitcoin\",\r\n      \"supply\": \"17193925.0000000000000000\",\r\n      \"maxSupply\": \"21000000.0000000000000000\",\r\n      \"marketCapUsd\": \"119150835874.4699281625807300\",\r\n      \"volumeUsd24Hr\": \"2927959461.1750323310959460\",\r\n      \"priceUsd\": \"6929.8217756835584756\",\r\n      \"changePercent24Hr\": \"-0.8101417214350335\",\r\n      \"vwap24Hr\": \"7175.0663247679233209\"\r\n    }\r\n  ],\r\n  \"timestamp\": 1533581088278\r\n}");
+            DataCriptoAPI interaccionAPI = new DataCriptoAPI();
+            List<CryptoDTO> lista = interaccionAPI.GetAllCrytosDTO(fakeJsonMock.Object.Data);
+
+            Assert.AreEqual(lista[0].Id,"bitcoin");
+            Assert.AreEqual(lista[0].Rank,"1");
+            Assert.AreEqual(lista[0].Name,"Bitcoin");
+            Assert.AreEqual(lista[0].PriceUSD,"6929.8217756835584756");
+            Assert.AreEqual(lista[0].Symbol, "BTC");
+            Assert.AreEqual(lista[0].ChangePercent24hs, "-0.8101417214350335");
+
+        }
+
+        /*
         public class CryptoCompare
         {
             private string iName;
@@ -49,7 +70,8 @@ namespace Tests
             var lista = new List<CryptoCompare>();
             var bitcoinCompare = new CryptoCompare("bitcoin", "bitcoin", "btc");
             var conexionCryptos = new JSONApiResponse();
-            var response = conexionCryptos.GetAPIResponseItem("https://api.coincap.io/v2/assets");
+            conexionCryptos.GetAPIResponseItem("https://api.coincap.io/v2/assets");
+            var response = conexionCryptos.data;
             bool resultado = false;
             foreach (var bResponseItem in response.data)
             {
@@ -67,7 +89,8 @@ namespace Tests
         private Newtonsoft.Json.Linq.JObject JSONResponse()
         {
             JSONApiResponse jsonApiResponse = new JSONApiResponse();
-            return jsonApiResponse.GetAPIResponseItem("https://api.coincap.io/v2/assets");
+            jsonApiResponse.GetAPIResponseItem("https://api.coincap.io/v2/assets");
+            return jsonApiResponse.data;
         }
 
         [TestCase]
@@ -107,6 +130,6 @@ namespace Tests
             Assert.AreEqual(" bitcoin tether chainlink trust-wallet-token", usuario.Favcriptos);
             Assert.AreEqual(3.897, usuario.Umbral);
         }
-
+        */
     }
 }

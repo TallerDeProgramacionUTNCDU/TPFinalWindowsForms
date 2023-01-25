@@ -8,7 +8,9 @@ namespace TPFinalWindowsForms.Api
 {
     public interface IJSONApiResponse
     {
-        dynamic GetAPIResponseItem(string mUrl);
+        // dynamic GetAPIResponseItem(string mUrl);
 
+        dynamic Data{ get; set;}
+        void GetAPIResponseItem(string mUrl);
     }
 }
