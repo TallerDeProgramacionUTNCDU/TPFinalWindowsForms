@@ -11,5 +11,7 @@ namespace TPFinalWindowsForms.Api
         dynamic Data { get; set; }
         dynamic GetAPIResponseItem(string mUrl);
 
+        dynamic Data{ get; set;}
+        void GetAPIResponseItem(string mUrl);
     }
 }
