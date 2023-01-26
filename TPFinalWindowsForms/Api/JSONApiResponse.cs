@@ -22,7 +22,7 @@ namespace TPFinalWindowsForms
         { 
 
         }
-        public dynamic GetAPIResponseItem(string mUrl)
+        public void GetAPIResponseItem(string mUrl)
         {
 
             // Se crea el request http
@@ -37,7 +37,8 @@ namespace TPFinalWindowsForms
 
             // Se parsea la respuesta y se serializa a JSON a un objeto dynamic
             dynamic mResponseJSON = JsonConvert.DeserializeObject(reader.ReadToEnd());
-            return mResponseJSON;
+            //return mResponseJSON;
+            Data=mResponseJSON;
         }
     }
 }

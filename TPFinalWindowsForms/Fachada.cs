@@ -22,6 +22,7 @@ namespace TPFinalWindowsForms
     public class Fachada
     {
         public static string assetsUrl = "https://api.coincap.io/v2/assets";
+        public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
 
         private static string logued = "";
         public static string usuarioLogueado
@@ -33,20 +34,70 @@ namespace TPFinalWindowsForms
 
         public List<CryptoDTO> ObtenerListaFavoritas()
         {
+            try { 
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             var objetoUsuario = repoUsuario.Get(usuarioLogueado);
             string[] resultado = objetoUsuario.Favcriptos.Split(' ');
             List<string> listaFavoritas = resultado.ToList();
-            List<CryptoDTO> listaCryptosDTO = interaccionCrypto.GetFavCryptosDTO(listaFavoritas);
-            return listaCryptosDTO;
+                var conexionFavCryptos = new JSONApiResponse();
+                conexionFavCryptos.GetAPIResponseItem(assetsUrl);
+                List<CryptoDTO> listaCryptosDTO = interaccionCrypto.GetFavCryptosDTO(listaFavoritas, conexionFavCryptos.Data);
+                return listaCryptosDTO;
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response is null)
+                {
+                    Login.log.Error("Error: no hubo respuesta del servicio");
+                    throw new ExcepcionesApi("Se ha producido un error con el servicio de datos de Criptomonedas, intente mas tarde");
+                }
+                WebResponse mErrorResponse = ex.Response;
+                using (Stream mResponseStream = mErrorResponse.GetResponseStream())
+                {
+                    StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
+                    String mErrorText = mReader.ReadToEnd();
+                    Login.log.Error("Error: {0} " + mErrorResponse);
+                    throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+                }
+            }
+            catch (Exception ex)
+            {
+                Login.log.Error("Errpr: {0} " + ex.Message);
+                throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+            }
         }
 
         public List<CryptoDTO> GetAllCryptoDTO()
         {
-            DataCriptoAPI interaccionApi = new DataCriptoAPI();
+            try
+            {
+                DataCriptoAPI interaccionApi = new DataCriptoAPI();
                 var conexionAllCryptos = new JSONApiResponse();
-                return interaccionApi.GetAllCrytosDTO();
+                conexionAllCryptos.GetAPIResponseItem(assetsUrl);
+                return interaccionApi.GetAllCrytosDTO(conexionAllCryptos.Data);
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response is null)
+                {
+                    Login.log.Error("Error: no hubo respuesta del servicio");
+                    throw new ExcepcionesApi("Se ha producido un error con el servicio de datos de Criptomonedas, intente mas tarde");
+                }
+                WebResponse mErrorResponse = ex.Response;
+                using (Stream mResponseStream = mErrorResponse.GetResponseStream())
+                {
+                    StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
+                    String mErrorText = mReader.ReadToEnd();
+                    Login.log.Error("Errpr: {0} " + mErrorText);
+                    throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+                }
+            }
+            catch (Exception ex)
+            {
+                Login.log.Error("Error: {0} " + ex.Message);
+                throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+            }
 
         }
         public IEnumerable<Alerta> GetAllAlerts()
@@ -57,8 +108,38 @@ namespace TPFinalWindowsForms
         }
         public List<HistoryItem> GetHystoryFrom(string cripto)
         {
-            DataCriptoAPI interaccionApi = new DataCriptoAPI();
-            return interaccionApi.Get6MonthHistoryFrom(cripto);
+            try
+            {
+                DataCriptoAPI interaccionApi = new DataCriptoAPI();
+                var conexionHistorial = new JSONApiResponse();
+                string historyUrl = String.Format(history, cripto);
+                conexionHistorial.GetAPIResponseItem(historyUrl);
+                return interaccionApi.Get6MonthHistoryFrom(conexionHistorial.Data);
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response is null)
+                {
+                    Login.log.Error("Error: no hubo respuesta del servicio");
+                    throw new ExcepcionesApi("Se ha producido un error con el servicio de datos de Criptomonedas, intente mas tarde");
+                }
+                else
+                {
+                    WebResponse mErrorResponse = ex.Response;
+                    using (Stream mResponseStream = mErrorResponse.GetResponseStream())
+                    {
+                        StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
+                        String mErrorText = mReader.ReadToEnd();
+                        Login.log.Error("Errpr: {0} " + mErrorText);
+                        throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Login.log.Error("Errpr: {0} " + ex.Message);
+                throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+            }
         }
 
         public Usuario GetUsuarioActual()
@@ -229,15 +310,11 @@ namespace TPFinalWindowsForms
                 }
             }
 
-            mail.CrearMensajeMail();
+            //mail.CrearMensajeMail();
             foreach (var user in listaUsuarios)
             {
                 Login.log.Info("Mail enviado a " + user.Email);
             }
         }
-
-
-
-
     }
 }
