@@ -100,6 +100,7 @@
             this.panelSuperior.Name = "panelSuperior";
             this.panelSuperior.Size = new System.Drawing.Size(1229, 92);
             this.panelSuperior.TabIndex = 18;
+            this.panelSuperior.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelSuperior_MouseMove);
             // 
             // controlBox
             // 

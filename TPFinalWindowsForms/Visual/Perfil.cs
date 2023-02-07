@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,13 @@ namespace TPFinalWindowsForms.Visual
 {
     public partial class Perfil : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         NumberFormatInfo provider = new NumberFormatInfo();
         Fachada fachada = new Fachada();
         public Perfil()
@@ -45,10 +53,57 @@ namespace TPFinalWindowsForms.Visual
 
         private void button1_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private void txtShowNick_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pboxMinimizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pboxMinimizarVentana_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.minimizar;
+                MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
+                WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void pboxCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panelSuperior_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+            if (WindowState == FormWindowState.Normal)
+            {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
             Utilidades utilidades = new Utilidades();
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
-            if (txtPass.Text.Length==0 && txtPassControl.Text.Length==0 && txtNombre.Text.Length==0 && txtApellido.Text.Length == 0 && txtEmail.Text.Length == 0 && txtConfirmEmail.Text.Length == 0 && txtUmbral.Text.Length == 0)
+            if (txtPass.Text.Length == 0 && txtPassControl.Text.Length == 0 && txtNombre.Text.Length == 0 && txtApellido.Text.Length == 0 && txtEmail.Text.Length == 0 && txtConfirmEmail.Text.Length == 0 && txtUmbral.Text.Length == 0)
             {
                 lblMensaje.ForeColor = Color.Red;
                 lblMensaje.Text = "Debe ingresar al menos un dato para guardar cambios";
@@ -69,7 +124,7 @@ namespace TPFinalWindowsForms.Visual
                         cambio = true;
                     }
 
-                }              
+                }
 
                 if (txtNombre.Text.Length > 0)
                 {
@@ -100,7 +155,7 @@ namespace TPFinalWindowsForms.Visual
                         cambio = true;
                     }
                 }
-               
+
 
                 if (txtUmbral.Text.Length > 0)
                 {
@@ -115,7 +170,7 @@ namespace TPFinalWindowsForms.Visual
                         fachada.ChangeUmbral(double.Parse(txtUmbral.Text, provider));
                         cambio = true;
                     }
-                    
+
                 }
                 if (cambio)
                 {
@@ -128,7 +183,7 @@ namespace TPFinalWindowsForms.Visual
                     txtShowApellido.Text = usuario.Apellido;
                     txtShowEmail.Text = usuario.Email;
                     txtShowUmbral.Text = usuario.Umbral.ToString();
-                }                
+                }
                 txtPass.Text = "";
                 txtPassControl.Text = "";
                 txtNombre.Text = "";
@@ -138,10 +193,6 @@ namespace TPFinalWindowsForms.Visual
                 txtUmbral.Text = "";
                 Login.log.Info("Datos del usuario Actualizados Exitosamente");
             }
-        }
-
-        private void txtShowNick_Click(object sender, EventArgs e)
-        {
         }
     }
 }

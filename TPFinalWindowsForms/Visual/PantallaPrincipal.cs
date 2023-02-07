@@ -27,12 +27,19 @@ using System.Reflection.Emit;
 using System.Windows.Forms.VisualStyles;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Query.ExpressionTranslators.Internal;
 using TPFinalWindowsForms.Api.Exceptions;
+using System.Runtime.InteropServices;
 
 namespace TPFinalWindowsForms.Visual
 {
     public partial class PantallaPrincipal : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
 
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         Fachada fachada = new Fachada();
         NumberFormatInfo provider = new NumberFormatInfo();
 
