@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TPFinalWindowsForms", "TPFi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Cripto", "Cripto\Cripto.vdproj", "{4161763D-541C-4814-B68D-A993C9673B7C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,8 +21,6 @@ Global
 		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CC2D338-0AE0-4840-876A-0000CCD5F0C3}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{4161763D-541C-4814-B68D-A993C9673B7C}.Debug|Any CPU.ActiveCfg = Debug
-		{4161763D-541C-4814-B68D-A993C9673B7C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
