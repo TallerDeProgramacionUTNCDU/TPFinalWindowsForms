@@ -41,20 +41,22 @@
             this.lblMensaje = new System.Windows.Forms.Label();
             this.panelSuperior = new System.Windows.Forms.Panel();
             this.controlBox = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pboxCerrar = new System.Windows.Forms.PictureBox();
+            this.pboxMinimizarVentana = new System.Windows.Forms.PictureBox();
+            this.pboxMinimizar = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnRegistrarse = new Guna.UI2.WinForms.Guna2Button();
             this.btnAcceder = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelSuperior.SuspendLayout();
             this.controlBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxCerrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxMinimizarVentana)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxMinimizar)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -71,7 +73,7 @@
             // 
             this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtUsuario.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUsuario.Location = new System.Drawing.Point(400, 83);
+            this.txtUsuario.Location = new System.Drawing.Point(400, 154);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(334, 39);
             this.txtUsuario.TabIndex = 3;
@@ -81,7 +83,7 @@
             // 
             this.txtPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPass.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPass.Location = new System.Drawing.Point(400, 189);
+            this.txtPass.Location = new System.Drawing.Point(400, 260);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(334, 39);
             this.txtPass.TabIndex = 4;
@@ -91,7 +93,7 @@
             this.lblNickname.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNickname.AutoSize = true;
             this.lblNickname.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblNickname.Location = new System.Drawing.Point(518, 49);
+            this.lblNickname.Location = new System.Drawing.Point(518, 120);
             this.lblNickname.Name = "lblNickname";
             this.lblNickname.Size = new System.Drawing.Size(91, 31);
             this.lblNickname.TabIndex = 5;
@@ -102,7 +104,7 @@
             this.lblPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPassword.Location = new System.Drawing.Point(492, 155);
+            this.lblPassword.Location = new System.Drawing.Point(492, 226);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(127, 31);
             this.lblPassword.TabIndex = 6;
@@ -111,10 +113,13 @@
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(50, 190);
+            this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMensaje.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblMensaje.Location = new System.Drawing.Point(0, 0);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(0, 15);
+            this.lblMensaje.Size = new System.Drawing.Size(118, 31);
             this.lblMensaje.TabIndex = 7;
+            this.lblMensaje.Text = "MENSAJE";
             this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelSuperior
@@ -133,50 +138,50 @@
             // controlBox
             // 
             this.controlBox.BackColor = System.Drawing.Color.Purple;
-            this.controlBox.Controls.Add(this.pictureBox3);
-            this.controlBox.Controls.Add(this.pictureBox2);
-            this.controlBox.Controls.Add(this.pictureBox1);
+            this.controlBox.Controls.Add(this.pboxCerrar);
+            this.controlBox.Controls.Add(this.pboxMinimizarVentana);
+            this.controlBox.Controls.Add(this.pboxMinimizar);
             this.controlBox.Dock = System.Windows.Forms.DockStyle.Right;
             this.controlBox.Location = new System.Drawing.Point(1010, 0);
             this.controlBox.Name = "controlBox";
             this.controlBox.Size = new System.Drawing.Size(219, 92);
             this.controlBox.TabIndex = 4;
             // 
-            // pictureBox3
+            // pboxCerrar
             // 
-            this.pictureBox3.Image = global::TPFinalWindowsForms.Properties.Resources.cerrar;
-            this.pictureBox3.Location = new System.Drawing.Point(162, 12);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Padding = new System.Windows.Forms.Padding(5);
-            this.pictureBox3.Size = new System.Drawing.Size(43, 40);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.pboxCerrar.Image = global::TPFinalWindowsForms.Properties.Resources.cerrar;
+            this.pboxCerrar.Location = new System.Drawing.Point(162, 12);
+            this.pboxCerrar.Margin = new System.Windows.Forms.Padding(5);
+            this.pboxCerrar.Name = "pboxCerrar";
+            this.pboxCerrar.Padding = new System.Windows.Forms.Padding(5);
+            this.pboxCerrar.Size = new System.Drawing.Size(43, 40);
+            this.pboxCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxCerrar.TabIndex = 3;
+            this.pboxCerrar.TabStop = false;
+            this.pboxCerrar.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
-            // pictureBox2
+            // pboxMinimizarVentana
             // 
-            this.pictureBox2.Image = global::TPFinalWindowsForms.Properties.Resources.maximizar;
-            this.pictureBox2.Location = new System.Drawing.Point(111, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(43, 40);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pboxMinimizarVentana.Image = global::TPFinalWindowsForms.Properties.Resources.maximizar;
+            this.pboxMinimizarVentana.Location = new System.Drawing.Point(111, 12);
+            this.pboxMinimizarVentana.Name = "pboxMinimizarVentana";
+            this.pboxMinimizarVentana.Size = new System.Drawing.Size(43, 40);
+            this.pboxMinimizarVentana.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxMinimizarVentana.TabIndex = 2;
+            this.pboxMinimizarVentana.TabStop = false;
+            this.pboxMinimizarVentana.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // pictureBox1
+            // pboxMinimizar
             // 
-            this.pictureBox1.Image = global::TPFinalWindowsForms.Properties.Resources.minimizar_signo;
-            this.pictureBox1.Location = new System.Drawing.Point(62, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Size = new System.Drawing.Size(43, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pboxMinimizar.Image = global::TPFinalWindowsForms.Properties.Resources.minimizar_signo;
+            this.pboxMinimizar.Location = new System.Drawing.Point(62, 12);
+            this.pboxMinimizar.Name = "pboxMinimizar";
+            this.pboxMinimizar.Padding = new System.Windows.Forms.Padding(2);
+            this.pboxMinimizar.Size = new System.Drawing.Size(43, 40);
+            this.pboxMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxMinimizar.TabIndex = 1;
+            this.pboxMinimizar.TabStop = false;
+            this.pboxMinimizar.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label1
             // 
@@ -192,6 +197,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnRegistrarse);
             this.panel1.Controls.Add(this.btnAcceder);
             this.panel1.Controls.Add(this.txtPass);
@@ -201,8 +207,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 92);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1229, 472);
+            this.panel1.Size = new System.Drawing.Size(1229, 615);
             this.panel1.TabIndex = 9;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblMensaje);
+            this.panel2.Location = new System.Drawing.Point(400, 305);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(334, 54);
+            this.panel2.TabIndex = 10;
             // 
             // btnRegistrarse
             // 
@@ -215,7 +230,7 @@
             this.btnRegistrarse.FillColor = System.Drawing.Color.Purple;
             this.btnRegistrarse.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRegistrarse.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarse.Location = new System.Drawing.Point(400, 307);
+            this.btnRegistrarse.Location = new System.Drawing.Point(400, 424);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.PressedColor = System.Drawing.Color.Blue;
             this.btnRegistrarse.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -235,7 +250,7 @@
             this.btnAcceder.FillColor = System.Drawing.Color.Purple;
             this.btnAcceder.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAcceder.ForeColor = System.Drawing.Color.White;
-            this.btnAcceder.Location = new System.Drawing.Point(400, 243);
+            this.btnAcceder.Location = new System.Drawing.Point(400, 360);
             this.btnAcceder.Name = "btnAcceder";
             this.btnAcceder.PressedColor = System.Drawing.Color.Blue;
             this.btnAcceder.ShadowDecoration.CustomizableEdges = customizableEdges4;
@@ -249,10 +264,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1229, 564);
+            this.ClientSize = new System.Drawing.Size(1229, 707);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSuperior);
-            this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -264,13 +278,14 @@
             this.panelSuperior.ResumeLayout(false);
             this.panelSuperior.PerformLayout();
             this.controlBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxCerrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxMinimizarVentana)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxMinimizar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -282,13 +297,14 @@
         private Label lblPassword;
         private Label lblMensaje;
         private Panel panelSuperior;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private PictureBox pboxMinimizarVentana;
+        private PictureBox pboxCerrar;
         private Label label1;
-        private PictureBox pictureBox1;
+        private PictureBox pboxMinimizar;
         private Panel controlBox;
         private Panel panel1;
         private Guna.UI2.WinForms.Guna2Button btnAcceder;
         private Guna.UI2.WinForms.Guna2Button btnRegistrarse;
+        private Panel panel2;
     }
 }

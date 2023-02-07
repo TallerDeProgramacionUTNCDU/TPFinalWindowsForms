@@ -45,7 +45,7 @@ namespace TPFinalWindowsForms.Visual
         private void Login_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = repoUsuario.GetAll().ToList() ;
-
+            lblMensaje.Text = "";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -76,6 +76,10 @@ private void btnSignup_Click(object sender, EventArgs e)
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+            if (WindowState== FormWindowState.Normal) 
+            {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -87,11 +91,13 @@ private void btnSignup_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.minimizar;
                 MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
                 WindowState = FormWindowState.Maximized;
             }
             else
             {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
                 WindowState = FormWindowState.Normal;
             }
 
@@ -152,6 +158,11 @@ private void btnSignup_Click(object sender, EventArgs e)
         {
             Signup registro = new Signup();
             registro.ShowDialog();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

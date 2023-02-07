@@ -31,6 +31,61 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Signup_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = repoUsuario.GetAll().ToList();
+            lblMensaje.Text = "";
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void pboxMinimizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pboxMinimizarVentana_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.minimizar;
+                MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
+                WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void pboxCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAcceder_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
             if (txtNick.Text.Length == 0)
             {
                 lblMensaje.ForeColor = Color.Red;
@@ -40,7 +95,8 @@ namespace TPFinalWindowsForms.Visual
             {
                 lblMensaje.ForeColor = Color.Red;
                 lblMensaje.Text = "Debe ingresar una contraseña";
-            }else if (txtPass.Text != txtCheckPass.Text)
+            }
+            else if (txtPass.Text != txtCheckPass.Text)
             {
                 lblMensaje.ForeColor = Color.Red;
                 lblMensaje.Text = "Las contraseñas no coinciden";
@@ -72,7 +128,7 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                if (repoUsuario.Get(txtNick.Text)!=null)
+                if (repoUsuario.Get(txtNick.Text) != null)
                 {
                     lblMensaje.ForeColor = Color.Red;
                     lblMensaje.Text = "Este usuario ya existe";
@@ -95,7 +151,7 @@ namespace TPFinalWindowsForms.Visual
                         bUoW.RepositorioUsuario.Add(usuario);
                         bUoW.Complete();
                         Login.log.Info("Registro Exitoso");
-                        dataGridView1.DataSource = repoUsuario.GetAll().ToList();                        
+                        dataGridView1.DataSource = repoUsuario.GetAll().ToList();
                     }
                     lblMensaje.ForeColor = Color.Green;
                     lblMensaje.Text = "Se agregó correctamente";
@@ -108,22 +164,6 @@ namespace TPFinalWindowsForms.Visual
                     txtCheckMail.Text = "";
                 }
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void Signup_Load(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = repoUsuario.GetAll().ToList();
-            lblMensaje.Text = "";
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
