@@ -310,12 +310,13 @@ namespace TPFinalWindowsForms.Visual
         {
 
             var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
+
             if (txtCrypto.Text.Length == 0)
             {
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
                 lblMensaje.ForeColor = Color.Red;
             }
-            else if (respuesta.Count() == 0)
+            else if (respuesta == null)
             {
                 lblMensaje.Text = "La crypto ingresada no se encuentra";
                 lblMensaje.ForeColor = Color.Red;
@@ -491,13 +492,13 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnEliminarCripto_Click(object sender, EventArgs e)
         {
-            var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());//a9wdjawodjawdawd
+            var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
             if (txtCrypto.Text.Length == 0)
             {
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
                 lblMensaje.ForeColor = Color.Red;
             }
-            else if (respuesta.Count() == 0)
+            else if (respuesta == null)
             {
                 lblMensaje.Text = "La crypto ingresada no se encuentra";
                 lblMensaje.ForeColor = Color.Red;

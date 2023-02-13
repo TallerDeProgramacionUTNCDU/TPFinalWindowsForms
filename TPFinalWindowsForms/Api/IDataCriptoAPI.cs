@@ -10,11 +10,11 @@ namespace TPFinalWindowsForms.Api
 {
     public interface IDataCriptoAPI
     {
-        List<CryptoDTO> GetFavCryptosDTO(List<String> pLista,dynamic responseJson);
+        List<CryptoDTO> GetFavCryptosDTO(List<String> pLista);
 
-        List<CryptoDTO> GetAllCrytosDTO(dynamic responseJson);
+        List<CryptoDTO> GetAllCrytosDTO();
 
-        List<HistoryItem> Get6MonthHistoryFrom(dynamic responseJson);
-       
+        List<HistoryItem> Get6MonthHistoryFrom(string cripto);
+
     }
 }

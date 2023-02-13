@@ -21,12 +21,28 @@ namespace TPFinalWindowsForms
 {
     public class DataCriptoAPI : IDataCriptoAPI
     {
-        public List<CryptoDTO> GetFavCryptosDTO(List<String> pLista, dynamic responseFav)
+        public static string assetsUrl = "https://api.coincap.io/v2/assets";
+        public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
+        public dynamic dataAccessor;
+
+        public dynamic DataAccessor
+        {
+            get { return this.dataAccessor; }
+            set { this.dataAccessor = value; }
+        }
+        public DataCriptoAPI()
+        {
+             var response = new JSONApiResponse();
+             response.GetAPIResponseItem(assetsUrl);
+             DataAccessor= response.data;
+         }
+
+        public List<CryptoDTO> GetFavCryptosDTO(List<String> pLista)
         {
             var lista = new List<CryptoDTO>();
             foreach (var elemento in pLista)
             {
-                    foreach (var bResponseItem in responseFav.data)
+                foreach (var bResponseItem in dataAccessor.data)
                     {
                         if (elemento == bResponseItem.id.ToString())
                         {
@@ -44,10 +60,10 @@ namespace TPFinalWindowsForms
                 return null;
             }
         }
-        public List<CryptoDTO> GetAllCrytosDTO(dynamic responseAssets)
+        public List<CryptoDTO> GetAllCrytosDTO()
         {
             var lista = new List<CryptoDTO>();
-                foreach (var bResponseItem in responseAssets.data)
+            foreach (var bResponseItem in dataAccessor.data)
                 {
                     var objetoDTO = new CryptoDTO(bResponseItem.id.ToString(), bResponseItem.name.ToString(), bResponseItem.rank.ToString(), bResponseItem.priceUsd.ToString(), bResponseItem.symbol.ToString(), bResponseItem.changePercent24Hr.ToString());
                     lista.Add(objetoDTO);
@@ -62,13 +78,17 @@ namespace TPFinalWindowsForms
             }
 
         }
-        public List<HistoryItem> Get6MonthHistoryFrom(dynamic conexionHistory)
+        public List<HistoryItem> Get6MonthHistoryFrom(string cripto)
         {
             var historial = new List<HistoryItem>();
             var localnow = DateTime.Now;
             var sixMonthsBack = ((DateTimeOffset)(localnow.AddMonths(-6).ToUniversalTime())).ToUnixTimeMilliseconds();
+            var conexionHistory = new JSONApiResponse();
+            string historyUrl = String.Format(history, cripto);
+            conexionHistory.GetAPIResponseItem(historyUrl);
 
-                foreach (var bResponseItem in conexionHistory.data)
+
+            foreach (var bResponseItem in conexionHistory.Data.data)
                 {
                     if ((bResponseItem.time) >= sixMonthsBack)
                     {

@@ -29,15 +29,14 @@ namespace TPFinalWindowsForms
 
         public List<CryptoDTO> ObtenerListaFavoritas()
         {
-            try { 
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
-            string[] resultado = objetoUsuario.Favcriptos.Split(' ');
-            List<string> listaFavoritas = resultado.ToList();
-                var conexionFavCryptos = new JSONApiResponse();
-                conexionFavCryptos.GetAPIResponseItem(assetsUrl);
-                List<CryptoDTO> listaCryptosDTO = interaccionCrypto.GetFavCryptosDTO(listaFavoritas, conexionFavCryptos.Data);
+            try
+            {
+                DBContext context = new DBContext();
+                RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+                var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
+                string[] resultado = objetoUsuario.Favcriptos.Split(' ');
+                List<string> listaFavoritas = resultado.ToList();
+                List<CryptoDTO> listaCryptosDTO = interaccionCrypto.GetFavCryptosDTO(listaFavoritas);
                 return listaCryptosDTO;
             }
             catch (WebException ex)
@@ -68,9 +67,7 @@ namespace TPFinalWindowsForms
             try
             {
                 DataCriptoAPI interaccionApi = new DataCriptoAPI();
-                var conexionAllCryptos = new JSONApiResponse();
-                conexionAllCryptos.GetAPIResponseItem(assetsUrl);
-                return interaccionApi.GetAllCrytosDTO(conexionAllCryptos.Data);
+                return interaccionApi.GetAllCrytosDTO();
             }
             catch (WebException ex)
             {
@@ -106,10 +103,7 @@ namespace TPFinalWindowsForms
             try
             {
                 DataCriptoAPI interaccionApi = new DataCriptoAPI();
-                var conexionHistorial = new JSONApiResponse();
-                string historyUrl = String.Format(history, cripto);
-                conexionHistorial.GetAPIResponseItem(historyUrl);
-                return interaccionApi.Get6MonthHistoryFrom(conexionHistorial.Data);
+                return interaccionApi.Get6MonthHistoryFrom(cripto);
             }
             catch (WebException ex)
             {
@@ -126,7 +120,8 @@ namespace TPFinalWindowsForms
                         StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                         String mErrorText = mReader.ReadToEnd();
                         Login.log.Error("Errpr: {0} " + mErrorText);
-                        throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+                        return null;
+                        //throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
                     }
                 }
             }
