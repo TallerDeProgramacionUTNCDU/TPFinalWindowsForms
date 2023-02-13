@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TPFinalWindowsForms.DAL.EntityFramework;
 
 namespace TPFinalWindowsForms.Domain;
 
@@ -36,5 +37,25 @@ public partial class Usuario
     public string Favcriptos { get; set; }
 
     public double Umbral { get; set; }
+
+    public static bool ExisteCripto(string cripto)
+    {
+        DBContext context = new DBContext();
+        RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+        var objetoUsuario = repoUsuario.Get("a"); //CAMBIAR POR EL USUARIO PERSISTIDO
+        string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
+        bool existe = false;
+        int i = 0;
+        foreach (var crypto in arrayCryptos)
+        {
+            if (crypto == cripto)
+            {
+                existe = true;
+                break;
+            }
+            i++;
+        }
+        return existe;
+    }
 
 }

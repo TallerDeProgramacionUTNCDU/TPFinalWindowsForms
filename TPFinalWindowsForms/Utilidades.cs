@@ -10,6 +10,23 @@ namespace TPFinalWindowsForms
 {
     public class Utilidades
     {
+
+        public int PosCriptoABorrar(string cripto)
+        {
+            Fachada fachada = new Fachada();
+            var objetoUsuario = fachada.GetUsuarioActual();
+            string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
+            int i = 0;
+            foreach (var crypto in arrayCryptos)
+            {
+                if (crypto == cripto)
+                {
+                    break;
+                }
+                i++;
+            }
+            return i;
+        }
         public bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))

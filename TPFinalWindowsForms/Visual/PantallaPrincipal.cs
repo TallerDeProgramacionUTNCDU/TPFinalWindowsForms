@@ -498,11 +498,11 @@ namespace TPFinalWindowsForms.Visual
             else
             {
 
-                if (fachada.ExisteCripto(txtCrypto.Text.ToLower()))
+                if (Usuario.ExisteCripto(txtCrypto.Text.ToLower()))
                 {
                     fachada.DelFavCrypto(txtCrypto.Text.ToLower()); //IAWIDJAWIJADW
                     lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
-                    lblMensaje.ForeColor = Color.Aqua;
+                    lblMensaje.ForeColor = Color.Red;
                     Login.log.Info("Se eliminó a " + txtCrypto.Text + " de favoritas");
                 }
                 else
@@ -571,22 +571,14 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnBorrarSeleccionada_Click(object sender, EventArgs e)
         {
-            var listaAlertas = fachada.GetAllAlerts();
-            int i = -1;
-            foreach (var alerta in listaAlertas)
+            if (listBoxNotificaciones.SelectedIndex== -1)
             {
-                i++;
-                if (listBoxNotificaciones.SelectedIndex >= 0)
-                {
-                    if (listBoxNotificaciones.SelectedIndex == i)
-                    {
-                        fachada.RemoveAlert(alerta);
-                    }
-                }
-                else
-                {
-                    lblMensaje.Text = "Debe seleccionar una cripto";
-                }
+                lblMensaje.Text = "Debe seleccionar una cripto";
+            }
+            else
+            {
+                fachada.RemoveAlertByIndex(listBoxNotificaciones.SelectedIndex);
+                lblMensaje.Text = "Cripto borrada";
             }
             listBoxNotificaciones.Items.Remove(listBoxNotificaciones.SelectedItem);
             Login.log.Info(listBoxNotificaciones.SelectedItem + " Notificación Borrada");
@@ -595,16 +587,9 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnBorrarTodas_Click(object sender, EventArgs e)
         {
-            var listaAlertas = fachada.GetAllAlerts();
-            if (listaAlertas.Count() > 0)
-            {
-                foreach (var alerta in listaAlertas)
-                {
-                    fachada.RemoveAlert(alerta);
-
-                }
-                listBoxNotificaciones.Items.Clear();
-            }
+            fachada.RemoveAllAlerts();
+            lblMensaje.Text = "Criptos borradas";
+            listBoxNotificaciones.Items.Clear();
             Login.log.Info("Notificaciones Eliminadas");
         }
 

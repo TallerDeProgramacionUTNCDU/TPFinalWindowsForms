@@ -160,49 +160,18 @@ namespace TPFinalWindowsForms
                 context.SaveChanges();
             }
         }
-        public bool ExisteCripto(string cripto)
-        {
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
-            string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
-            bool existe = false;
-            int i = 0;
-            foreach (var crypto in arrayCryptos)
-            {
-                if (crypto == cripto)
-                {
-                    existe = true;
-                    break;
-                }
-                i++;
-            }
-            return existe;
-        }
-        public int PosCriptoABorrar(string cripto)
-        {
-            var objetoUsuario = GetUsuarioActual();
-            string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
-            int i = 0;
-            foreach (var crypto in arrayCryptos)
-            {
-                if (crypto == cripto)
-                {
-                    break;
-                }
-                i++;
-            }
-            return i;
-        }
+       
+
 
         public void DelFavCrypto(string cripto)
         {
+            Utilidades utilidad = new Utilidades();
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             string cryptosFavoritas = "";
             var objetoUsuario = repoUsuario.Get(usuarioLogueado);
             string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');           
-            arrayCryptos[PosCriptoABorrar(cripto)] = null;
+            arrayCryptos[utilidad.PosCriptoABorrar(cripto)] = null;
             foreach (var nombreCrypto in arrayCryptos)
             {
                 if (nombreCrypto != "")
@@ -226,12 +195,41 @@ namespace TPFinalWindowsForms
 
         }
 
-        public void RemoveAlert(Alerta alert)
+        public void RemoveAlertByIndex(int pos)
         {
             DBContext context = new DBContext();
             RepositorioAlertas repositorioAlertas = new RepositorioAlertas(context);
-            repositorioAlertas.Remove(alert);
-            context.SaveChanges();
+            var listaAlertas = this.GetAllAlerts();
+            var i = -1;
+            if (listaAlertas.Count() > 0)
+            {
+                foreach (var alerta in listaAlertas)
+                {
+                    i++;
+                    if (pos == i)
+                    {
+                        repositorioAlertas.Remove(alerta);
+                    }
+                }
+                context.SaveChanges();
+            }
+
+        }
+
+        public void RemoveAllAlerts()
+        {
+            DBContext context = new DBContext();
+            RepositorioAlertas repositorioAlertas = new RepositorioAlertas(context);
+            var listaAlertas = this.GetAllAlerts();
+            if (listaAlertas.Count() > 0)
+            {
+                foreach (var alerta in listaAlertas)
+                {
+                    repositorioAlertas.Remove(alerta);
+                }
+                context.SaveChanges();
+            }
+
         }
 
         public void ChangeNombre(string nombre)
