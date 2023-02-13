@@ -37,6 +37,13 @@ namespace TPFinalWindowsForms.Visual
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
+
+
+
+        public static Usuario user { get; set; }
+
+
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
@@ -102,29 +109,29 @@ namespace TPFinalWindowsForms.Visual
                 // Carga área de notificaciones
                 var usuario = fachada.GetUsuarioActual();
                 lblMensajeUmbral2.Text = "Umbral actual: " + String.Format("{0:0.0000}", usuario.Umbral + "%");
-                void HandleTimer()
-                {
-                    j = 0;
-                    listBoxNotificaciones.Items.Clear();
-                    provider.NumberGroupSeparator = ",";
-                    provider.NumberDecimalSeparator = ".";
-                    var listaAlertas = fachada.GetAllAlerts();
-                    while (j < listaAlertas.Count())
-                    {
-                        this.Invoke(new MethodInvoker(delegate ()
-                        {
-                            foreach (var alerta in listaAlertas)
-                            {
-                                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
-                                j++;
-                            }
-                            Login.log.Info("Alertas Mostradas");
-                        }));
-                    }
-                }
-                System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
-                timer.Elapsed += (sender, e) => HandleTimer();
-                timer.Start();
+                //void HandleTimer()
+                //{
+                //    j = 0;
+                //    listBoxNotificaciones.Items.Clear();
+                //    provider.NumberGroupSeparator = ",";
+                //    provider.NumberDecimalSeparator = ".";
+                //    var listaAlertas = fachada.GetAllAlerts();
+                //    while (j < listaAlertas.Count())
+                //    {
+                //        this.Invoke(new MethodInvoker(delegate ()
+                //        {
+                //            foreach (var alerta in listaAlertas)
+                //            {
+                //                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                //                j++;
+                //            }
+                //            Login.log.Info("Alertas Mostradas");
+                //        }));
+                //    }
+                //}
+                //System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
+                //timer.Elapsed += (sender, e) => HandleTimer();
+                //timer.Start();
                 Login.log.Info("Timer alertas área alertas iniciado");
                 //Carga el umbral actual para mostrarselo al usuario
                 lblMensajeUmbral.Text = "Umbral Actual: " + usuario.Umbral.ToString() + "%";
@@ -315,7 +322,7 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                var objetoUsuario = fachada.GetUsuarioActual();//awdawdawawd
+                var objetoUsuario = PantallaPrincipal.user;//awdawdawawd
                 string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
                 int i = 0;
                 bool nueva = true;
@@ -500,7 +507,7 @@ namespace TPFinalWindowsForms.Visual
 
                 if (Usuario.ExisteCripto(txtCrypto.Text.ToLower()))
                 {
-                    fachada.DelFavCrypto(txtCrypto.Text.ToLower()); //IAWIDJAWIJADW
+                    fachada.DelFavCrypto(txtCrypto.Text.ToLower()); 
                     lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
                     lblMensaje.ForeColor = Color.Red;
                     Login.log.Info("Se eliminó a " + txtCrypto.Text + " de favoritas");

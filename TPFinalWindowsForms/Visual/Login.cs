@@ -131,7 +131,7 @@ private void btnSignup_Click(object sender, EventArgs e)
                         log.Info("Login Exitoso");
                         Hide();
                         PantallaPrincipal pantallPrincipal = new PantallaPrincipal();
-                        Fachada.usuarioLogueado = objetoUsuario.Nickname;
+                        PantallaPrincipal.user = objetoUsuario;
                         pantallPrincipal.ShowDialog();
                     }
                     else

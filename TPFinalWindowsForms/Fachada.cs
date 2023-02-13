@@ -24,12 +24,7 @@ namespace TPFinalWindowsForms
         public static string assetsUrl = "https://api.coincap.io/v2/assets";
         public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
 
-        private static string logued = "";
-        public static string usuarioLogueado
-        {
-            get { return logued; }
-            set { logued = value; }
-        }
+  
         DataCriptoAPI interaccionCrypto = new DataCriptoAPI();
 
         public List<CryptoDTO> ObtenerListaFavoritas()
@@ -37,7 +32,7 @@ namespace TPFinalWindowsForms
             try { 
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             string[] resultado = objetoUsuario.Favcriptos.Split(' ');
             List<string> listaFavoritas = resultado.ToList();
                 var conexionFavCryptos = new JSONApiResponse();
@@ -146,7 +141,7 @@ namespace TPFinalWindowsForms
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            return repoUsuario.Get(usuarioLogueado);
+            return repoUsuario.Get(PantallaPrincipal.user.Nickname);
         }
 
         public void AddFavCrypto(string cripto)
@@ -155,10 +150,11 @@ namespace TPFinalWindowsForms
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
             {
-                var usuario = repoUsuario.Get(usuarioLogueado);
+                var usuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
                 usuario.Favcriptos = usuario.Favcriptos + " " + cripto;
                 context.SaveChanges();
             }
+            PantallaPrincipal.user = repoUsuario.Get(PantallaPrincipal.user.Nickname);
         }
        
 
@@ -169,7 +165,7 @@ namespace TPFinalWindowsForms
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             string cryptosFavoritas = "";
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');           
             arrayCryptos[utilidad.PosCriptoABorrar(cripto)] = null;
             foreach (var nombreCrypto in arrayCryptos)
@@ -184,12 +180,13 @@ namespace TPFinalWindowsForms
                 objetoUsuario.Favcriptos = cryptosFavoritas;
                 context.SaveChanges();
             }
+            PantallaPrincipal.user = repoUsuario.Get(PantallaPrincipal.user.Nickname);
         }
         public void ChangeUmbral(string umbral, NumberFormatInfo provider)
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             objetoUsuario.Umbral = double.Parse(umbral, provider);
             context.SaveChanges();
 
@@ -236,7 +233,7 @@ namespace TPFinalWindowsForms
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             objetoUsuario.Nombre = nombre;
             context.SaveChanges();
         }
@@ -245,7 +242,7 @@ namespace TPFinalWindowsForms
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             objetoUsuario.Apellido = apellido;
             context.SaveChanges();
         }
@@ -254,7 +251,7 @@ namespace TPFinalWindowsForms
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             objetoUsuario.Contraseña = pass;
             context.SaveChanges();
         }
@@ -263,7 +260,7 @@ namespace TPFinalWindowsForms
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             objetoUsuario.Email = email;
             context.SaveChanges();
         }
@@ -272,7 +269,7 @@ namespace TPFinalWindowsForms
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.Get(usuarioLogueado);
+            var objetoUsuario = repoUsuario.Get(PantallaPrincipal.user.Nickname);
             objetoUsuario.Umbral = umbral;
             context.SaveChanges();
         }

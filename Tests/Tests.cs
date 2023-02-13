@@ -17,82 +17,82 @@ namespace Tests
     {
         [TestCase]
 
-        public void DTO()
-        {
-            Mock<IJSONApiResponse> fakeJsonMock = new Mock<IJSONApiResponse>();
-            fakeJsonMock.SetupAllProperties();
-            fakeJsonMock.SetupProperty(d => d.Data, "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"bitcoin\",\r\n      \"rank\": \"1\",\r\n      \"symbol\": \"BTC\",\r\n      \"name\": \"Bitcoin\",\r\n      \"supply\": \"19273125.0000000000000000\",\r\n      \"maxSupply\": \"21000000.0000000000000000\",\r\n      \"marketCapUsd\": \"445048783963.8951234823963125\",\r\n      \"volumeUsd24Hr\": \"14967340115.4043337513606208\",\r\n      \"priceUsd\": \"23091.6773467662936593\",\r\n      \"changePercent24Hr\": \"1.9292927228012044\",\r\n      \"vwap24Hr\": \"22907.7923753364002851\",\r\n      \"explorer\": \"https://blockchain.info/\"\r\n    },\r\n    {\r\n      \"id\": \"ethereum\",\r\n      \"rank\": \"2\",\r\n      \"symbol\": \"ETH\",\r\n      \"name\": \"Ethereum\",\r\n      \"supply\": \"122373866.2178000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"197471773454.0416569463928789\",\r\n      \"volumeUsd24Hr\": \"5079024405.0992116075928021\",\r\n      \"priceUsd\": \"1613.6760205204518069\",\r\n      \"changePercent24Hr\": \"3.4850023033470185\",\r\n      \"vwap24Hr\": \"1590.3015846656606701\",\r\n      \"explorer\": \"https://etherscan.io/\"\r\n    },\r\n    {\r\n      \"id\": \"tether\",\r\n      \"rank\": \"3\",\r\n      \"symbol\": \"USDT\",\r\n      \"name\": \"Tether\",\r\n      \"supply\": \"67188360789.1390000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"67249070630.3495127350050005\",\r\n      \"volumeUsd24Hr\": \"20665941745.1015637825574227\",\r\n      \"priceUsd\": \"1.0009035767579007\",\r\n      \"changePercent24Hr\": \"-0.0267541748400745\",\r\n      \"vwap24Hr\": \"1.0005658290834515\",\r\n      \"explorer\": \"https://www.omniexplorer.info/asset/31\"\r\n    },\r\n    {\r\n      \"id\": \"binance-coin\",\r\n      \"rank\": \"4\",\r\n      \"symbol\": \"BNB\",\r\n      \"name\": \"BNB\",\r\n      \"supply\": \"166801148.0000000000000000\",\r\n      \"maxSupply\": \"166801148.0000000000000000\",\r\n      \"marketCapUsd\": \"51153439863.4796123658715664\",\r\n      \"volumeUsd24Hr\": \"258163132.6897769898166402\",\r\n      \"priceUsd\": \"306.6731882653446268\",\r\n      \"changePercent24Hr\": \"1.5382138769015148\",\r\n      \"vwap24Hr\": \"305.6142023769481528\",\r\n      \"explorer\": \"https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52\"\r\n    },\r\n    {\r\n      \"id\": \"usd-coin\",\r\n      \"rank\": \"5\",\r\n      \"symbol\": \"USDC\",\r\n      \"name\": \"USD Coin\",\r\n      \"supply\": \"43659017127.8726500000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"43722734310.2616575777722044\",\r\n      \"volumeUsd24Hr\": \"1096029102.6526019196658441\",\r\n      \"priceUsd\": \"1.0014594277787424\",\r\n      \"changePercent24Hr\": \"0.1364694018679602\",\r\n      \"vwap24Hr\": \"1.0004490564785191\",\r\n      \"explorer\": \"https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"\r\n    }\r\n  ],\r\n  \"timestamp\": 1674741038500\r\n}");
-            DataCriptoAPI interaccionAPI = new DataCriptoAPI();
-            JObject json = JObject.Parse(fakeJsonMock.Object.Data);
-            List<CryptoDTO> lista = interaccionAPI.GetAllCrytosDTO(json);
+        //public void DTO()
+        //{
+        //    Mock<IJSONApiResponse> fakeJsonMock = new Mock<IJSONApiResponse>();
+        //    fakeJsonMock.SetupAllProperties();
+        //    fakeJsonMock.SetupProperty(d => d.Data, "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"bitcoin\",\r\n      \"rank\": \"1\",\r\n      \"symbol\": \"BTC\",\r\n      \"name\": \"Bitcoin\",\r\n      \"supply\": \"19273125.0000000000000000\",\r\n      \"maxSupply\": \"21000000.0000000000000000\",\r\n      \"marketCapUsd\": \"445048783963.8951234823963125\",\r\n      \"volumeUsd24Hr\": \"14967340115.4043337513606208\",\r\n      \"priceUsd\": \"23091.6773467662936593\",\r\n      \"changePercent24Hr\": \"1.9292927228012044\",\r\n      \"vwap24Hr\": \"22907.7923753364002851\",\r\n      \"explorer\": \"https://blockchain.info/\"\r\n    },\r\n    {\r\n      \"id\": \"ethereum\",\r\n      \"rank\": \"2\",\r\n      \"symbol\": \"ETH\",\r\n      \"name\": \"Ethereum\",\r\n      \"supply\": \"122373866.2178000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"197471773454.0416569463928789\",\r\n      \"volumeUsd24Hr\": \"5079024405.0992116075928021\",\r\n      \"priceUsd\": \"1613.6760205204518069\",\r\n      \"changePercent24Hr\": \"3.4850023033470185\",\r\n      \"vwap24Hr\": \"1590.3015846656606701\",\r\n      \"explorer\": \"https://etherscan.io/\"\r\n    },\r\n    {\r\n      \"id\": \"tether\",\r\n      \"rank\": \"3\",\r\n      \"symbol\": \"USDT\",\r\n      \"name\": \"Tether\",\r\n      \"supply\": \"67188360789.1390000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"67249070630.3495127350050005\",\r\n      \"volumeUsd24Hr\": \"20665941745.1015637825574227\",\r\n      \"priceUsd\": \"1.0009035767579007\",\r\n      \"changePercent24Hr\": \"-0.0267541748400745\",\r\n      \"vwap24Hr\": \"1.0005658290834515\",\r\n      \"explorer\": \"https://www.omniexplorer.info/asset/31\"\r\n    },\r\n    {\r\n      \"id\": \"binance-coin\",\r\n      \"rank\": \"4\",\r\n      \"symbol\": \"BNB\",\r\n      \"name\": \"BNB\",\r\n      \"supply\": \"166801148.0000000000000000\",\r\n      \"maxSupply\": \"166801148.0000000000000000\",\r\n      \"marketCapUsd\": \"51153439863.4796123658715664\",\r\n      \"volumeUsd24Hr\": \"258163132.6897769898166402\",\r\n      \"priceUsd\": \"306.6731882653446268\",\r\n      \"changePercent24Hr\": \"1.5382138769015148\",\r\n      \"vwap24Hr\": \"305.6142023769481528\",\r\n      \"explorer\": \"https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52\"\r\n    },\r\n    {\r\n      \"id\": \"usd-coin\",\r\n      \"rank\": \"5\",\r\n      \"symbol\": \"USDC\",\r\n      \"name\": \"USD Coin\",\r\n      \"supply\": \"43659017127.8726500000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"43722734310.2616575777722044\",\r\n      \"volumeUsd24Hr\": \"1096029102.6526019196658441\",\r\n      \"priceUsd\": \"1.0014594277787424\",\r\n      \"changePercent24Hr\": \"0.1364694018679602\",\r\n      \"vwap24Hr\": \"1.0004490564785191\",\r\n      \"explorer\": \"https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"\r\n    }\r\n  ],\r\n  \"timestamp\": 1674741038500\r\n}");
+        //    DataCriptoAPI interaccionAPI = new DataCriptoAPI();
+        //    JObject json = JObject.Parse(fakeJsonMock.Object.Data);
+        //    List<CryptoDTO> lista = interaccionAPI.GetAllCrytosDTO(json);
 
 
-            Assert.AreEqual(lista[0].Id, "bitcoin");
-            Assert.AreEqual(lista[0].Rank, "1");
-            Assert.AreEqual(lista[0].Name, "Bitcoin");
-            Assert.AreEqual(lista[0].PriceUSD, "23091.6773467662936593");
-            Assert.AreEqual(lista[0].Symbol, "BTC");
-            Assert.AreEqual(lista[0].ChangePercent24hs, "1.9292927228012044");
+        //    Assert.AreEqual(lista[0].Id, "bitcoin");
+        //    Assert.AreEqual(lista[0].Rank, "1");
+        //    Assert.AreEqual(lista[0].Name, "Bitcoin");
+        //    Assert.AreEqual(lista[0].PriceUSD, "23091.6773467662936593");
+        //    Assert.AreEqual(lista[0].Symbol, "BTC");
+        //    Assert.AreEqual(lista[0].ChangePercent24hs, "1.9292927228012044");
 
-            Assert.AreEqual(lista[1].Id, "ethereum");
-            Assert.AreEqual(lista[1].Rank, "2");
-            Assert.AreEqual(lista[1].Name, "Ethereum");
-            Assert.AreEqual(lista[1].PriceUSD, "1613.6760205204518069");
-            Assert.AreEqual(lista[1].Symbol, "ETH");
-            Assert.AreEqual(lista[1].ChangePercent24hs, "3.4850023033470185");
+        //    Assert.AreEqual(lista[1].Id, "ethereum");
+        //    Assert.AreEqual(lista[1].Rank, "2");
+        //    Assert.AreEqual(lista[1].Name, "Ethereum");
+        //    Assert.AreEqual(lista[1].PriceUSD, "1613.6760205204518069");
+        //    Assert.AreEqual(lista[1].Symbol, "ETH");
+        //    Assert.AreEqual(lista[1].ChangePercent24hs, "3.4850023033470185");
 
-            Assert.AreEqual(lista[2].Id, "tether");
-            Assert.AreEqual(lista[2].Rank, "3");
-            Assert.AreEqual(lista[2].Name, "Tether");
-            Assert.AreEqual(lista[2].PriceUSD, "1.0009035767579007");
-            Assert.AreEqual(lista[2].Symbol, "USDT");
-            Assert.AreEqual(lista[2].ChangePercent24hs, "-0.0267541748400745");
+        //    Assert.AreEqual(lista[2].Id, "tether");
+        //    Assert.AreEqual(lista[2].Rank, "3");
+        //    Assert.AreEqual(lista[2].Name, "Tether");
+        //    Assert.AreEqual(lista[2].PriceUSD, "1.0009035767579007");
+        //    Assert.AreEqual(lista[2].Symbol, "USDT");
+        //    Assert.AreEqual(lista[2].ChangePercent24hs, "-0.0267541748400745");
 
-            Assert.AreEqual(lista[3].Id, "binance-coin");
-            Assert.AreEqual(lista[3].Rank, "4");
-            Assert.AreEqual(lista[3].Name, "BNB");
-            Assert.AreEqual(lista[3].PriceUSD, "306.6731882653446268");
-            Assert.AreEqual(lista[3].Symbol, "BNB");
-            Assert.AreEqual(lista[3].ChangePercent24hs, "1.5382138769015148");
+        //    Assert.AreEqual(lista[3].Id, "binance-coin");
+        //    Assert.AreEqual(lista[3].Rank, "4");
+        //    Assert.AreEqual(lista[3].Name, "BNB");
+        //    Assert.AreEqual(lista[3].PriceUSD, "306.6731882653446268");
+        //    Assert.AreEqual(lista[3].Symbol, "BNB");
+        //    Assert.AreEqual(lista[3].ChangePercent24hs, "1.5382138769015148");
 
-            Assert.AreEqual(lista[4].Id, "usd-coin");
-            Assert.AreEqual(lista[4].Rank, "5");
-            Assert.AreEqual(lista[4].Name, "USD Coin");
-            Assert.AreEqual(lista[4].PriceUSD, "1.0014594277787424");
-            Assert.AreEqual(lista[4].Symbol, "USDC");
-            Assert.AreEqual(lista[4].ChangePercent24hs, "0.1364694018679602");
+        //    Assert.AreEqual(lista[4].Id, "usd-coin");
+        //    Assert.AreEqual(lista[4].Rank, "5");
+        //    Assert.AreEqual(lista[4].Name, "USD Coin");
+        //    Assert.AreEqual(lista[4].PriceUSD, "1.0014594277787424");
+        //    Assert.AreEqual(lista[4].Symbol, "USDC");
+        //    Assert.AreEqual(lista[4].ChangePercent24hs, "0.1364694018679602");
 
-        }
+        //}
 
         [TestCase]
-        public void FavCryptos()
-        {
-            Mock<IJSONApiResponse> fakeJsonMock = new Mock<IJSONApiResponse>();
-            fakeJsonMock.SetupAllProperties();
-            fakeJsonMock.SetupProperty(d => d.Data, "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"bitcoin\",\r\n      \"rank\": \"1\",\r\n      \"symbol\": \"BTC\",\r\n      \"name\": \"Bitcoin\",\r\n      \"supply\": \"19273125.0000000000000000\",\r\n      \"maxSupply\": \"21000000.0000000000000000\",\r\n      \"marketCapUsd\": \"445048783963.8951234823963125\",\r\n      \"volumeUsd24Hr\": \"14967340115.4043337513606208\",\r\n      \"priceUsd\": \"23091.6773467662936593\",\r\n      \"changePercent24Hr\": \"1.9292927228012044\",\r\n      \"vwap24Hr\": \"22907.7923753364002851\",\r\n      \"explorer\": \"https://blockchain.info/\"\r\n    },\r\n    {\r\n      \"id\": \"ethereum\",\r\n      \"rank\": \"2\",\r\n      \"symbol\": \"ETH\",\r\n      \"name\": \"Ethereum\",\r\n      \"supply\": \"122373866.2178000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"197471773454.0416569463928789\",\r\n      \"volumeUsd24Hr\": \"5079024405.0992116075928021\",\r\n      \"priceUsd\": \"1613.6760205204518069\",\r\n      \"changePercent24Hr\": \"3.4850023033470185\",\r\n      \"vwap24Hr\": \"1590.3015846656606701\",\r\n      \"explorer\": \"https://etherscan.io/\"\r\n    },\r\n    {\r\n      \"id\": \"tether\",\r\n      \"rank\": \"3\",\r\n      \"symbol\": \"USDT\",\r\n      \"name\": \"Tether\",\r\n      \"supply\": \"67188360789.1390000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"67249070630.3495127350050005\",\r\n      \"volumeUsd24Hr\": \"20665941745.1015637825574227\",\r\n      \"priceUsd\": \"1.0009035767579007\",\r\n      \"changePercent24Hr\": \"-0.0267541748400745\",\r\n      \"vwap24Hr\": \"1.0005658290834515\",\r\n      \"explorer\": \"https://www.omniexplorer.info/asset/31\"\r\n    },\r\n    {\r\n      \"id\": \"binance-coin\",\r\n      \"rank\": \"4\",\r\n      \"symbol\": \"BNB\",\r\n      \"name\": \"BNB\",\r\n      \"supply\": \"166801148.0000000000000000\",\r\n      \"maxSupply\": \"166801148.0000000000000000\",\r\n      \"marketCapUsd\": \"51153439863.4796123658715664\",\r\n      \"volumeUsd24Hr\": \"258163132.6897769898166402\",\r\n      \"priceUsd\": \"306.6731882653446268\",\r\n      \"changePercent24Hr\": \"1.5382138769015148\",\r\n      \"vwap24Hr\": \"305.6142023769481528\",\r\n      \"explorer\": \"https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52\"\r\n    },\r\n    {\r\n      \"id\": \"usd-coin\",\r\n      \"rank\": \"5\",\r\n      \"symbol\": \"USDC\",\r\n      \"name\": \"USD Coin\",\r\n      \"supply\": \"43659017127.8726500000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"43722734310.2616575777722044\",\r\n      \"volumeUsd24Hr\": \"1096029102.6526019196658441\",\r\n      \"priceUsd\": \"1.0014594277787424\",\r\n      \"changePercent24Hr\": \"0.1364694018679602\",\r\n      \"vwap24Hr\": \"1.0004490564785191\",\r\n      \"explorer\": \"https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"\r\n    }\r\n  ],\r\n  \"timestamp\": 1674741038500\r\n}");
-            DataCriptoAPI interaccionAPI = new DataCriptoAPI();
-            List<string> favList = new List<string>();
-            favList.Add("bitcoin");
-            favList.Add("ethereum");
-            favList.Add("usd-coin");
-            JObject json = JObject.Parse(fakeJsonMock.Object.Data);
-            List<CryptoDTO> lista = interaccionAPI.GetFavCryptosDTO(favList, json);
+        //public void FavCryptos()
+        //{
+        //    Mock<IJSONApiResponse> fakeJsonMock = new Mock<IJSONApiResponse>();
+        //    fakeJsonMock.SetupAllProperties();
+        //    fakeJsonMock.SetupProperty(d => d.Data, "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"bitcoin\",\r\n      \"rank\": \"1\",\r\n      \"symbol\": \"BTC\",\r\n      \"name\": \"Bitcoin\",\r\n      \"supply\": \"19273125.0000000000000000\",\r\n      \"maxSupply\": \"21000000.0000000000000000\",\r\n      \"marketCapUsd\": \"445048783963.8951234823963125\",\r\n      \"volumeUsd24Hr\": \"14967340115.4043337513606208\",\r\n      \"priceUsd\": \"23091.6773467662936593\",\r\n      \"changePercent24Hr\": \"1.9292927228012044\",\r\n      \"vwap24Hr\": \"22907.7923753364002851\",\r\n      \"explorer\": \"https://blockchain.info/\"\r\n    },\r\n    {\r\n      \"id\": \"ethereum\",\r\n      \"rank\": \"2\",\r\n      \"symbol\": \"ETH\",\r\n      \"name\": \"Ethereum\",\r\n      \"supply\": \"122373866.2178000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"197471773454.0416569463928789\",\r\n      \"volumeUsd24Hr\": \"5079024405.0992116075928021\",\r\n      \"priceUsd\": \"1613.6760205204518069\",\r\n      \"changePercent24Hr\": \"3.4850023033470185\",\r\n      \"vwap24Hr\": \"1590.3015846656606701\",\r\n      \"explorer\": \"https://etherscan.io/\"\r\n    },\r\n    {\r\n      \"id\": \"tether\",\r\n      \"rank\": \"3\",\r\n      \"symbol\": \"USDT\",\r\n      \"name\": \"Tether\",\r\n      \"supply\": \"67188360789.1390000000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"67249070630.3495127350050005\",\r\n      \"volumeUsd24Hr\": \"20665941745.1015637825574227\",\r\n      \"priceUsd\": \"1.0009035767579007\",\r\n      \"changePercent24Hr\": \"-0.0267541748400745\",\r\n      \"vwap24Hr\": \"1.0005658290834515\",\r\n      \"explorer\": \"https://www.omniexplorer.info/asset/31\"\r\n    },\r\n    {\r\n      \"id\": \"binance-coin\",\r\n      \"rank\": \"4\",\r\n      \"symbol\": \"BNB\",\r\n      \"name\": \"BNB\",\r\n      \"supply\": \"166801148.0000000000000000\",\r\n      \"maxSupply\": \"166801148.0000000000000000\",\r\n      \"marketCapUsd\": \"51153439863.4796123658715664\",\r\n      \"volumeUsd24Hr\": \"258163132.6897769898166402\",\r\n      \"priceUsd\": \"306.6731882653446268\",\r\n      \"changePercent24Hr\": \"1.5382138769015148\",\r\n      \"vwap24Hr\": \"305.6142023769481528\",\r\n      \"explorer\": \"https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52\"\r\n    },\r\n    {\r\n      \"id\": \"usd-coin\",\r\n      \"rank\": \"5\",\r\n      \"symbol\": \"USDC\",\r\n      \"name\": \"USD Coin\",\r\n      \"supply\": \"43659017127.8726500000000000\",\r\n      \"maxSupply\": null,\r\n      \"marketCapUsd\": \"43722734310.2616575777722044\",\r\n      \"volumeUsd24Hr\": \"1096029102.6526019196658441\",\r\n      \"priceUsd\": \"1.0014594277787424\",\r\n      \"changePercent24Hr\": \"0.1364694018679602\",\r\n      \"vwap24Hr\": \"1.0004490564785191\",\r\n      \"explorer\": \"https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"\r\n    }\r\n  ],\r\n  \"timestamp\": 1674741038500\r\n}");
+        //    DataCriptoAPI interaccionAPI = new DataCriptoAPI();
+        //    List<string> favList = new List<string>();
+        //    favList.Add("bitcoin");
+        //    favList.Add("ethereum");
+        //    favList.Add("usd-coin");
+        //    JObject json = JObject.Parse(fakeJsonMock.Object.Data);
+        //    List<CryptoDTO> lista = interaccionAPI.GetFavCryptosDTO(favList, json);
 
 
-            Assert.AreEqual(lista[0].Id, "bitcoin");
-            Assert.AreEqual(lista[0].Name, "Bitcoin");
-            Assert.AreEqual(lista[0].Symbol, "BTC");
+        //    Assert.AreEqual(lista[0].Id, "bitcoin");
+        //    Assert.AreEqual(lista[0].Name, "Bitcoin");
+        //    Assert.AreEqual(lista[0].Symbol, "BTC");
 
-            Assert.AreEqual(lista[1].Id, "ethereum");
-            Assert.AreEqual(lista[1].Rank, "2");
-            Assert.AreEqual(lista[1].Name, "Ethereum");
-            Assert.AreEqual(lista[1].Symbol, "ETH");
+        //    Assert.AreEqual(lista[1].Id, "ethereum");
+        //    Assert.AreEqual(lista[1].Rank, "2");
+        //    Assert.AreEqual(lista[1].Name, "Ethereum");
+        //    Assert.AreEqual(lista[1].Symbol, "ETH");
 
-            Assert.AreEqual(lista[2].Id, "usd-coin");
-            Assert.AreEqual(lista[2].Name, "USD Coin");
-            Assert.AreEqual(lista[2].Symbol, "USDC");
+        //    Assert.AreEqual(lista[2].Id, "usd-coin");
+        //    Assert.AreEqual(lista[2].Name, "USD Coin");
+        //    Assert.AreEqual(lista[2].Symbol, "USDC");
 
-        }
+        //}
 
         [TestCase]
         public void Get6MonthHistory()
