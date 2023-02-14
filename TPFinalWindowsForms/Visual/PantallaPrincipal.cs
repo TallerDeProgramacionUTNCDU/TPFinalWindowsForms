@@ -109,29 +109,29 @@ namespace TPFinalWindowsForms.Visual
                 // Carga área de notificaciones
                 var usuario = fachada.GetUsuarioActual();
                 lblMensajeUmbral2.Text = "Umbral actual: " + String.Format("{0:0.0000}", usuario.Umbral + "%");
-                //void HandleTimer()
-                //{
-                //    j = 0;
-                //    listBoxNotificaciones.Items.Clear();
-                //    provider.NumberGroupSeparator = ",";
-                //    provider.NumberDecimalSeparator = ".";
-                //    var listaAlertas = fachada.GetAllAlerts();
-                //    while (j < listaAlertas.Count())
-                //    {
-                //        this.Invoke(new MethodInvoker(delegate ()
-                //        {
-                //            foreach (var alerta in listaAlertas)
-                //            {
-                //                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
-                //                j++;
-                //            }
-                //            Login.log.Info("Alertas Mostradas");
-                //        }));
-                //    }
-                //}
-                //System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
-                //timer.Elapsed += (sender, e) => HandleTimer();
-                //timer.Start();
+                void HandleTimer()
+                {
+                    j = 0;
+                    listBoxNotificaciones.Items.Clear();
+                    provider.NumberGroupSeparator = ",";
+                    provider.NumberDecimalSeparator = ".";
+                    var listaAlertas = fachada.GetAllAlerts();
+                    while (j < listaAlertas.Count())
+                    {
+                        this.Invoke(new MethodInvoker(delegate ()
+                        {
+                            foreach (var alerta in listaAlertas)
+                            {
+                                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                                j++;
+                            }
+                            Login.log.Info("Alertas Mostradas");
+                        }));
+                    }
+                }
+                System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
+                timer.Elapsed += (sender, e) => HandleTimer();
+                timer.Start();
                 Login.log.Info("Timer alertas área alertas iniciado");
                 //Carga el umbral actual para mostrarselo al usuario
                 lblMensajeUmbral.Text = "Umbral Actual: " + usuario.Umbral.ToString() + "%";
@@ -316,7 +316,7 @@ namespace TPFinalWindowsForms.Visual
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
                 lblMensaje.ForeColor = Color.Red;
             }
-            else if (respuesta == null)
+            else if (respuesta.Count()==0)
             {
                 lblMensaje.Text = "La crypto ingresada no se encuentra";
                 lblMensaje.ForeColor = Color.Red;
@@ -435,7 +435,7 @@ namespace TPFinalWindowsForms.Visual
                 }
                 else if (respuesta.Count() == 0)
                 {
-                    lblMensaje.Text = "La crypto ingresada no se encuentra";
+                    lblMensaje.Text = "No se ha encontrado la crypto ingresada";
                     lblMensaje.ForeColor = Color.Red;
                 }
                 else
@@ -498,7 +498,7 @@ namespace TPFinalWindowsForms.Visual
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
                 lblMensaje.ForeColor = Color.Red;
             }
-            else if (respuesta == null)
+            else if (respuesta.Count()==0)
             {
                 lblMensaje.Text = "La crypto ingresada no se encuentra";
                 lblMensaje.ForeColor = Color.Red;

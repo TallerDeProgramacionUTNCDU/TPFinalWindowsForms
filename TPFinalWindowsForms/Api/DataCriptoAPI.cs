@@ -25,17 +25,19 @@ namespace TPFinalWindowsForms
         public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
         public dynamic dataAccessor;
 
+
         public dynamic DataAccessor
         {
             get { return this.dataAccessor; }
             set { this.dataAccessor = value; }
         }
+
         public DataCriptoAPI()
         {
              var response = new JSONApiResponse();
              response.GetAPIResponseItem(assetsUrl);
              DataAccessor= response.data;
-         }
+        }
 
         public List<CryptoDTO> GetFavCryptosDTO(List<String> pLista)
         {
@@ -51,14 +53,15 @@ namespace TPFinalWindowsForms
                         }
                     }
             }
-            if (lista.Count > 0)
-            {
-                return lista;
-            }
-            else
-            {
-                return null;
-            }
+            return lista;
+            //if (lista.Count > 0)
+            //{
+            //    return lista;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
         public List<CryptoDTO> GetAllCrytosDTO()
         {
@@ -68,14 +71,15 @@ namespace TPFinalWindowsForms
                     var objetoDTO = new CryptoDTO(bResponseItem.id.ToString(), bResponseItem.name.ToString(), bResponseItem.rank.ToString(), bResponseItem.priceUsd.ToString(), bResponseItem.symbol.ToString(), bResponseItem.changePercent24Hr.ToString());
                     lista.Add(objetoDTO);
                 }
-            if (lista.Count > 0)
-            {
-                return lista;
-            }
-            else
-            {
-                return null;
-            }
+            return lista;
+            //if (lista.Count > 0)
+            //{
+            //    return lista;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
 
         }
         public List<HistoryItem> Get6MonthHistoryFrom(string cripto)
@@ -86,9 +90,8 @@ namespace TPFinalWindowsForms
             var conexionHistory = new JSONApiResponse();
             string historyUrl = String.Format(history, cripto);
             conexionHistory.GetAPIResponseItem(historyUrl);
-
-
-            foreach (var bResponseItem in conexionHistory.Data.data)
+            DataAccessor=conexionHistory.Data;
+            foreach (var bResponseItem in dataAccessor.data)
                 {
                     if ((bResponseItem.time) >= sixMonthsBack)
                     {
@@ -101,14 +104,15 @@ namespace TPFinalWindowsForms
                         historial.Add(elementoHistorial);
                     }
                 }
-            if (historial.Count > 0)
-            {
-                return historial;
-            }
-            else
-            {
-                return null;
-            }
+            return historial;
+            //if (historial.Count > 0)
+            //{
+            //    return historial;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
     }
 }

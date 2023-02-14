@@ -21,10 +21,7 @@ namespace TPFinalWindowsForms
 {
     public class Fachada
     {
-        public static string assetsUrl = "https://api.coincap.io/v2/assets";
-        public static string history = "https://api.coincap.io/v2/assets/{0}/history?interval=d1";
 
-  
         DataCriptoAPI interaccionCrypto = new DataCriptoAPI();
 
         public List<CryptoDTO> ObtenerListaFavoritas()
@@ -103,7 +100,8 @@ namespace TPFinalWindowsForms
             try
             {
                 DataCriptoAPI interaccionApi = new DataCriptoAPI();
-                return interaccionApi.Get6MonthHistoryFrom(cripto);
+                var historial= interaccionApi.Get6MonthHistoryFrom(cripto);
+                return historial;
             }
             catch (WebException ex)
             {
@@ -119,15 +117,16 @@ namespace TPFinalWindowsForms
                     {
                         StreamReader mReader = new StreamReader(mResponseStream, Encoding.GetEncoding("utf-8"));
                         String mErrorText = mReader.ReadToEnd();
-                        Login.log.Error("Errpr: {0} " + mErrorText);
-                        return null;
-                        //throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
+                        Login.log.Error("Error: {0} " + mErrorText);
+                        Login.log.Debug("Respuesta del servicio vacía, no se encontró la crypto o la API no respondió");
+                        List<HistoryItem> empty = new List<HistoryItem>();
+                        return empty;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Login.log.Error("Errpr: {0} " + ex.Message);
+                Login.log.Error("Error: {0} " + ex.Message);
                 throw new ExcepcionesApi("Error de conexión con el servicio, intente mas tarde");
             }
         }
