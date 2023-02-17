@@ -30,22 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaPrincipal));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             this.dgvCryptos = new System.Windows.Forms.DataGridView();
             this.lblMensajeUmbral2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -108,6 +108,7 @@
             this.dgvCryptos.RowTemplate.Height = 30;
             this.dgvCryptos.Size = new System.Drawing.Size(744, 299);
             this.dgvCryptos.TabIndex = 7;
+            this.dgvCryptos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCryptos_CellContentClick);
             // 
             // lblMensajeUmbral2
             // 
@@ -377,7 +378,7 @@
             // btnCambiarUmbral
             // 
             this.btnCambiarUmbral.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCambiarUmbral.CustomizableEdges = customizableEdges1;
+            this.btnCambiarUmbral.CustomizableEdges = customizableEdges17;
             this.btnCambiarUmbral.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnCambiarUmbral.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnCambiarUmbral.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -388,7 +389,7 @@
             this.btnCambiarUmbral.Location = new System.Drawing.Point(1421, 847);
             this.btnCambiarUmbral.Name = "btnCambiarUmbral";
             this.btnCambiarUmbral.PressedColor = System.Drawing.Color.Blue;
-            this.btnCambiarUmbral.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            this.btnCambiarUmbral.ShadowDecoration.CustomizableEdges = customizableEdges18;
             this.btnCambiarUmbral.Size = new System.Drawing.Size(219, 79);
             this.btnCambiarUmbral.TabIndex = 31;
             this.btnCambiarUmbral.Text = "Cambiar Umbral";
@@ -397,7 +398,7 @@
             // btnBorrarTodas
             // 
             this.btnBorrarTodas.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBorrarTodas.CustomizableEdges = customizableEdges3;
+            this.btnBorrarTodas.CustomizableEdges = customizableEdges19;
             this.btnBorrarTodas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnBorrarTodas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnBorrarTodas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -408,7 +409,7 @@
             this.btnBorrarTodas.Location = new System.Drawing.Point(1545, 627);
             this.btnBorrarTodas.Name = "btnBorrarTodas";
             this.btnBorrarTodas.PressedColor = System.Drawing.Color.Blue;
-            this.btnBorrarTodas.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            this.btnBorrarTodas.ShadowDecoration.CustomizableEdges = customizableEdges20;
             this.btnBorrarTodas.Size = new System.Drawing.Size(219, 79);
             this.btnBorrarTodas.TabIndex = 30;
             this.btnBorrarTodas.Text = "Borrar Todas";
@@ -417,7 +418,7 @@
             // btnBorrarSeleccionada
             // 
             this.btnBorrarSeleccionada.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBorrarSeleccionada.CustomizableEdges = customizableEdges5;
+            this.btnBorrarSeleccionada.CustomizableEdges = customizableEdges21;
             this.btnBorrarSeleccionada.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnBorrarSeleccionada.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnBorrarSeleccionada.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -428,7 +429,7 @@
             this.btnBorrarSeleccionada.Location = new System.Drawing.Point(1294, 627);
             this.btnBorrarSeleccionada.Name = "btnBorrarSeleccionada";
             this.btnBorrarSeleccionada.PressedColor = System.Drawing.Color.Blue;
-            this.btnBorrarSeleccionada.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            this.btnBorrarSeleccionada.ShadowDecoration.CustomizableEdges = customizableEdges22;
             this.btnBorrarSeleccionada.Size = new System.Drawing.Size(219, 79);
             this.btnBorrarSeleccionada.TabIndex = 29;
             this.btnBorrarSeleccionada.Text = "Borrar Seleccionada";
@@ -446,7 +447,7 @@
             // btnMostrarTodas
             // 
             this.btnMostrarTodas.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnMostrarTodas.CustomizableEdges = customizableEdges7;
+            this.btnMostrarTodas.CustomizableEdges = customizableEdges23;
             this.btnMostrarTodas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnMostrarTodas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnMostrarTodas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -457,7 +458,7 @@
             this.btnMostrarTodas.Location = new System.Drawing.Point(67, 847);
             this.btnMostrarTodas.Name = "btnMostrarTodas";
             this.btnMostrarTodas.PressedColor = System.Drawing.Color.Blue;
-            this.btnMostrarTodas.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            this.btnMostrarTodas.ShadowDecoration.CustomizableEdges = customizableEdges24;
             this.btnMostrarTodas.Size = new System.Drawing.Size(384, 79);
             this.btnMostrarTodas.TabIndex = 27;
             this.btnMostrarTodas.Text = "Mostrar Todas";
@@ -466,7 +467,7 @@
             // btnEliminarCripto
             // 
             this.btnEliminarCripto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEliminarCripto.CustomizableEdges = customizableEdges9;
+            this.btnEliminarCripto.CustomizableEdges = customizableEdges25;
             this.btnEliminarCripto.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnEliminarCripto.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnEliminarCripto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -477,7 +478,7 @@
             this.btnEliminarCripto.Location = new System.Drawing.Point(327, 672);
             this.btnEliminarCripto.Name = "btnEliminarCripto";
             this.btnEliminarCripto.PressedColor = System.Drawing.Color.Blue;
-            this.btnEliminarCripto.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            this.btnEliminarCripto.ShadowDecoration.CustomizableEdges = customizableEdges26;
             this.btnEliminarCripto.Size = new System.Drawing.Size(124, 79);
             this.btnEliminarCripto.TabIndex = 26;
             this.btnEliminarCripto.Text = "Eliminar Cripto";
@@ -486,7 +487,7 @@
             // btnMostrarCripto
             // 
             this.btnMostrarCripto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnMostrarCripto.CustomizableEdges = customizableEdges11;
+            this.btnMostrarCripto.CustomizableEdges = customizableEdges27;
             this.btnMostrarCripto.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnMostrarCripto.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnMostrarCripto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -497,7 +498,7 @@
             this.btnMostrarCripto.Location = new System.Drawing.Point(67, 672);
             this.btnMostrarCripto.Name = "btnMostrarCripto";
             this.btnMostrarCripto.PressedColor = System.Drawing.Color.Blue;
-            this.btnMostrarCripto.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            this.btnMostrarCripto.ShadowDecoration.CustomizableEdges = customizableEdges28;
             this.btnMostrarCripto.Size = new System.Drawing.Size(124, 79);
             this.btnMostrarCripto.TabIndex = 25;
             this.btnMostrarCripto.Text = "Mostrar Cripto";
@@ -506,7 +507,7 @@
             // btnMostrarFavoritas
             // 
             this.btnMostrarFavoritas.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnMostrarFavoritas.CustomizableEdges = customizableEdges13;
+            this.btnMostrarFavoritas.CustomizableEdges = customizableEdges29;
             this.btnMostrarFavoritas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnMostrarFavoritas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnMostrarFavoritas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -517,7 +518,7 @@
             this.btnMostrarFavoritas.Location = new System.Drawing.Point(67, 757);
             this.btnMostrarFavoritas.Name = "btnMostrarFavoritas";
             this.btnMostrarFavoritas.PressedColor = System.Drawing.Color.Blue;
-            this.btnMostrarFavoritas.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            this.btnMostrarFavoritas.ShadowDecoration.CustomizableEdges = customizableEdges30;
             this.btnMostrarFavoritas.Size = new System.Drawing.Size(384, 79);
             this.btnMostrarFavoritas.TabIndex = 24;
             this.btnMostrarFavoritas.Text = "Mostrar Favoritas";
@@ -526,7 +527,7 @@
             // btnAgregarCriptoFavoritos
             // 
             this.btnAgregarCriptoFavoritos.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAgregarCriptoFavoritos.CustomizableEdges = customizableEdges15;
+            this.btnAgregarCriptoFavoritos.CustomizableEdges = customizableEdges31;
             this.btnAgregarCriptoFavoritos.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnAgregarCriptoFavoritos.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnAgregarCriptoFavoritos.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -537,7 +538,7 @@
             this.btnAgregarCriptoFavoritos.Location = new System.Drawing.Point(197, 672);
             this.btnAgregarCriptoFavoritos.Name = "btnAgregarCriptoFavoritos";
             this.btnAgregarCriptoFavoritos.PressedColor = System.Drawing.Color.Blue;
-            this.btnAgregarCriptoFavoritos.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            this.btnAgregarCriptoFavoritos.ShadowDecoration.CustomizableEdges = customizableEdges32;
             this.btnAgregarCriptoFavoritos.Size = new System.Drawing.Size(124, 79);
             this.btnAgregarCriptoFavoritos.TabIndex = 23;
             this.btnAgregarCriptoFavoritos.Text = "Agregar Cripto";

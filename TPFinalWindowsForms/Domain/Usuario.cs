@@ -38,12 +38,9 @@ public partial class Usuario
 
     public double Umbral { get; set; }
 
-    public static bool ExisteCripto(string cripto)
+    public bool ExisteCripto(string cripto)
     {
-        DBContext context = new DBContext();
-        RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-        var objetoUsuario = repoUsuario.Get("a"); //CAMBIAR POR EL USUARIO PERSISTIDO
-        string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
+        string[] arrayCryptos = Favcriptos.Split(' ');
         bool existe = false;
         int i = 0;
         foreach (var crypto in arrayCryptos)

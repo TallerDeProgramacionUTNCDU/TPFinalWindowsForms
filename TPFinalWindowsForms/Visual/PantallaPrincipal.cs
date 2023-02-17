@@ -323,25 +323,16 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                var objetoUsuario = PantallaPrincipal.user;//awdawdawawd
-                string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
-                int i = 0;
-                bool nueva = true;
+                var objetoUsuario = PantallaPrincipal.user;
                 string favorita = txtCrypto.Text.ToLower();
-                foreach (var crypto in arrayCryptos)
+                if (objetoUsuario.ExisteCripto(favorita) is false)
                 {
-                    if (crypto == favorita)
-                    {
-                        nueva = false;
-                        break;
-                    }
-                }
-                if (nueva)
-                {
-                    fachada.AddFavCrypto(favorita); //IJAWIOFDJAOWDJOAWDJAWD
+                    fachada.AddFavCrypto(favorita); 
                     lblMensaje.Text = "La crypto fue agregada a favoritos";
                     lblMensaje.ForeColor = Color.Aqua;
                     Login.log.Info(txtCrypto.Text + " Añadida a favoritas");
+                    var listaCryptosDTO = fachada.ObtenerListaFavoritas();
+                    dgvCryptos.DataSource = listaCryptosDTO;
                 }
                 else
                 {
@@ -506,12 +497,14 @@ namespace TPFinalWindowsForms.Visual
             else
             {
 
-                if (Usuario.ExisteCripto(txtCrypto.Text.ToLower()))
+                if (PantallaPrincipal.user.ExisteCripto(txtCrypto.Text.ToLower()))
                 {
                     fachada.DelFavCrypto(txtCrypto.Text.ToLower()); 
                     lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
                     lblMensaje.ForeColor = Color.Red;
                     Login.log.Info("Se eliminó a " + txtCrypto.Text + " de favoritas");
+                    var listaCryptosDTO = fachada.ObtenerListaFavoritas();
+                    dgvCryptos.DataSource = listaCryptosDTO;
                 }
                 else
                 {
@@ -674,6 +667,11 @@ namespace TPFinalWindowsForms.Visual
             {
                 pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
             }
+        }
+
+        private void dgvCryptos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
