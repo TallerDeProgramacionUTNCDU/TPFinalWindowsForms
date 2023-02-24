@@ -352,6 +352,7 @@
             // 
             // btnChangeUmbral
             // 
+            this.btnChangeUmbral.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnChangeUmbral.BackColor = System.Drawing.Color.Purple;
             this.btnChangeUmbral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeUmbral.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -366,6 +367,7 @@
             // 
             // btnDeleteAllNotifications
             // 
+            this.btnDeleteAllNotifications.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteAllNotifications.BackColor = System.Drawing.Color.Purple;
             this.btnDeleteAllNotifications.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAllNotifications.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -380,6 +382,7 @@
             // 
             // btnDeleteSelectedNotification
             // 
+            this.btnDeleteSelectedNotification.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteSelectedNotification.BackColor = System.Drawing.Color.Purple;
             this.btnDeleteSelectedNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteSelectedNotification.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -394,6 +397,7 @@
             // 
             // btnShowAllCriptos
             // 
+            this.btnShowAllCriptos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnShowAllCriptos.BackColor = System.Drawing.Color.Purple;
             this.btnShowAllCriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowAllCriptos.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -408,6 +412,7 @@
             // 
             // btnShowFavCriptos
             // 
+            this.btnShowFavCriptos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnShowFavCriptos.BackColor = System.Drawing.Color.Purple;
             this.btnShowFavCriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowFavCriptos.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -422,6 +427,7 @@
             // 
             // btnDelCripto
             // 
+            this.btnDelCripto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDelCripto.BackColor = System.Drawing.Color.Purple;
             this.btnDelCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -436,6 +442,7 @@
             // 
             // btnAgregarCripto
             // 
+            this.btnAgregarCripto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAgregarCripto.BackColor = System.Drawing.Color.Purple;
             this.btnAgregarCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -450,6 +457,7 @@
             // 
             // btnShowCripto
             // 
+            this.btnShowCripto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnShowCripto.BackColor = System.Drawing.Color.Purple;
             this.btnShowCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
