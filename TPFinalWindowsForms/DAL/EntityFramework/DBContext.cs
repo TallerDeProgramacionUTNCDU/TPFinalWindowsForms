@@ -97,6 +97,7 @@ public partial class DBContext : DbContext
                 .HasColumnType("character varying")
                 .HasColumnName("nombre");
             entity.Property(e => e.Umbral).HasColumnName("umbral");
+            entity.Property(e => e.SesionActiva).HasColumnName("sesionactiva");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -130,8 +130,8 @@ private void btnSignup_Click(object sender, EventArgs e)
                     {
                         log.Info("Login Exitoso");
                         Hide();
+                        Fachada.ActivarSesion(objetoUsuario.Nickname);
                         PantallaPrincipal pantallPrincipal = new PantallaPrincipal();
-                        PantallaPrincipal.user = objetoUsuario;
                         pantallPrincipal.ShowDialog();
                     }
                     else

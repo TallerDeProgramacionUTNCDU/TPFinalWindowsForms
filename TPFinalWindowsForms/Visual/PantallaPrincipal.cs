@@ -38,12 +38,6 @@ namespace TPFinalWindowsForms.Visual
         public const int HT_CAPTION = 0x2;
 
 
-
-
-        public static Usuario user { get; set; }
-
-
-
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
@@ -58,6 +52,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void PantallaPrincipal_Load(object sender, EventArgs e)
         {
+
             lblMensajeUmbral2.Text = "";
             lblMensaje.Text = "";
             Program.Alertas();
@@ -107,7 +102,9 @@ namespace TPFinalWindowsForms.Visual
                 formsPlot1.Refresh();
                 int j = 0;
                 // Carga área de notificaciones
-                var usuario = fachada.GetUsuarioActual();
+                DBContext context = new DBContext();
+                RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+                var usuario = repoUsuario.GetUsuarioActual();
                 lblMensajeUmbral2.Text = "Umbral actual: " + String.Format("{0:0.0000}", usuario.Umbral + "%");
                 void HandleTimer()
                 {
@@ -218,6 +215,9 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnDelFav_Click(object sender, EventArgs e)
         {
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            Usuario user = repoUsuario.GetUsuarioActual();
             var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
             if (txtCrypto.Text.Length == 0)
             {
@@ -232,7 +232,7 @@ namespace TPFinalWindowsForms.Visual
             else
             {
 
-                if (PantallaPrincipal.user.ExisteCripto(txtCrypto.Text.ToLower()))
+                if (user.ExisteCripto(txtCrypto.Text.ToLower()))
                 {
                     fachada.DelFavCrypto(txtCrypto.Text.ToLower());
                     lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
@@ -394,26 +394,26 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnAgregarCriptoFavoritos_Click(object sender, EventArgs e)
         {
-
             var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
-
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             if (txtCrypto.Text.Length == 0)
             {
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
                 lblMensaje.ForeColor = Color.Red;
             }
-            else if (respuesta.Count()==0)
+            else if (respuesta.Count() == 0)
             {
                 lblMensaje.Text = "La crypto ingresada no se encuentra";
                 lblMensaje.ForeColor = Color.Red;
             }
             else
             {
-                var objetoUsuario = PantallaPrincipal.user;
+                Usuario objetoUsuario = repoUsuario.GetUsuarioActual();
                 string favorita = txtCrypto.Text.ToLower();
                 if (objetoUsuario.ExisteCripto(favorita) is false)
                 {
-                    fachada.AddFavCrypto(favorita); 
+                    fachada.AddFavCrypto(favorita);
                     lblMensaje.Text = "La crypto fue agregada a favoritos";
                     lblMensaje.ForeColor = Color.Aqua;
                     Login.log.Info(txtCrypto.Text + " Añadida a favoritas");
@@ -603,6 +603,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void pboxCerrar_Click(object sender, EventArgs e)
         {
+            Fachada.DesactivarSesion();
             this.Close();
         }
 
@@ -618,7 +619,9 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnCambiarUmbral_Click(object sender, EventArgs e)
         {
-            var objetoUsuario = fachada.GetUsuarioActual();
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            var objetoUsuario = repoUsuario.GetUsuarioActual();
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
             if (txtUmbral.Text.Length == 0)
@@ -657,6 +660,11 @@ namespace TPFinalWindowsForms.Visual
         }
 
         private void dgvCryptos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

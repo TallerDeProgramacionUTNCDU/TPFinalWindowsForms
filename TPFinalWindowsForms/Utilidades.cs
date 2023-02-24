@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TPFinalWindowsForms.DAL.EntityFramework;
 
 namespace TPFinalWindowsForms
 {
@@ -13,8 +14,9 @@ namespace TPFinalWindowsForms
 
         public int PosCriptoABorrar(string cripto)
         {
-            Fachada fachada = new Fachada();
-            var objetoUsuario = fachada.GetUsuarioActual();
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            var objetoUsuario = repoUsuario.GetUsuarioActual();
             string[] arrayCryptos = objetoUsuario.Favcriptos.Split(' ');
             int i = 0;
             foreach (var crypto in arrayCryptos)

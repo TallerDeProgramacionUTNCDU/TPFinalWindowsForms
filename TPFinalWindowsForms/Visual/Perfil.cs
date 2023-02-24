@@ -40,7 +40,7 @@ namespace TPFinalWindowsForms.Visual
             lblMensaje.Text = "";
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var usuario = fachada.GetUsuarioActual();
+            var usuario = repoUsuario.GetUsuarioActual();
             txtShowNick.Text = usuario.Nickname;
             txtShowPass.Text = usuario.Contraseña;
             txtShowNombre.Text = usuario.Nombre;
@@ -174,7 +174,9 @@ namespace TPFinalWindowsForms.Visual
                 }
                 if (cambio)
                 {
-                    var usuario = fachada.GetUsuarioActual();
+                    DBContext context = new DBContext();
+                    RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+                    var usuario = repoUsuario.GetUsuarioActual();
                     lblMensaje.Text = "Datos actualizados correctamente";
                     lblMensaje.ForeColor = Color.Green;
                     txtShowNick.Text = usuario.Nickname;

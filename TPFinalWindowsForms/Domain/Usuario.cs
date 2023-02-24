@@ -38,6 +38,7 @@ public partial class Usuario
 
     public double Umbral { get; set; }
 
+    public bool SesionActiva { get; set; }
     public bool ExisteCripto(string cripto)
     {
         string[] arrayCryptos = Favcriptos.Split(' ');

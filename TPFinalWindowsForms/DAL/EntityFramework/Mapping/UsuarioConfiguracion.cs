@@ -33,6 +33,8 @@ namespace TPFinalWindowsForms.DAL.EntityFramework.Mapping
 
             builder.Property(pUsuario => pUsuario.Umbral);
 
+            builder.Property(pUsuario => pUsuario.SesionActiva);
+
         }
     }
 }

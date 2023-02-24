@@ -154,7 +154,8 @@ namespace TPFinalWindowsForms.Visual
                             Apellido = txtApellido.Text,
                             Email = txtEmail.Text,
                             Favcriptos = "",
-                            Umbral = 0
+                            Umbral = 0,
+                            SesionActiva = false
                         };
                         bUoW.RepositorioUsuario.Add(usuario);
                         bUoW.Complete();
