@@ -53,16 +53,16 @@
             this.pboxMinimizar = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnChangeUmbral = new System.Windows.Forms.Button();
+            this.btnDeleteAllNotifications = new System.Windows.Forms.Button();
+            this.btnDeleteSelectedNotification = new System.Windows.Forms.Button();
+            this.btnShowAllCriptos = new System.Windows.Forms.Button();
+            this.btnShowFavCriptos = new System.Windows.Forms.Button();
+            this.btnDelCripto = new System.Windows.Forms.Button();
+            this.btnAgregarCripto = new System.Windows.Forms.Button();
+            this.btnShowCripto = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnShowCripto = new System.Windows.Forms.Button();
-            this.btnAgregarCripto = new System.Windows.Forms.Button();
-            this.btnDelCripto = new System.Windows.Forms.Button();
-            this.btnShowFavCriptos = new System.Windows.Forms.Button();
-            this.btnShowAllCriptos = new System.Windows.Forms.Button();
-            this.btnDeleteSelectedNotification = new System.Windows.Forms.Button();
-            this.btnDeleteAllNotifications = new System.Windows.Forms.Button();
-            this.btnChangeUmbral = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCryptos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -350,6 +350,118 @@
             this.panel1.Size = new System.Drawing.Size(1924, 943);
             this.panel1.TabIndex = 5;
             // 
+            // btnChangeUmbral
+            // 
+            this.btnChangeUmbral.BackColor = System.Drawing.Color.Purple;
+            this.btnChangeUmbral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangeUmbral.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnChangeUmbral.ForeColor = System.Drawing.Color.White;
+            this.btnChangeUmbral.Location = new System.Drawing.Point(1399, 832);
+            this.btnChangeUmbral.Name = "btnChangeUmbral";
+            this.btnChangeUmbral.Size = new System.Drawing.Size(219, 79);
+            this.btnChangeUmbral.TabIndex = 40;
+            this.btnChangeUmbral.Text = "Cambiar Umbral";
+            this.btnChangeUmbral.UseVisualStyleBackColor = false;
+            this.btnChangeUmbral.Click += new System.EventHandler(this.btnCambiarUmbral_Click);
+            // 
+            // btnDeleteAllNotifications
+            // 
+            this.btnDeleteAllNotifications.BackColor = System.Drawing.Color.Purple;
+            this.btnDeleteAllNotifications.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteAllNotifications.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDeleteAllNotifications.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteAllNotifications.Location = new System.Drawing.Point(1545, 627);
+            this.btnDeleteAllNotifications.Name = "btnDeleteAllNotifications";
+            this.btnDeleteAllNotifications.Size = new System.Drawing.Size(219, 79);
+            this.btnDeleteAllNotifications.TabIndex = 39;
+            this.btnDeleteAllNotifications.Text = "Borrar Todas";
+            this.btnDeleteAllNotifications.UseVisualStyleBackColor = false;
+            this.btnDeleteAllNotifications.Click += new System.EventHandler(this.btnBorrarTodas_Click);
+            // 
+            // btnDeleteSelectedNotification
+            // 
+            this.btnDeleteSelectedNotification.BackColor = System.Drawing.Color.Purple;
+            this.btnDeleteSelectedNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteSelectedNotification.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDeleteSelectedNotification.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteSelectedNotification.Location = new System.Drawing.Point(1294, 627);
+            this.btnDeleteSelectedNotification.Name = "btnDeleteSelectedNotification";
+            this.btnDeleteSelectedNotification.Size = new System.Drawing.Size(219, 79);
+            this.btnDeleteSelectedNotification.TabIndex = 38;
+            this.btnDeleteSelectedNotification.Text = "Borrar Seleccionada";
+            this.btnDeleteSelectedNotification.UseVisualStyleBackColor = false;
+            this.btnDeleteSelectedNotification.Click += new System.EventHandler(this.btnBorrarSeleccionada_Click);
+            // 
+            // btnShowAllCriptos
+            // 
+            this.btnShowAllCriptos.BackColor = System.Drawing.Color.Purple;
+            this.btnShowAllCriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowAllCriptos.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnShowAllCriptos.ForeColor = System.Drawing.Color.White;
+            this.btnShowAllCriptos.Location = new System.Drawing.Point(67, 847);
+            this.btnShowAllCriptos.Name = "btnShowAllCriptos";
+            this.btnShowAllCriptos.Size = new System.Drawing.Size(384, 79);
+            this.btnShowAllCriptos.TabIndex = 37;
+            this.btnShowAllCriptos.Text = "Mostrar Todas";
+            this.btnShowAllCriptos.UseVisualStyleBackColor = false;
+            this.btnShowAllCriptos.Click += new System.EventHandler(this.btnMostrarTodas_Click);
+            // 
+            // btnShowFavCriptos
+            // 
+            this.btnShowFavCriptos.BackColor = System.Drawing.Color.Purple;
+            this.btnShowFavCriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowFavCriptos.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnShowFavCriptos.ForeColor = System.Drawing.Color.White;
+            this.btnShowFavCriptos.Location = new System.Drawing.Point(67, 762);
+            this.btnShowFavCriptos.Name = "btnShowFavCriptos";
+            this.btnShowFavCriptos.Size = new System.Drawing.Size(384, 79);
+            this.btnShowFavCriptos.TabIndex = 36;
+            this.btnShowFavCriptos.Text = "Mostrar Favoritas";
+            this.btnShowFavCriptos.UseVisualStyleBackColor = false;
+            this.btnShowFavCriptos.Click += new System.EventHandler(this.btnMostrarFavoritas_Click);
+            // 
+            // btnDelCripto
+            // 
+            this.btnDelCripto.BackColor = System.Drawing.Color.Purple;
+            this.btnDelCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDelCripto.ForeColor = System.Drawing.Color.White;
+            this.btnDelCripto.Location = new System.Drawing.Point(327, 672);
+            this.btnDelCripto.Name = "btnDelCripto";
+            this.btnDelCripto.Size = new System.Drawing.Size(124, 79);
+            this.btnDelCripto.TabIndex = 35;
+            this.btnDelCripto.Text = "Eliminar Cripto";
+            this.btnDelCripto.UseVisualStyleBackColor = false;
+            this.btnDelCripto.Click += new System.EventHandler(this.btnDelFav_Click);
+            // 
+            // btnAgregarCripto
+            // 
+            this.btnAgregarCripto.BackColor = System.Drawing.Color.Purple;
+            this.btnAgregarCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarCripto.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarCripto.Location = new System.Drawing.Point(197, 672);
+            this.btnAgregarCripto.Name = "btnAgregarCripto";
+            this.btnAgregarCripto.Size = new System.Drawing.Size(124, 79);
+            this.btnAgregarCripto.TabIndex = 34;
+            this.btnAgregarCripto.Text = "Agregar Cripto";
+            this.btnAgregarCripto.UseVisualStyleBackColor = false;
+            this.btnAgregarCripto.Click += new System.EventHandler(this.btnAgregarCriptoFavoritos_Click);
+            // 
+            // btnShowCripto
+            // 
+            this.btnShowCripto.BackColor = System.Drawing.Color.Purple;
+            this.btnShowCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnShowCripto.ForeColor = System.Drawing.Color.White;
+            this.btnShowCripto.Location = new System.Drawing.Point(67, 672);
+            this.btnShowCripto.Name = "btnShowCripto";
+            this.btnShowCripto.Size = new System.Drawing.Size(124, 79);
+            this.btnShowCripto.TabIndex = 33;
+            this.btnShowCripto.Text = "Mostrar Cripto";
+            this.btnShowCripto.UseVisualStyleBackColor = false;
+            this.btnShowCripto.Click += new System.EventHandler(this.btnShowCyrpto_Click);
+            // 
             // panel3
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -367,118 +479,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1156, 36);
             this.panel2.TabIndex = 28;
-            // 
-            // btnShowCripto
-            // 
-            this.btnShowCripto.BackColor = System.Drawing.Color.Purple;
-            this.btnShowCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnShowCripto.ForeColor = System.Drawing.Color.White;
-            this.btnShowCripto.Location = new System.Drawing.Point(67, 672);
-            this.btnShowCripto.Name = "btnShowCripto";
-            this.btnShowCripto.Size = new System.Drawing.Size(124, 79);
-            this.btnShowCripto.TabIndex = 33;
-            this.btnShowCripto.Text = "Mostrar Cripto";
-            this.btnShowCripto.UseVisualStyleBackColor = false;
-            this.btnShowCripto.Click += new System.EventHandler(this.btnShowCyrpto_Click);
-            // 
-            // btnAgregarCripto
-            // 
-            this.btnAgregarCripto.BackColor = System.Drawing.Color.Purple;
-            this.btnAgregarCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarCripto.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarCripto.Location = new System.Drawing.Point(197, 672);
-            this.btnAgregarCripto.Name = "btnAgregarCripto";
-            this.btnAgregarCripto.Size = new System.Drawing.Size(124, 79);
-            this.btnAgregarCripto.TabIndex = 34;
-            this.btnAgregarCripto.Text = "Agregar Cripto";
-            this.btnAgregarCripto.UseVisualStyleBackColor = false;
-            this.btnAgregarCripto.Click += new System.EventHandler(this.btnAgregarCriptoFavoritos_Click);
-            // 
-            // btnDelCripto
-            // 
-            this.btnDelCripto.BackColor = System.Drawing.Color.Purple;
-            this.btnDelCripto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelCripto.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelCripto.ForeColor = System.Drawing.Color.White;
-            this.btnDelCripto.Location = new System.Drawing.Point(327, 672);
-            this.btnDelCripto.Name = "btnDelCripto";
-            this.btnDelCripto.Size = new System.Drawing.Size(124, 79);
-            this.btnDelCripto.TabIndex = 35;
-            this.btnDelCripto.Text = "Eliminar Cripto";
-            this.btnDelCripto.UseVisualStyleBackColor = false;
-            this.btnDelCripto.Click += new System.EventHandler(this.btnDelFav_Click);
-            // 
-            // btnShowFavCriptos
-            // 
-            this.btnShowFavCriptos.BackColor = System.Drawing.Color.Purple;
-            this.btnShowFavCriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowFavCriptos.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnShowFavCriptos.ForeColor = System.Drawing.Color.White;
-            this.btnShowFavCriptos.Location = new System.Drawing.Point(67, 762);
-            this.btnShowFavCriptos.Name = "btnShowFavCriptos";
-            this.btnShowFavCriptos.Size = new System.Drawing.Size(384, 79);
-            this.btnShowFavCriptos.TabIndex = 36;
-            this.btnShowFavCriptos.Text = "Mostrar Favoritas";
-            this.btnShowFavCriptos.UseVisualStyleBackColor = false;
-            this.btnShowFavCriptos.Click += new System.EventHandler(this.btnMostrarFavoritas_Click);
-            // 
-            // btnShowAllCriptos
-            // 
-            this.btnShowAllCriptos.BackColor = System.Drawing.Color.Purple;
-            this.btnShowAllCriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowAllCriptos.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnShowAllCriptos.ForeColor = System.Drawing.Color.White;
-            this.btnShowAllCriptos.Location = new System.Drawing.Point(67, 847);
-            this.btnShowAllCriptos.Name = "btnShowAllCriptos";
-            this.btnShowAllCriptos.Size = new System.Drawing.Size(384, 79);
-            this.btnShowAllCriptos.TabIndex = 37;
-            this.btnShowAllCriptos.Text = "Mostrar Todas";
-            this.btnShowAllCriptos.UseVisualStyleBackColor = false;
-            this.btnShowAllCriptos.Click += new System.EventHandler(this.btnMostrarTodas_Click);
-            // 
-            // btnDeleteSelectedNotification
-            // 
-            this.btnDeleteSelectedNotification.BackColor = System.Drawing.Color.Purple;
-            this.btnDeleteSelectedNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteSelectedNotification.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDeleteSelectedNotification.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteSelectedNotification.Location = new System.Drawing.Point(1294, 627);
-            this.btnDeleteSelectedNotification.Name = "btnDeleteSelectedNotification";
-            this.btnDeleteSelectedNotification.Size = new System.Drawing.Size(219, 79);
-            this.btnDeleteSelectedNotification.TabIndex = 38;
-            this.btnDeleteSelectedNotification.Text = "Borrar Seleccionada";
-            this.btnDeleteSelectedNotification.UseVisualStyleBackColor = false;
-            this.btnDeleteSelectedNotification.Click += new System.EventHandler(this.btnBorrarSeleccionada_Click);
-            // 
-            // btnDeleteAllNotifications
-            // 
-            this.btnDeleteAllNotifications.BackColor = System.Drawing.Color.Purple;
-            this.btnDeleteAllNotifications.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteAllNotifications.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDeleteAllNotifications.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteAllNotifications.Location = new System.Drawing.Point(1545, 627);
-            this.btnDeleteAllNotifications.Name = "btnDeleteAllNotifications";
-            this.btnDeleteAllNotifications.Size = new System.Drawing.Size(219, 79);
-            this.btnDeleteAllNotifications.TabIndex = 39;
-            this.btnDeleteAllNotifications.Text = "Borrar Todas";
-            this.btnDeleteAllNotifications.UseVisualStyleBackColor = false;
-            this.btnDeleteAllNotifications.Click += new System.EventHandler(this.btnBorrarTodas_Click);
-            // 
-            // btnChangeUmbral
-            // 
-            this.btnChangeUmbral.BackColor = System.Drawing.Color.Purple;
-            this.btnChangeUmbral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeUmbral.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnChangeUmbral.ForeColor = System.Drawing.Color.White;
-            this.btnChangeUmbral.Location = new System.Drawing.Point(1399, 832);
-            this.btnChangeUmbral.Name = "btnChangeUmbral";
-            this.btnChangeUmbral.Size = new System.Drawing.Size(219, 79);
-            this.btnChangeUmbral.TabIndex = 40;
-            this.btnChangeUmbral.Text = "Cambiar Umbral";
-            this.btnChangeUmbral.UseVisualStyleBackColor = false;
-            this.btnChangeUmbral.Click += new System.EventHandler(this.btnCambiarUmbral_Click);
             // 
             // PantallaPrincipal
             // 

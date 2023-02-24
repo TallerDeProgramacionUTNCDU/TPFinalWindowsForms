@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Signup));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,8 +52,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnRegistrarse = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAcceder = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSignUp = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelSuperior.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -303,8 +299,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnRegistrarse);
-            this.panel1.Controls.Add(this.btnAcceder);
+            this.panel1.Controls.Add(this.btnLogin);
+            this.panel1.Controls.Add(this.btnSignUp);
             this.panel1.Controls.Add(this.txtPass);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtCheckPass);
@@ -327,45 +323,33 @@
             this.panel1.TabIndex = 19;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // btnRegistrarse
+            // btnSignUp
             // 
-            this.btnRegistrarse.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegistrarse.CustomizableEdges = customizableEdges1;
-            this.btnRegistrarse.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnRegistrarse.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnRegistrarse.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnRegistrarse.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnRegistrarse.FillColor = System.Drawing.Color.Purple;
-            this.btnRegistrarse.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRegistrarse.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarse.Location = new System.Drawing.Point(618, 397);
-            this.btnRegistrarse.Name = "btnRegistrarse";
-            this.btnRegistrarse.PressedColor = System.Drawing.Color.Blue;
-            this.btnRegistrarse.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            this.btnRegistrarse.Size = new System.Drawing.Size(262, 58);
-            this.btnRegistrarse.TabIndex = 19;
-            this.btnRegistrarse.Text = "Registrarse";
-            this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
+            this.btnSignUp.BackColor = System.Drawing.Color.Purple;
+            this.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignUp.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSignUp.ForeColor = System.Drawing.Color.White;
+            this.btnSignUp.Location = new System.Drawing.Point(618, 391);
+            this.btnSignUp.Name = "btnSignUp";
+            this.btnSignUp.Size = new System.Drawing.Size(262, 86);
+            this.btnSignUp.TabIndex = 40;
+            this.btnSignUp.Text = "Registrarse";
+            this.btnSignUp.UseVisualStyleBackColor = false;
+            this.btnSignUp.Click += new System.EventHandler(this.btnRegistrarse_Click);
             // 
-            // btnAcceder
+            // btnLogin
             // 
-            this.btnAcceder.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAcceder.CustomizableEdges = customizableEdges3;
-            this.btnAcceder.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAcceder.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAcceder.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAcceder.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAcceder.FillColor = System.Drawing.Color.Purple;
-            this.btnAcceder.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAcceder.ForeColor = System.Drawing.Color.White;
-            this.btnAcceder.Location = new System.Drawing.Point(307, 397);
-            this.btnAcceder.Name = "btnAcceder";
-            this.btnAcceder.PressedColor = System.Drawing.Color.Blue;
-            this.btnAcceder.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            this.btnAcceder.Size = new System.Drawing.Size(262, 58);
-            this.btnAcceder.TabIndex = 18;
-            this.btnAcceder.Text = "Acceder";
-            this.btnAcceder.Click += new System.EventHandler(this.btnAcceder_Click);
+            this.btnLogin.BackColor = System.Drawing.Color.Purple;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(307, 391);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(262, 86);
+            this.btnLogin.TabIndex = 41;
+            this.btnLogin.Text = "Acceder";
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnAcceder_Click);
             // 
             // Signup
             // 
@@ -420,7 +404,7 @@
         private Label label7;
         private TextBox txtPass;
         private Panel panel1;
-        private Guna.UI2.WinForms.Guna2Button btnRegistrarse;
-        private Guna.UI2.WinForms.Guna2Button btnAcceder;
+        private Button btnLogin;
+        private Button btnSignUp;
     }
 }

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Perfil));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -67,7 +65,7 @@
             this.pboxMinimizar = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnGuardar = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSuperior.SuspendLayout();
@@ -462,7 +460,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnGuardar);
+            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtPass);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -498,25 +496,19 @@
             this.panel1.Size = new System.Drawing.Size(1237, 650);
             this.panel1.TabIndex = 35;
             // 
-            // btnGuardar
+            // btnSave
             // 
-            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnGuardar.CustomizableEdges = customizableEdges1;
-            this.btnGuardar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnGuardar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnGuardar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnGuardar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnGuardar.FillColor = System.Drawing.Color.Purple;
-            this.btnGuardar.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(863, 535);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.PressedColor = System.Drawing.Color.Blue;
-            this.btnGuardar.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            this.btnGuardar.Size = new System.Drawing.Size(289, 86);
-            this.btnGuardar.TabIndex = 35;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnSave.BackColor = System.Drawing.Color.Purple;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(863, 535);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(289, 86);
+            this.btnSave.TabIndex = 39;
+            this.btnSave.Text = "Guardar";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // panel2
             // 
@@ -592,6 +584,6 @@
         private Label label8;
         private Panel panel1;
         private Panel panel2;
-        private Guna.UI2.WinForms.Guna2Button btnGuardar;
+        private Button btnSave;
     }
 }
