@@ -97,8 +97,7 @@ namespace TPFinalWindowsForms.Visual
                 pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
             }
         }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
+        public void guardar()
         {
             Utilidades utilidades = new Utilidades();
             provider.NumberGroupSeparator = ",";
@@ -194,6 +193,20 @@ namespace TPFinalWindowsForms.Visual
                 txtConfirmEmail.Text = "";
                 txtUmbral.Text = "";
                 Login.log.Info("Datos del usuario Actualizados Exitosamente");
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            guardar();
+        }
+
+
+        private void txtUmbral_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                guardar();
             }
         }
     }

@@ -91,8 +91,7 @@ namespace TPFinalWindowsForms.Visual
         {
             this.Close();
         }
-
-        private void btnRegistrarse_Click(object sender, EventArgs e)
+        public void Registrarse()
         {
             if (txtNick.Text.Length == 0)
             {
@@ -174,6 +173,10 @@ namespace TPFinalWindowsForms.Visual
                 }
             }
         }
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Registrarse();
+        }
 
         private void panelSuperior_MouseMove(object sender, MouseEventArgs e)
         {
@@ -185,6 +188,14 @@ namespace TPFinalWindowsForms.Visual
             if (WindowState == FormWindowState.Normal)
             {
                 pboxMinimizarVentana.Image = TPFinalWindowsForms.Properties.Resources.maximizar;
+            }
+        }
+
+        private void txtNick_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Registrarse();
             }
         }
     }

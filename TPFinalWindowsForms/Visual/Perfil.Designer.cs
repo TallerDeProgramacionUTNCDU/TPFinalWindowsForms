@@ -84,7 +84,9 @@
             this.txtPass.Location = new System.Drawing.Point(527, 175);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(289, 39);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 0;
+            this.txtPass.UseSystemPasswordChar = true;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // txtNombre
             // 
@@ -94,6 +96,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(289, 39);
             this.txtNombre.TabIndex = 2;
+            this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // txtApellido
             // 
@@ -103,6 +106,7 @@
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(289, 39);
             this.txtApellido.TabIndex = 3;
+            this.txtApellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // txtEmail
             // 
@@ -112,6 +116,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(289, 39);
             this.txtEmail.TabIndex = 4;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // txtConfirmEmail
             // 
@@ -121,6 +126,7 @@
             this.txtConfirmEmail.Name = "txtConfirmEmail";
             this.txtConfirmEmail.Size = new System.Drawing.Size(289, 39);
             this.txtConfirmEmail.TabIndex = 5;
+            this.txtConfirmEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // txtUmbral
             // 
@@ -130,6 +136,7 @@
             this.txtUmbral.Name = "txtUmbral";
             this.txtUmbral.Size = new System.Drawing.Size(289, 39);
             this.txtUmbral.TabIndex = 6;
+            this.txtUmbral.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // txtShowUmbral
             // 
@@ -195,7 +202,7 @@
             this.txtShowNick.Name = "txtShowNick";
             this.txtShowNick.ReadOnly = true;
             this.txtShowNick.Size = new System.Drawing.Size(289, 39);
-            this.txtShowNick.TabIndex = 8;
+            this.txtShowNick.TabIndex = 99;
             this.txtShowNick.Click += new System.EventHandler(this.txtShowNick_Click);
             this.txtShowNick.TextChanged += new System.EventHandler(this.textBox14_TextChanged);
             // 
@@ -338,7 +345,9 @@
             this.txtPassControl.Location = new System.Drawing.Point(863, 175);
             this.txtPassControl.Name = "txtPassControl";
             this.txtPassControl.Size = new System.Drawing.Size(289, 39);
-            this.txtPassControl.TabIndex = 29;
+            this.txtPassControl.TabIndex = 1;
+            this.txtPassControl.UseSystemPasswordChar = true;
+            this.txtPassControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // label3
             // 
@@ -369,7 +378,7 @@
             this.lblMensajeNick.BackColor = System.Drawing.Color.Transparent;
             this.lblMensajeNick.Font = new System.Drawing.Font("Sylfaen", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblMensajeNick.ForeColor = System.Drawing.Color.Red;
-            this.lblMensajeNick.Location = new System.Drawing.Point(845, 95);
+            this.lblMensajeNick.Location = new System.Drawing.Point(821, 95);
             this.lblMensajeNick.Name = "lblMensajeNick";
             this.lblMensajeNick.Size = new System.Drawing.Size(316, 25);
             this.lblMensajeNick.TabIndex = 32;

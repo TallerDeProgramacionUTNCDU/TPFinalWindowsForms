@@ -73,7 +73,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(334, 39);
             this.txtUsuario.TabIndex = 3;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
+            this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
             // txtPass
             // 
@@ -83,6 +83,8 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(334, 39);
             this.txtPass.TabIndex = 4;
+            this.txtPass.UseSystemPasswordChar = true;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
             // lblNickname
             // 

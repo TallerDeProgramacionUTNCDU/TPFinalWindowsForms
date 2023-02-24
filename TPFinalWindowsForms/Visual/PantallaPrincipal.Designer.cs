@@ -161,6 +161,7 @@
             this.txtUmbral.Size = new System.Drawing.Size(317, 39);
             this.txtUmbral.TabIndex = 13;
             this.txtUmbral.TextChanged += new System.EventHandler(this.txtUmbral_TextChanged);
+            this.txtUmbral.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUmbral_KeyDown);
             // 
             // formsPlot1
             // 

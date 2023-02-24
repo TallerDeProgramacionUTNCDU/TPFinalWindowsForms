@@ -54,14 +54,7 @@ namespace TPFinalWindowsForms
                     }
             }
             return lista;
-            //if (lista.Count > 0)
-            //{
-            //    return lista;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+
         }
         public List<CryptoDTO> GetAllCrytosDTO()
         {
@@ -72,14 +65,7 @@ namespace TPFinalWindowsForms
                     lista.Add(objetoDTO);
                 }
             return lista;
-            //if (lista.Count > 0)
-            //{
-            //    return lista;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+
 
         }
         public List<HistoryItem> Get6MonthHistoryFrom(string cripto)
@@ -105,14 +91,7 @@ namespace TPFinalWindowsForms
                     }
                 }
             return historial;
-            //if (historial.Count > 0)
-            //{
-            //    return historial;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+
         }
     }
 }

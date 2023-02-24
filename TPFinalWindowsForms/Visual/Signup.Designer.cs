@@ -208,7 +208,8 @@
             this.txtEmail.Location = new System.Drawing.Point(618, 230);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(262, 39);
-            this.txtEmail.TabIndex = 13;
+            this.txtEmail.TabIndex = 5;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // lblMensaje
             // 
@@ -228,7 +229,8 @@
             this.txtApellido.Location = new System.Drawing.Point(307, 230);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(262, 39);
-            this.txtApellido.TabIndex = 11;
+            this.txtApellido.TabIndex = 2;
+            this.txtApellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // txtCheckMail
             // 
@@ -237,7 +239,8 @@
             this.txtCheckMail.Location = new System.Drawing.Point(618, 315);
             this.txtCheckMail.Name = "txtCheckMail";
             this.txtCheckMail.Size = new System.Drawing.Size(262, 39);
-            this.txtCheckMail.TabIndex = 15;
+            this.txtCheckMail.TabIndex = 6;
+            this.txtCheckMail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // txtNombre
             // 
@@ -246,7 +249,8 @@
             this.txtNombre.Location = new System.Drawing.Point(307, 149);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(262, 39);
-            this.txtNombre.TabIndex = 9;
+            this.txtNombre.TabIndex = 1;
+            this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // label6
             // 
@@ -266,7 +270,8 @@
             this.txtNick.Location = new System.Drawing.Point(307, 63);
             this.txtNick.Name = "txtNick";
             this.txtNick.Size = new System.Drawing.Size(262, 39);
-            this.txtNick.TabIndex = 3;
+            this.txtNick.TabIndex = 0;
+            this.txtNick.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // txtCheckPass
             // 
@@ -275,7 +280,9 @@
             this.txtCheckPass.Location = new System.Drawing.Point(618, 149);
             this.txtCheckPass.Name = "txtCheckPass";
             this.txtCheckPass.Size = new System.Drawing.Size(262, 39);
-            this.txtCheckPass.TabIndex = 7;
+            this.txtCheckPass.TabIndex = 4;
+            this.txtCheckPass.UseSystemPasswordChar = true;
+            this.txtCheckPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // label7
             // 
@@ -295,7 +302,9 @@
             this.txtPass.Location = new System.Drawing.Point(618, 63);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(262, 39);
-            this.txtPass.TabIndex = 5;
+            this.txtPass.TabIndex = 3;
+            this.txtPass.UseSystemPasswordChar = true;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNick_KeyDown);
             // 
             // panel1
             // 
@@ -333,7 +342,7 @@
             this.btnLogin.Location = new System.Drawing.Point(307, 391);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(262, 86);
-            this.btnLogin.TabIndex = 41;
+            this.btnLogin.TabIndex = 7;
             this.btnLogin.Text = "Acceder";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnAcceder_Click);
@@ -348,7 +357,7 @@
             this.btnSignUp.Location = new System.Drawing.Point(618, 391);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(262, 86);
-            this.btnSignUp.TabIndex = 40;
+            this.btnSignUp.TabIndex = 8;
             this.btnSignUp.Text = "Registrarse";
             this.btnSignUp.UseVisualStyleBackColor = false;
             this.btnSignUp.Click += new System.EventHandler(this.btnRegistrarse_Click);

@@ -107,10 +107,8 @@ private void btnSignup_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void btnAcceder_Click(object sender, EventArgs e)
+        public void Acceder()
         {
-
             if (txtUsuario.Text.Length == 0)
             {
                 lblMensaje.ForeColor = Color.Red;
@@ -153,6 +151,10 @@ private void btnSignup_Click(object sender, EventArgs e)
             txtUsuario.Text = "";
             txtPass.Text = "";
         }
+        private void btnAcceder_Click(object sender, EventArgs e)
+        {
+            Acceder();          
+        }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
@@ -163,6 +165,14 @@ private void btnSignup_Click(object sender, EventArgs e)
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Acceder();
+            }
         }
     }
 }

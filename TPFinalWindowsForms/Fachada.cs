@@ -316,7 +316,7 @@ namespace TPFinalWindowsForms
                 }
             }
 
-            //mail.CrearMensajeMail();
+            mail.CrearMensajeMail();
             foreach (var user in listaUsuarios)
             {
                 Login.log.Info("Mail enviado a " + user.Email);

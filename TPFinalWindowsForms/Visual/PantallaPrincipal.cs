@@ -616,8 +616,7 @@ namespace TPFinalWindowsForms.Visual
         {
 
         }
-
-        private void btnCambiarUmbral_Click(object sender, EventArgs e)
+        public void cambiarUmbral()
         {
             DBContext context = new DBContext();
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
@@ -645,6 +644,10 @@ namespace TPFinalWindowsForms.Visual
                 Login.log.Error("Umbral cambiado");
             }
         }
+        private void btnCambiarUmbral_Click(object sender, EventArgs e)
+        {
+            cambiarUmbral();
+        }
 
         private void panelSuperior_MouseMove(object sender, MouseEventArgs e)
         {
@@ -667,6 +670,14 @@ namespace TPFinalWindowsForms.Visual
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void txtUmbral_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cambiarUmbral();
+            }
         }
     }
 }
