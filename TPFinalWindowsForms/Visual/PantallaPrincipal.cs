@@ -143,11 +143,6 @@ namespace TPFinalWindowsForms.Visual
             }
         }
 
-        private void btnShowGeneralCryptos_Click(object sender, EventArgs e)
-        {
-      
-        }
-
         private void btnShowFavCryptos_Click(object sender, EventArgs e)
         {
 

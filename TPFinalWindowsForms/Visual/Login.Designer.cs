@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -46,9 +42,9 @@
             this.pboxMinimizar = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRegistrarse = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnRegistrarse = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAcceder = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelSuperior.SuspendLayout();
             this.controlBox.SuspendLayout();
@@ -197,9 +193,9 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnRegistrarse);
-            this.panel1.Controls.Add(this.btnAcceder);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtPass);
             this.panel1.Controls.Add(this.txtUsuario);
             this.panel1.Controls.Add(this.lblNickname);
@@ -211,6 +207,34 @@
             this.panel1.TabIndex = 9;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // btnRegistrarse
+            // 
+            this.btnRegistrarse.BackColor = System.Drawing.Color.Purple;
+            this.btnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarse.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnRegistrarse.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrarse.Location = new System.Drawing.Point(400, 429);
+            this.btnRegistrarse.Name = "btnRegistrarse";
+            this.btnRegistrarse.Size = new System.Drawing.Size(334, 58);
+            this.btnRegistrarse.TabIndex = 12;
+            this.btnRegistrarse.Text = "Registrarse";
+            this.btnRegistrarse.UseVisualStyleBackColor = false;
+            this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Purple;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(400, 365);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(334, 58);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Acceder";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnAcceder_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lblMensaje);
@@ -218,46 +242,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(334, 54);
             this.panel2.TabIndex = 10;
-            // 
-            // btnRegistrarse
-            // 
-            this.btnRegistrarse.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegistrarse.CustomizableEdges = customizableEdges1;
-            this.btnRegistrarse.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnRegistrarse.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnRegistrarse.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnRegistrarse.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnRegistrarse.FillColor = System.Drawing.Color.Purple;
-            this.btnRegistrarse.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRegistrarse.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarse.Location = new System.Drawing.Point(400, 424);
-            this.btnRegistrarse.Name = "btnRegistrarse";
-            this.btnRegistrarse.PressedColor = System.Drawing.Color.Blue;
-            this.btnRegistrarse.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            this.btnRegistrarse.Size = new System.Drawing.Size(334, 58);
-            this.btnRegistrarse.TabIndex = 9;
-            this.btnRegistrarse.Text = "Registrarse";
-            this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
-            // 
-            // btnAcceder
-            // 
-            this.btnAcceder.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAcceder.CustomizableEdges = customizableEdges3;
-            this.btnAcceder.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAcceder.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAcceder.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAcceder.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAcceder.FillColor = System.Drawing.Color.Purple;
-            this.btnAcceder.Font = new System.Drawing.Font("Sylfaen", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAcceder.ForeColor = System.Drawing.Color.White;
-            this.btnAcceder.Location = new System.Drawing.Point(400, 360);
-            this.btnAcceder.Name = "btnAcceder";
-            this.btnAcceder.PressedColor = System.Drawing.Color.Blue;
-            this.btnAcceder.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            this.btnAcceder.Size = new System.Drawing.Size(334, 58);
-            this.btnAcceder.TabIndex = 7;
-            this.btnAcceder.Text = "Acceder";
-            this.btnAcceder.Click += new System.EventHandler(this.btnAcceder_Click);
             // 
             // Login
             // 
@@ -303,8 +287,8 @@
         private PictureBox pboxMinimizar;
         private Panel controlBox;
         private Panel panel1;
-        private Guna.UI2.WinForms.Guna2Button btnAcceder;
-        private Guna.UI2.WinForms.Guna2Button btnRegistrarse;
         private Panel panel2;
+        private Button btnRegistrarse;
+        private Button button1;
     }
 }
