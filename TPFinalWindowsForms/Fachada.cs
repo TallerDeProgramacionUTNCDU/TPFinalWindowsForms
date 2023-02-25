@@ -17,6 +17,8 @@ using ScottPlot.Renderable;
 using Quartz.Impl.AdoJobStore.Common;
 using TPFinalWindowsForms.ServicioMail;
 using TPFinalWindowsForms.Api.Exceptions;
+using Microsoft.VisualBasic.ApplicationServices;
+
 namespace TPFinalWindowsForms
 {
     public class Fachada
@@ -24,14 +26,13 @@ namespace TPFinalWindowsForms
 
         DataCriptoAPI interaccionCrypto = new DataCriptoAPI();
 
-        public List<CryptoDTO> ObtenerListaFavoritas()
+        public List<CryptoDTO> ObtenerListaFavoritas(Usuario usuario)
         {
             try
             {
                 DBContext context = new DBContext();
                 RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-                var objetoUsuario = repoUsuario.GetUsuarioActual();
-                string[] resultado = objetoUsuario.Favcriptos.Split(' ');
+                string[] resultado = usuario.Favcriptos.Split(' ');
                 List<string> listaFavoritas = resultado.ToList();
                 List<CryptoDTO> listaCryptosDTO = interaccionCrypto.GetFavCryptosDTO(listaFavoritas);
                 return listaCryptosDTO;
@@ -326,31 +327,40 @@ namespace TPFinalWindowsForms
             RepositorioAlertas repoAlertas = new RepositorioAlertas(contexto);
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
-            var listaUsuarios = repoUsuario.GetAll();
-            var usuario = repoUsuario.GetUsuarioActual();
-            var listaFavoritas = fachada.ObtenerListaFavoritas();
+            var arrayUsuarios = repoUsuario.GetAll();
 
-            var j = 0;
-            foreach (var crypto in listaFavoritas)
+            List<Usuario> listaUsuarioObjeto = new List<Usuario>();
+            foreach (var usuario in arrayUsuarios)
             {
-                if (usuario.Umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
+                listaUsuarioObjeto.Add(usuario);
+            }
+
+            foreach (var usuario in listaUsuarioObjeto)
+            {
+                var listaFavoritas = fachada.ObtenerListaFavoritas(usuario);
+                foreach (var crypto in listaFavoritas)
                 {
-                    Alerta alerta = new Alerta
+                    if (usuario.Umbral < Math.Abs(double.Parse(crypto.ChangePercent24hs, provider)))
                     {
-                        Idcripto = crypto.Name,
-                        Idusuario = usuario.Nickname,
-                        Fecha = DateTime.Now,
-                        Umbralalerta = double.Parse(crypto.ChangePercent24hs, provider)
-                    };
-                    repoAlertas.Add(alerta);
-                    contexto.SaveChanges();
+                        Alerta alerta = new Alerta
+                        {
+                            Idcripto = crypto.Name,
+                            Idusuario = usuario.Nickname,
+                            Fecha = DateTime.Now,
+                            Umbralalerta = double.Parse(crypto.ChangePercent24hs, provider)
+                        };
+                        repoAlertas.Add(alerta);
+                        contexto.SaveChanges();
+                    }
+                    Login.log.Info("Mail enviado a " + usuario.Email);
                 }
             }
 
             mail.CrearMensajeMail();
-            foreach (var user in listaUsuarios)
+
+
+
             {
-                Login.log.Info("Mail enviado a " + user.Email);
             }
         }
     }

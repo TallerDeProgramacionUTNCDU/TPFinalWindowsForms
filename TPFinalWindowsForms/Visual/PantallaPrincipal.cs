@@ -111,22 +111,20 @@ namespace TPFinalWindowsForms.Visual
                     provider.NumberGroupSeparator = ",";
                     provider.NumberDecimalSeparator = ".";
                     var listaAlertas = fachada.GetAllAlerts();
-                    while (j < listaAlertas.Count())
+                    foreach (var alerta in listaAlertas)
                     {
                         this.Invoke(new MethodInvoker(delegate ()
                         {
-                            foreach (var alerta in listaAlertas)
+                            if (alerta.Idusuario == usuario.Nickname)
                             {
-                                if (alerta.Idusuario==usuario.Nickname){
-                                    listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
-                                    j++;
-                                }
+                                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                                j++;
                             }
-                            Login.log.Info("Alertas Mostradas");
                         }));
                     }
+                    Login.log.Info("Alertas Mostradas");
                 }
-                System.Timers.Timer timer = new(interval: 5000); //Está en milisegundos
+                System.Timers.Timer timer = new(interval: 15000); //Está en milisegundos
                 timer.Elapsed += (sender, e) => HandleTimer();
                 timer.Start();
                 Login.log.Info("Timer alertas área alertas iniciado");
@@ -236,7 +234,7 @@ namespace TPFinalWindowsForms.Visual
                     lblMensaje.Text = "La crypto fue eliminada satisfactoriamente de favoritos";
                     lblMensaje.ForeColor = Color.Red;
                     Login.log.Info("Se eliminó a " + txtCrypto.Text + " de favoritas");
-                    var listaCryptosDTO = fachada.ObtenerListaFavoritas();
+                    var listaCryptosDTO = fachada.ObtenerListaFavoritas(user);
                     dgvCryptos.DataSource = listaCryptosDTO;
                 }
                 else
@@ -413,7 +411,7 @@ namespace TPFinalWindowsForms.Visual
                     lblMensaje.Text = "La crypto fue agregada a favoritos";
                     lblMensaje.ForeColor = Color.Aqua;
                     Login.log.Info(txtCrypto.Text + " Añadida a favoritas");
-                    var listaCryptosDTO = fachada.ObtenerListaFavoritas();
+                    var listaCryptosDTO = fachada.ObtenerListaFavoritas(objetoUsuario);
                     dgvCryptos.DataSource = listaCryptosDTO;
                 }
                 else
@@ -430,7 +428,7 @@ namespace TPFinalWindowsForms.Visual
         {
             try
             {
-                var listaCryptosDTO = fachada.ObtenerListaFavoritas();
+                var listaCryptosDTO = fachada.ObtenerListaFavoritas(fachada.GetUsuarioActual());
                 int i = 0;
                 provider.NumberGroupSeparator = ",";
                 provider.NumberDecimalSeparator = ".";

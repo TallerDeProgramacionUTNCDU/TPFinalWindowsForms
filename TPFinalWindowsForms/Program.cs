@@ -29,7 +29,7 @@ namespace TPFinalWindowsForms
                 .WithIdentity(name: "RepeatingTrigger", group: "TriggerGroup")
                 .WithSimpleSchedule(o => o
                     .RepeatForever()
-                    .WithIntervalInSeconds(10))
+                    .WithIntervalInSeconds(15))
                 .Build();
         var builder = Host.CreateDefaultBuilder()
         .ConfigureServices((cxt, services) =>

@@ -64,7 +64,7 @@ namespace TPFinalWindowsForms.ServicioMail
                     {
                         if (alerta.Idusuario == user.Nickname)
                         {
-                            stringAlertasFromDB += "La cripto " + alerta.Umbralalerta + "cambio un " + string.Format("{0:0.0000}", alerta.Umbralalerta) + "%\n";
+                            stringAlertasFromDB += "La cripto " + alerta.Idcripto + " cambió un " + string.Format("{0:0.0000}", alerta.Umbralalerta) + "%\n";
                         }
                     }
                 }
