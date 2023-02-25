@@ -142,8 +142,38 @@ namespace TPFinalWindowsForms
                 context.SaveChanges();
             }
         }
-       
 
+        public Usuario GetUsuarioActual()
+        {
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            return repoUsuario.GetUsuarioActual();
+        }
+
+        public bool ExisteUsuario(string nick)
+        {
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            var buscado=repoUsuario.Get(nick);
+            if (buscado is null) { return false; }
+            else return true;
+        }
+        public void AgregarNuevoUsuario(string nickname, string nombre, string apellido, string contraseña, string email)
+        {
+            using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
+            {
+                Usuario usuario = new Usuario(nickname, nombre, apellido, contraseña, email, "", 0, false);
+                bUoW.RepositorioUsuario.Add(usuario);
+                bUoW.Complete();
+                Login.log.Info("Registro Exitoso");
+            }
+        }
+        public Usuario GetUser(string nick)
+        {
+            DBContext context = new DBContext();
+            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+            return repoUsuario.Get(nick);
+        }
 
         public void DelFavCrypto(string cripto)
         {
@@ -316,7 +346,7 @@ namespace TPFinalWindowsForms
                 }
             }
 
-            mail.CrearMensajeMail();
+            //mail.CrearMensajeMail();
             foreach (var user in listaUsuarios)
             {
                 Login.log.Info("Mail enviado a " + user.Email);

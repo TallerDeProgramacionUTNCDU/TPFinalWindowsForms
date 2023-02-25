@@ -38,9 +38,7 @@ namespace TPFinalWindowsForms.Visual
         private void Perfil_Load(object sender, EventArgs e)
         {
             lblMensaje.Text = "";
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var usuario = repoUsuario.GetUsuarioActual();
+            var usuario = fachada.GetUsuarioActual();
             txtShowNick.Text = usuario.Nickname;
             txtShowPass.Text = usuario.Contraseña;
             txtShowNombre.Text = usuario.Nombre;
@@ -173,9 +171,8 @@ namespace TPFinalWindowsForms.Visual
                 }
                 if (cambio)
                 {
-                    DBContext context = new DBContext();
-                    RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-                    var usuario = repoUsuario.GetUsuarioActual();
+
+                    var usuario = fachada.GetUsuarioActual();
                     lblMensaje.Text = "Datos actualizados correctamente";
                     lblMensaje.ForeColor = Color.Green;
                     txtShowNick.Text = usuario.Nickname;

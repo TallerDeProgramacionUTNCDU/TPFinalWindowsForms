@@ -35,8 +35,7 @@ namespace TPFinalWindowsForms.Visual
         public static extern bool ReleaseCapture();
         public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        static DBContext context = new DBContext();
-        RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+        Fachada fachada = new Fachada();
         public Login()
         { 
             InitializeComponent();
@@ -44,7 +43,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void Login_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = repoUsuario.GetAll().ToList() ;
+            //dataGridView1.DataSource = repoUsuario.GetAll().ToList() ;
             lblMensaje.Text = "";
         }
 
@@ -123,7 +122,7 @@ private void btnSignup_Click(object sender, EventArgs e)
             {
                 try
                 {
-                    var objetoUsuario = repoUsuario.Get(txtUsuario.Text);
+                    var objetoUsuario = fachada.GetUser(txtUsuario.Text);
                     if (objetoUsuario.Nickname == txtUsuario.Text && objetoUsuario.Contraseña == txtPass.Text)
                     {
                         log.Info("Login Exitoso");

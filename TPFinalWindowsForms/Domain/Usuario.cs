@@ -39,6 +39,19 @@ public partial class Usuario
     public double Umbral { get; set; }
 
     public bool SesionActiva { get; set; }
+
+    public Usuario(string nickname, string nombre, string apellido, string contraseña, string email, string favcriptos, double umbral, bool sesionActiva)
+    {
+        Nickname=nickname;
+        Nombre=nombre;
+        Apellido=apellido;
+        Contraseña=contraseña;
+        Email=email;
+        Favcriptos=favcriptos;
+        Umbral=umbral;
+        SesionActiva=sesionActiva;
+    }
+
     public bool ExisteCripto(string cripto)
     {
         string[] arrayCryptos = Favcriptos.Split(' ');

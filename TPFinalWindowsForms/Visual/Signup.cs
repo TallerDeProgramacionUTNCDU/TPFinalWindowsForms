@@ -29,8 +29,7 @@ namespace TPFinalWindowsForms.Visual
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         Utilidades utilidades = new Utilidades();   
-        static DBContext context = new DBContext();
-        RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
+
         Fachada fachada = new Fachada();
         public Signup()
         {
@@ -49,7 +48,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void Signup_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = repoUsuario.GetAll().ToList();
+            //dataGridView1.DataSource = repoUsuario.GetAll().ToList();
             lblMensaje.Text = "";
         }
 
@@ -135,7 +134,7 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                if (repoUsuario.Get(txtNick.Text) != null)
+                if (fachada.ExisteUsuario(txtNick.Text))
                 {
                     lblMensaje.ForeColor = Color.Red;
                     lblMensaje.Text = "Este usuario ya existe";
@@ -143,24 +142,8 @@ namespace TPFinalWindowsForms.Visual
                 }
                 else
                 {
-                    using (IUnitOfWork bUoW = new UnitOfWork(new DBContext()))
-                    {
-                        Usuario usuario = new Usuario
-                        {
-                            Nickname = txtNick.Text,
-                            Contraseña = txtPass.Text,
-                            Nombre = txtNombre.Text,
-                            Apellido = txtApellido.Text,
-                            Email = txtEmail.Text,
-                            Favcriptos = "",
-                            Umbral = 0,
-                            SesionActiva = false
-                        };
-                        bUoW.RepositorioUsuario.Add(usuario);
-                        bUoW.Complete();
-                        Login.log.Info("Registro Exitoso");
-                        dataGridView1.DataSource = repoUsuario.GetAll().ToList();
-                    }
+
+                    fachada.AgregarNuevoUsuario(txtNick.Text, txtNombre.Text, txtApellido.Text, txtPass.Text, txtEmail.Text);
                     lblMensaje.ForeColor = Color.Green;
                     lblMensaje.Text = "Se agregó correctamente";
                     txtNick.Text = "";

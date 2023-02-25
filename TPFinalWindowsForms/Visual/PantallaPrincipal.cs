@@ -64,7 +64,7 @@ namespace TPFinalWindowsForms.Visual
                 //CHART
                 provider.NumberGroupSeparator = ",";
                 provider.NumberDecimalSeparator = ".";
-                var cryptosDTO = fachada.GetAllCryptoDTO(); //awijdiawjdiadwjdawidjiawjdiawd
+                var cryptosDTO = fachada.GetAllCryptoDTO(); 
                 int i = 0;
                 List<ScottPlot.Plottable.Bar> bars = new();
                 foreach (var crypto in cryptosDTO)
@@ -102,9 +102,7 @@ namespace TPFinalWindowsForms.Visual
                 formsPlot1.Refresh();
                 int j = 0;
                 // Carga área de notificaciones
-                DBContext context = new DBContext();
-                RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-                var usuario = repoUsuario.GetUsuarioActual();
+                Usuario usuario=fachada.GetUsuarioActual();
                 lblMensajeUmbral2.Text = "Umbral actual: " + String.Format("{0:0.0000}", usuario.Umbral + "%");
                 void HandleTimer()
                 {
@@ -215,9 +213,7 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnDelFav_Click(object sender, EventArgs e)
         {
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            Usuario user = repoUsuario.GetUsuarioActual();
+            Usuario user = fachada.GetUsuarioActual();
             var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
             if (txtCrypto.Text.Length == 0)
             {
@@ -395,8 +391,6 @@ namespace TPFinalWindowsForms.Visual
         private void btnAgregarCriptoFavoritos_Click(object sender, EventArgs e)
         {
             var respuesta = fachada.GetHystoryFrom(txtCrypto.Text.ToLower());
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
             if (txtCrypto.Text.Length == 0)
             {
                 lblMensaje.Text = "Debe ingresar el id de una crypto";
@@ -409,7 +403,7 @@ namespace TPFinalWindowsForms.Visual
             }
             else
             {
-                Usuario objetoUsuario = repoUsuario.GetUsuarioActual();
+                Usuario objetoUsuario = fachada.GetUsuarioActual();
                 string favorita = txtCrypto.Text.ToLower();
                 if (objetoUsuario.ExisteCripto(favorita) is false)
                 {
@@ -618,9 +612,7 @@ namespace TPFinalWindowsForms.Visual
         }
         public void cambiarUmbral()
         {
-            DBContext context = new DBContext();
-            RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            var objetoUsuario = repoUsuario.GetUsuarioActual();
+            var objetoUsuario = fachada.GetUsuarioActual();
             provider.NumberGroupSeparator = ",";
             provider.NumberDecimalSeparator = ".";
             if (txtUmbral.Text.Length == 0)
