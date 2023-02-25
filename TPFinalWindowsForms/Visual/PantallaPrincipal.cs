@@ -117,8 +117,10 @@ namespace TPFinalWindowsForms.Visual
                         {
                             foreach (var alerta in listaAlertas)
                             {
-                                listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
-                                j++;
+                                if (alerta.Idusuario==usuario.Nickname){
+                                    listBoxNotificaciones.Items.Add((j + 1) + "- " + alerta.Fecha + " La cripto " + alerta.Idcripto + " cambio un " + String.Format("{0:0.0000}", alerta.Umbralalerta) + "%");
+                                    j++;
+                                }
                             }
                             Login.log.Info("Alertas Mostradas");
                         }));
@@ -569,7 +571,8 @@ namespace TPFinalWindowsForms.Visual
 
         private void btnBorrarTodas_Click(object sender, EventArgs e)
         {
-            fachada.RemoveAllAlerts();
+            var nicknameUsuario=fachada.GetUsuarioActual().Nickname;
+            fachada.RemoveAllAlertsFrom(nicknameUsuario);
             lblMensaje.Text = "Criptos borradas";
             listBoxNotificaciones.Items.Clear();
             Login.log.Info("Notificaciones Eliminadas");

@@ -228,7 +228,7 @@ namespace TPFinalWindowsForms
 
         }
 
-        public void RemoveAllAlerts()
+        public void RemoveAllAlertsFrom(string nick)
         {
             DBContext context = new DBContext();
             RepositorioAlertas repositorioAlertas = new RepositorioAlertas(context);
@@ -237,7 +237,8 @@ namespace TPFinalWindowsForms
             {
                 foreach (var alerta in listaAlertas)
                 {
-                    repositorioAlertas.Remove(alerta);
+                    if (nick==alerta.Idusuario)
+                    { repositorioAlertas.Remove(alerta); }
                 }
                 context.SaveChanges();
             }
