@@ -124,7 +124,7 @@ namespace TPFinalWindowsForms.Visual
                     }
                     Login.log.Info("Alertas Mostradas");
                 }
-                System.Timers.Timer timer = new(interval: 15000); //Está en milisegundos
+                System.Timers.Timer timer = new(interval: 86400000); //Está en milisegundos
                 timer.Elapsed += (sender, e) => HandleTimer();
                 timer.Start();
                 Login.log.Info("Timer alertas área alertas iniciado");
