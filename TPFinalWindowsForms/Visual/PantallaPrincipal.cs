@@ -104,6 +104,7 @@ namespace TPFinalWindowsForms.Visual
                 // Carga área de notificaciones
                 Usuario usuario=fachada.GetUsuarioActual();
                 lblMensajeUmbral2.Text = "Umbral actual: " + String.Format("{0:0.0000}", usuario.Umbral + "%");
+                System.Timers.Timer timer = new(interval: 1000); //Está en milisegundos
                 void HandleTimer()
                 {
                     j = 0;
@@ -122,9 +123,10 @@ namespace TPFinalWindowsForms.Visual
                             }
                         }));
                     }
+                    timer.Interval = 86400000;
                     Login.log.Info("Alertas Mostradas");
+
                 }
-                System.Timers.Timer timer = new(interval: 86400000); //Está en milisegundos
                 timer.Elapsed += (sender, e) => HandleTimer();
                 timer.Start();
                 Login.log.Info("Timer alertas área alertas iniciado");

@@ -48,7 +48,6 @@ namespace TPFinalWindowsForms.Visual
 
         private void Signup_Load(object sender, EventArgs e)
         {
-            //dataGridView1.DataSource = repoUsuario.GetAll().ToList();
             lblMensaje.Text = "";
         }
 

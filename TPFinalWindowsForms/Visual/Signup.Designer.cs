@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Signup));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.panelSuperior = new System.Windows.Forms.Panel();
             this.controlBox = new System.Windows.Forms.Panel();
@@ -54,7 +53,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnSignUp = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelSuperior.SuspendLayout();
             this.controlBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxCerrar)).BeginInit();
@@ -62,17 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pboxMinimizar)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1048, 534);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(703, 301);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.Visible = false;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label8
             // 
@@ -371,14 +358,12 @@
             this.ClientSize = new System.Drawing.Size(1229, 600);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSuperior);
-            this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Signup";
             this.Text = "Signup";
             this.Load += new System.EventHandler(this.Signup_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelSuperior.ResumeLayout(false);
             this.panelSuperior.PerformLayout();
             this.controlBox.ResumeLayout(false);
@@ -392,7 +377,6 @@
         }
 
         #endregion
-        private DataGridView dataGridView1;
         private Label label8;
         private Panel panelSuperior;
         private Panel controlBox;
